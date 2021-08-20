@@ -1,0 +1,33 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/courseDetail/courseDetail",
+    "pages/myCourse/myCourse",
+    "pages/user/user",
+    "pages/select/select",
+    "pages/openCourse/openCourse"
+  ],
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "van-row": "@vant/weapp/row",
+    "van-col": "@vant/weapp/col",
+    "van-cell": "@vant/weapp/cell",
+    "van-cell-group": "@vant/weapp/cell-group",
+    "van-dialog": "@vant/weapp/dialog",
+    "van-icon": "@vant/weapp/icon",
+    "van-notify": "@vant/weapp/notify",
+    "van-field":"@vant/weapp/field",
+    "van-radio": "@vant/weapp/radio",
+    "van-radio-group": "@vant/weapp/radio-group",
+    "van-popup": "@vant/weapp/popup",
+    "van-picker": "@vant/weapp/picker"
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#116ec0",
+    "navigationBarTitleText": "广研兴趣协会预约系统",
+    "navigationBarTextStyle": "white"
+  },
+
+  "sitemapLocation": "sitemap.json"
+}
