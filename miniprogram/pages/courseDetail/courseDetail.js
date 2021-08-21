@@ -20,21 +20,21 @@ Component({
     /**
    * 生命周期函数--监听页面加载
    */
-    onLoad: function (options) {
-      var that = this
-      courseCollection.where({
-        courseName: app.globalData.courseName
-      }).get().then(res=>{
-        console.log(res)
-        that.setData({
-          courseName: res.data[0].courseName,
-          time: res.data[0].time,
-          xuefen: res.data[0].xuefen,
-          teacherName: res.data[0].teacherName,
-          desc: res.data[0].desc
-        })
-      })
-    },
+    // onLoad: function (options) {
+    //   var that = this
+    //   courseCollection.where({
+    //     courseName: app.globalData.courseName
+    //   }).get().then(res=>{
+    //     console.log(res)
+    //     that.setData({
+    //       courseName: res.data[0].courseName,
+    //       time: res.data[0].time,
+    //       xuefen: res.data[0].xuefen,
+    //       teacherName: res.data[0].teacherName,
+    //       desc: res.data[0].desc
+    //     })
+    //   })
+    // },
 
     /**
      * 生命周期函数--监听页面初次渲染完成

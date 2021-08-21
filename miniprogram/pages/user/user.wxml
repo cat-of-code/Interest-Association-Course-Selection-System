@@ -1,5 +1,5 @@
-
-<!--pages/user/user.wxml-->
+<!--
+  
 <view class="today">
   <view class="info">
     <view class="temp">  {{today.wendu}}℃</view>
@@ -17,3 +17,25 @@
 <view class="footer">
     @广州服务支持部
 </view>
+-->
+
+ <!--TODO 样式待修改-->
+<block wx:if="{{login}}"> 
+  <view class="user">
+    <image src='{{userInfo.avatarUrl}}'></image>
+    <text>{{userInfo.nickName}}</text>
+  </view>
+  <van-grid gutter="{{ 10 }}" column-num="3" >
+    <block wx:for="{{ projets }}"  wx:for-item="item" wx:key="key">
+      <van-grid-item icon="{{ item.icon }}" text="{{ item.text }}" />
+    </block>
+  </van-grid>
+</block>
+<block wx:if="{{!login}}">
+  <view class="login">
+    <image src='../../img/logo.png'></image>
+    <view>广研兴趣协会预约系统</view>
+    <view>请确认授权以下信息</view>
+    <button type='primary' open-type='getUserInfo' bindgetuserinfo='getUserInfo'>授权登录</button>
+  </view>
+</block>

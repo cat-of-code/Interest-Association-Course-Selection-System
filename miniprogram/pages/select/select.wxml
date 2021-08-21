@@ -1,4 +1,5 @@
 
+<!--
 <view class="waveWrapper waveAnimation" style='background-color:{{evening}}'>
   <view class="word">我要选课</view>
   <view class="waveWrapperInner bgTop">
@@ -10,7 +11,7 @@
 </view>
 
 <scroll-view scroll-y="true" class="scroll" refresher-enabled="true" bindrefresherrefresh="refresh" bindrefresherabort="refreshAbort">
-  <block wx:for="{{courses}}">
+  <block wx:for="{{courses}}" wx:key="key">
   <van-cell  
     icon="label-o" 
     use-label-slot="true" 
@@ -46,3 +47,81 @@
 </block>
 
 </scroll-view>
+-->
+
+<view class="tabs">
+  <van-tabs 
+    type="card" 
+    animated 
+    color="#1296db"
+    bind:click="chooseActivity"
+  >
+    <van-tab title="每日活动">
+      <van-tabs 
+        active="{{ active }}" 
+        title-active-color="#1296db"
+        bind:click="clickTheDateActivity"
+      >
+        <block 
+          wx:for="{{ dates }}" 
+          wx:item="item" 
+          wx:key="key"
+        >
+          <van-tab 
+            title="{{ item.month }}月 {{item.day }}" 
+            title-active-color="#1296db"
+            name="key"            
+          >
+            <!--活动列表-->
+            <block
+              wx:for="{{ activities }}"
+              wx:for-item="item"
+              wx:for-index="idx"
+              wx:key="index"
+            >
+              <view 
+                class="card"
+                bindtap="clickActivity"
+                data-idx="{{ idx }}"
+              >
+                <van-button plain type="primary">预约</van-button>
+              </view>
+            </block>
+          
+          </van-tab>
+        </block>
+      </van-tabs>
+    </van-tab>
+    <van-tab title="协会预约">
+      <van-tabs 
+        active="{{ active }}" 
+        title-active-color="#1296db"
+        bind:click="clickTheDateActivity"
+      >
+        <block 
+          wx:for="{{ dates }}" 
+          wx:item="item" 
+          wx:key="key"
+        >
+          <van-tab 
+            title="{{ item.month }}月 {{item.day }}" 
+            title-active-color="#1296db"
+            name="key"            
+          >
+            <!--协会列表-->
+            <block
+              wx:for="{{ associations }}"
+              wx:item="item"
+              wx:key="key"
+            >
+              <view class="panel">
+                <van-button plain type="primary">所有活动</van-button>
+              </view>
+            </block>
+
+          </van-tab>
+        </block>
+      </van-tabs>
+    </van-tab>
+  </van-tabs>
+</view>

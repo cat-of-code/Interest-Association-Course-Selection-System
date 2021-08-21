@@ -1,5 +1,5 @@
 const db = wx.cloud.database()
-const userCollection = db.collection("user")
+const userInfo = db.collection('userInfo')
 var app = getApp()
 
 Page({
@@ -12,11 +12,29 @@ Page({
     identity: ""
   },
 
-  updateTimeStamp: function (e) {
 
+  getUserInfo: function (e) {
+    userInfo.add({
+      data: {
+        nickName: e.detail.userInfo.nickName,
+        avatarUrl: e.detail.userInfo.avatarUrl
+      },
+    }).then(res => {
+      userInfo.doc(res._id).get({
+        success(re){
+          app.globalData.userInfo = res.data
+        }
+      })
+    }).catch(err => {
+      wx.showToast({
+        title: '登录失败',
+        icon: 'none',
+        duration: 2000
+      })
+    })
   },
 
-  onLoad: function (e) {
+  onShow: function (e) {
     var time = 0
     var login = false
     var page = this

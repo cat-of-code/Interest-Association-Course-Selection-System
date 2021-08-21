@@ -7,17 +7,44 @@ Page({
    * 显示天气
    */
   data: {
+    login: false,
+    userInfo: {},
+    projets:[ 
+      {
+        icon: "like-o",
+        text: "我的预约记录"
+      },
+      {
+        icon: "star-o",
+        text: "我的活动记录",
+      },
+      {
+        icon: "fire-o",
+        text: "我的报名记录"
+      }
+    ],
+
     username: "",
     identity: "",
     city: "",
-    today: {},
+    today: {}
   },
+
   onLoad: function () {
     this.data.username = app.globalData.username;
     this.data.identity = app.globalData.identity;
     this.loadInfo();
     console.log(this.data.username, this.data.identity)
   },
+
+  getUserInfo: function (e) {
+    this.setData({
+      userInfo: e.detail.userInfo,
+      login: true
+    })
+    console.log(e.detail.userInfo)
+  },
+  
   loadInfo: function () {
     var page = this;
     // wx.getLocation({

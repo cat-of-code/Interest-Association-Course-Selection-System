@@ -11,8 +11,82 @@ Page({
    * 页面的初始数据
    */
   data: {
-    courses:[],
-    disable:false
+    activities: [{
+      name: "篮球",
+    }, {
+      name: "瑜伽",
+    }],
+    disable: false,
+    dates: [],
+    associations: [{
+      name: "篮球",
+    }, {
+      name: "瑜伽",
+    }, {
+      name: "乒乓球",
+  }],
+    selection: 0
+  },
+
+  /**
+   * 李天红写的
+   * 生命周期函数
+   */
+  onLoad: function (e) {
+    // 获取30天的日期
+    var date = new Date()
+    var page = this
+    var dates = [{
+      day: date.getDate(),
+      month: date.getMonth() + 1,
+      year: date.getFullYear()
+    }]
+    for (let index = 0; index < 29; index++) {
+      date = new Date(Date.parse(date) + 86400000)
+      dates.push({
+        day: date.getDate(),
+        month: date.getMonth() + 1,
+        year: date.getFullYear()
+      })
+    }
+    page.setData({
+      dates: dates
+    })
+    // TODO: 从数据库中获取每日活动当天的活动
+  },
+
+  
+  /**
+   * 李天红写的
+   * 功能：选择每日活动或者协会预约的id
+   */
+  chooseActivity: function (e) {
+    this.setData({
+      selection: e.detail.index
+    })
+    // console.log(e.detail.index)
+  },
+
+  /**
+   * 李天红写的
+   * 功能：点击日期获取当日的activity列表
+   */
+  clickTheDateActivity: function (e) {
+    console.log(e.detail.index)
+    // TODO: 从数据库中获取每日活动当天的活动
+    
+  },
+
+  /**
+   * 李天红写的
+   * 功能：点击某个活动进入活动详情页
+   */
+  clickActivity: function (e) {
+    console.log(e.currentTarget.dataset.idx)
+    wx.redirectTo({
+      url: '../courseDetail/courseDetail',
+    })
+    
   },
 
  
@@ -21,8 +95,8 @@ Page({
      */
     select:function(e){
       let courseName = e.target.id
-      console.log(courseName)
-      console.log(app.globalData.username)
+      // console.log(courseName)
+      // console.log(app.globalData.username)
       courseListCollection.where({
           stuName:app.globalData.username,
           courseName:courseName
@@ -112,7 +186,7 @@ Page({
      * 跳转到课程详细页面
      */
     into_coursePage:function(e){
-      console.log(e.currentTarget.dataset.coursename)
+      // console.log(e.currentTarget.dataset.coursename)
       app.globalData.courseName = e.currentTarget.dataset.coursename
       wx.navigateTo({
         url: '../courseDetail/courseDetail',
@@ -121,14 +195,16 @@ Page({
     /**
    * 生命周期函数--监听页面加载
    */
-    onLoad: function (options) {
-      courseCollection.get().then(res=>{
-        this.setData({
-          courses:res.data
-        })
-        console.log(this.data.courses)
-      })
-    },
+    // onLoad: function (options) {
+    //   courseCollection.get().then(res=>{
+    //     this.setData({
+    //       courses:res.data
+    //     })
+    //     // console.log(this.data.courses)
+    //   })
+    // },
+
+    
 
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -156,7 +232,7 @@ Page({
         this.setData({
           courses: res.data
         })
-        console.log(this.data.courses)
+        // console.log(this.data.courses)
       })
       wx.hideLoading()
     },

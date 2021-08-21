@@ -57,6 +57,19 @@
         {
           "name": "pages/updateRecordSuccess/index",
           "pathName": "pages/updateRecordSuccess/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "个人中心",
+          "pathName": "pages/user/user",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "courseDetail",
+          "pathName": "pages/courseDetail/courseDetail",
+          "query": "",
           "scene": null
         }
       ]

@@ -1,3 +1,4 @@
+/*
 .top {
   font-size: 20rpx;
   height: 400rpx;
@@ -43,4 +44,30 @@
 .weather{
     text-align: center;
 }
+*/
+.user{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.user image{
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+.user text{     
+  color: #1296db;
+}
 
+.login{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login image{
+  width: 188rpx;
+  height: 188rpx;
+  margin: 40rpx;
+  border-radius: 50%;
+}

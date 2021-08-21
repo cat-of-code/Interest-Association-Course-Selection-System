@@ -9,10 +9,13 @@
   </view>
 </view>
 
+<view class="top"></view>
 
-<view id="titleview">
+
+<!-- 
+<view id="titleview"> -->
 <!-- 以下是课程名块 -->
-<view id="coursename">{{courseName}}</view>
+<!-- <view id="coursename">{{courseName}}</view>
 
 </view>
 
@@ -34,4 +37,4 @@
       <text class="introkey2">课程简介：</text>
       <text class="introvalue2">{{desc}}</text>
     </view>
-  </view>
+  </view> --> 

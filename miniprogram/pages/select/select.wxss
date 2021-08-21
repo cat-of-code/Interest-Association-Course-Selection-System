@@ -1,6 +1,29 @@
 /* pages/select/select.wxss */
 
+.card {
+  margin-top: 20rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  margin-bottom: 20rpx;
+  border-radius: 10rpx;
+  height: 100px;
+  background-color: aqua;
+  box-shadow: 0 8rpx 12rpx #bcc0c9;
+  /* background-image: "../../img/huangshi.jpg"; */
+}
 
+.panel {
+  margin-top: 20rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  margin-bottom: 20rpx;
+  border-radius: 10rpx;
+  height: 50px;
+  background-color: #110110;
+  box-shadow: 0 8rpx 12rpx #7d8086;
+}
+
+/*
 .titleview {
   font-size: 47rpx;
   display: flex;
@@ -33,9 +56,11 @@
   color: #fff;
 
 }
+*/
 /**
 *波浪
 */
+/*
 page {
   background-color: #fff
 }
@@ -166,3 +191,4 @@ page {
 .waveAnimation .waveBottom {
   animation: move_wave 12s linear infinite;
 }
+*/
