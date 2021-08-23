@@ -11,38 +11,66 @@ Page({
     userInfo: {},
     projets:[ 
       {
-        icon: "like-o",
+        icon: "todo-list-o",
         text: "我的预约记录"
       },
       {
-        icon: "star-o",
+        icon: "label-o",
         text: "我的活动记录",
       },
       {
-        icon: "fire-o",
+        icon: "orders-o",
         text: "我的报名记录"
       }
-    ],
-
-    username: "",
-    identity: "",
-    city: "",
-    today: {}
+    ]
   },
 
-  onLoad: function () {
-    this.data.username = app.globalData.username;
-    this.data.identity = app.globalData.identity;
-    this.loadInfo();
-    console.log(this.data.username, this.data.identity)
+  /**
+   * 李天红写的
+   * 功能：生命周期onShow，获取全局变量
+   */
+  onShow: function () {
+    console.log("进入pages/user/user")
+    var page = this
+    if (app.globalData.login) {
+      page.setData({
+        login: app.globalData.login,
+        userInfo: {
+          nickName: app.globalData.nickName,
+          avatarUrl: app.globalData.avatarUrl
+        }
+      })
+    }
   },
 
+  /**
+   * 李天红写的
+   * 功能：获取用户信息
+   */
   getUserInfo: function (e) {
-    this.setData({
-      userInfo: e.detail.userInfo,
-      login: true
+    var page = this
+    var userInfo = e.detail.userInfo
+    
+    // 把登录数据添加到数据库
+    userCollection.add({
+      data: {
+        nickName: userInfo.nickName,
+        avatarUrl: userInfo.avatarUrl
+      },
+      // 如果成功了
+      success: function (res) {
+        // 1.把用户名和头像保存到本页全局变量，login设置为true
+        page.setData({
+          login: true,
+          userInfo: userInfo
+        })
+        // 2.把用户名和头像保存到整个weapp的全局变量
+        app.globalData.nickName = userInfo.nickName
+        app.globalData.avatarUrl = userInfo.avatarUrl
+      }
     })
-    console.log(e.detail.userInfo)
+    // console.log(userInfo.nickName)
+    // console.log(userInfo.avatarUrl)
   },
   
   loadInfo: function () {

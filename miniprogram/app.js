@@ -1,28 +1,41 @@
 //app.js
+
 App({
-  // 【可忽略】：打开小程序时连接云数据库的代码
+  // 打开小程序时连接云数据库的代码
   onLaunch: function () {
-    if(wx.cloud){
+    var page = this
+    if (wx.cloud) {
+      // 1.获取用户openid
       wx.cloud.init({
-        env:"cloud1-0gyu6anlffcd11a5",
-        traceUser:true
+        env: "cloud1-0gyu6anlffcd11a5",
+        traceUser: true
       })
       wx.cloud.callFunction({
-        name:"getOpenId"
-      }).then(res=>{
-        this.globalData.openid = res.result.openid
+        name: "getOpenId"
+      }).then(res => {
+        // 2.获取成功就把openid添加到weapp全局变量
+        page.globalData.openid = res.result.openid
+        // 3.查询数据库，看用户是否注册，如果注册则自动登录
+        var db = wx.cloud.database()
+        var userCollection = db.collection("user")
+        userCollection.where({
+          _openid: res.result.openid
+        }).get({
+          success: function(res) {
+            console.log("登录成功")
+            page.globalData.nickName = res.data[0].nickName,
+            page.globalData.avatarUrl = res.data[0].avatarUrl,
+            page.globalData.login = true
+          }
+        })
       })
     }
   },
   // 【可改】：全局变量
-  globalData:{
-    id:0,
-    username: "",
-    uid:"",
-    password:"",
-    identity:"",
-    courses:[],
-    courseName:"",
-    openid:""
+  globalData: {
+    nickName: "",
+    avatarUrl: "",
+    openid: "",
+    login: false
   }
 })

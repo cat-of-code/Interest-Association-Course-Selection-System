@@ -33,6 +33,7 @@ Page({
    * 生命周期函数
    */
   onLoad: function (e) {
+    console.log("进入pages/select/select")
     // 获取30天的日期
     var date = new Date()
     var page = this
