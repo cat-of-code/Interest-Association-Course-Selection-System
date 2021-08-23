@@ -34,8 +34,21 @@
 <block wx:if="{{!login}}">
   <view class="login">
     <image src='../../img/logo.png'></image>
-    <view>广研兴趣协会预约系统</view>
-    <view>请确认授权以下信息</view>
-    <button type='primary' open-type='getUserInfo' bindgetuserinfo='getUserInfo'>授权登录</button>
+    <view
+      style="margin-top: 10rpx;"
+    >广研兴趣协会预约系统</view>
+    <view
+      style="margin-top: 10rpx; margin-bottom: 20rpx;"
+    >请确认授权以下信息</view>
+    <van-button
+      type='primary' 
+      open-type='getUserInfo' 
+      bindgetuserinfo='getUserInfo'
+      plain = "{{ true }}"
+      color="#1296db"
+      custom-style="weigth: 200rpx"
+      round="{{ true }}"
+    >授权登录
+    </van-button>
   </view>
 </block>

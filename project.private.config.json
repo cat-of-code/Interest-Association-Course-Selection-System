@@ -71,6 +71,18 @@
           "pathName": "pages/courseDetail/courseDetail",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "openCourse",
+          "pathName": "pages/openCourse/openCourse",
+          "query": "",
+          "scene": null
         }
       ]
     }

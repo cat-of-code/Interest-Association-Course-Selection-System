@@ -50,8 +50,10 @@ Page({
   getUserInfo: function (e) {
     var page = this
     var userInfo = e.detail.userInfo
+    // console.log(userInfo)
     
     // 把登录数据添加到数据库
+    
     userCollection.add({
       data: {
         nickName: userInfo.nickName,
