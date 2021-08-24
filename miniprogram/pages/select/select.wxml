@@ -84,8 +84,8 @@
                 <cover-image 
                   bindtap="clickActivity"
                   data-idx="{{ idx }}"  
-                  src="cloud://cloud1-0gyu6anlffcd11a5.636c-cloud1-0gyu6anlffcd11a5-1306965577/{{ item.bg }}"
-                  style="opacity: {{ 0.6 }};"
+                  src="{{ storage }}{{ item.bg }}"
+                  style="opacity: {{ 0.6 }}; border-radius: 20rpx;"
                 ></cover-image>
                 <!-- 颜色好丑 -->
                 <view 
@@ -138,6 +138,7 @@
               wx:for="{{ associations }}"
               wx:item="item"
               wx:key="key"
+              wx:for-index="idx"
             >
               <view class="panels">
                 <view class="panel">
@@ -145,18 +146,35 @@
                   <view 
                     style="color: white;"
                   >{{item.name}}</view>
+
                   <van-button  
+                    wx:if="{{ !item.open }}"
                     type="primary"
                     round="{{ true }}"
                     color="#1296db"
                     size='small'
                     style="position: absolute; right: 10rpx;"
-                  >sy</van-button>
+                    data-idx="{{ idx }}"
+                    bind:click="openPanel"
+                  >所有活动</van-button>
+                  <van-button  
+                    wx:if="{{ item.open }}"
+                    type="primary"
+                    round="{{ true }}"
+                    color="gray"
+                    size='small'
+                    style="position: absolute; right: 10rpx;"
+                    data-idx="{{ idx }}"
+                    bind:click="openPanel"
+                  >收起</van-button>
                 </view>
-                <block>
+                <block wx:if="{{ item.open }}">
                   <view class="panel">
+                    <van-divider 
+                      customStyle="border-color: #1296db"
+                      dashed />
                     <view 
-                      style="color: white; margin: 20rpx"
+                      style="color: white; margin: 20rpx; "
                     >瑜伽新人活动</view>
                     <van-button  
                       type="primary"
@@ -169,7 +187,6 @@
                 </block>
               </view>
             </block>
-
           </van-tab>
         </block>
       </van-tabs>

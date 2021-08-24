@@ -6,7 +6,8 @@
     "pages/myCourse/myCourse",
     "pages/user/user",
     "pages/openCourse/openCourse",
-    "pages/manager/manager"
+    "pages/manager/manager",
+    "pages/association/association"
   ],
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
@@ -27,7 +28,8 @@
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index",
     "van-nav-bar": "@vant/weapp/nav-bar/index",
-    "van-image": "@vant/weapp/image/index"
+    "van-image": "@vant/weapp/image/index",
+    "van-divider": "@vant/weapp/divider/index"
   },
   "window": {
     "backgroundTextStyle": "light",

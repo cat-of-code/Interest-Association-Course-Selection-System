@@ -1,0 +1,5 @@
+<!--pages/association/association.wxml-->
+<cover-image
+  src="{{ storage }}{{ img }}"
+></cover-image>
+

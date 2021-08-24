@@ -36,7 +36,8 @@ Page({
       name: "乒乓球",
       open: false
   }],
-    selection: 0
+    selection: 1,
+    storage: "cloud://cloud1-0gyu6anlffcd11a5.636c-cloud1-0gyu6anlffcd11a5-1306965577/"
   },
 
   /**
@@ -109,6 +110,26 @@ Page({
    */
   reserveBtn: function (e) {
     console.log(e.currentTarget.dataset.idx)
+  },
+
+  /**
+   * 李天红写的
+   * 功能：展开页面
+   */
+
+  openPanel: function (e) {
+    // console.log(e.currentTarget.dataset.idx)
+    var index = e.currentTarget.dataset.idx
+    var page = this
+    if (page.data.associations[index].open) {
+      page.setData({
+        [`associations[${index}].open`]: false
+      })
+    } else {
+      page.setData({
+        [`associations[${index}].open`]: true
+      })
+    }
   },
  
     /**

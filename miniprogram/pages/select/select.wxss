@@ -9,11 +9,12 @@
   height: 140px;
   box-shadow: 0 8rpx 12rpx #bcc0c9;
   position: relative; 
+  border-radius: 20rpx;
 }
 
 .panels {
   margin: 20rpx;
-  border-radius: 10rpx;
+  border-radius: 20rpx;
   box-shadow: 0 8rpx 12rpx #7d8086;
 }
 
@@ -22,10 +23,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  position: relative; 
-  border-bottom-style: dashed;
-  border-width: 1rpx;
-  border-color: azure;
+  position: relative;
 }
 
 .panel image {
