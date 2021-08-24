@@ -13,17 +13,28 @@ Page({
   data: {
     activities: [{
       name: "篮球",
+      start: "17:30",
+      end: "19:30",
+      addr: "5号楼5楼",
+      bg: "basketball.jpeg"
     }, {
       name: "瑜伽",
+      start: "19:30",
+      end: "20:30",
+      addr: "天河公园",
+      bg: "yoga.jpeg"
     }],
     disable: false,
     dates: [],
     associations: [{
       name: "篮球",
+      open: false
     }, {
       name: "瑜伽",
+      open: false
     }, {
       name: "乒乓球",
+      open: false
   }],
     selection: 0
   },
@@ -65,7 +76,9 @@ Page({
     this.setData({
       selection: e.detail.index
     })
-    // console.log(e.detail.index)
+    // wx.navigateBack({
+    //   delta: 1,
+    // })
   },
 
   /**
@@ -84,12 +97,19 @@ Page({
    */
   clickActivity: function (e) {
     console.log(e.currentTarget.dataset.idx)
-    wx.redirectTo({
-      url: '../courseDetail/courseDetail',
-    })
+    // wx.redirectTo({
+    //   url: '../courseDetail/courseDetail',
+    // })
     
   },
 
+  /**
+   * 李天红写的
+   * 功能：点击预约按钮
+   */
+  reserveBtn: function (e) {
+    console.log(e.currentTarget.dataset.idx)
+  },
  
     /**
      * 选课

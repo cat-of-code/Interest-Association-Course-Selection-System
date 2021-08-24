@@ -8,19 +8,35 @@ Page({
    */
   data: {
     login: false,
+    managerLogin: false,
     userInfo: {},
     projets:[ 
       {
         icon: "todo-list-o",
-        text: "我的预约记录"
+        text: "我的预约记录",
+        redirectUrl: "pages/myCourse/myCourse"
       },
       {
         icon: "label-o",
         text: "我的活动记录",
+        redirectUrl: "pages/myCourse/myCourse"
       },
       {
         icon: "orders-o",
-        text: "我的报名记录"
+        text: "我的报名记录",
+        redirectUrl: "pages/myCourse/myCourse"
+      }
+    ],
+    manages: [
+      {
+        icon: "todo-list-o",
+        text: "已发布的活动",
+        redirectUrl: "pages/myCourse/myCourse"
+      },
+      {
+        icon: "label-o",
+        text: "协会的学员",
+        redirectUrl: "pages/myCourse/myCourse"
       }
     ]
   },
@@ -41,6 +57,31 @@ Page({
         }
       })
     }
+  },
+
+  /**
+   * 李天红写的
+   * 功能：协会管理员登录页面跳转
+   */
+
+  managerLogin: function (e) {
+    // wx.redirectTo({
+    //   url: '../manager/manager',
+    // })
+    this.setData({
+      managerLogin: true
+    })
+  },
+
+  /**
+   * 李天红写的
+   * 功能：退出协会管理员
+   */
+  managerLogout: function (e) {
+    // TODO: 退出后要把数据清除
+    this.setData({
+      managerLogin: false
+    })
   },
 
   /**

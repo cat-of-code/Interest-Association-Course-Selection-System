@@ -26,6 +26,7 @@ App({
             page.globalData.nickName = res.data[0].nickName,
             page.globalData.avatarUrl = res.data[0].avatarUrl,
             page.globalData.login = true
+            // console.log(res.data[0].avatarUrl)
           }
         })
       })

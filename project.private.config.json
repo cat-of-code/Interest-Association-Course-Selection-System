@@ -83,6 +83,18 @@
           "pathName": "pages/openCourse/openCourse",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "manager",
+          "pathName": "pages/manager/manager",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/myCourse/myCourse",
+          "pathName": "pages/myCourse/myCourse",
+          "query": "",
+          "scene": null
         }
       ]
     }

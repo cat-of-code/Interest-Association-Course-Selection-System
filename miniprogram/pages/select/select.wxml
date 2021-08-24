@@ -54,6 +54,7 @@
     type="card" 
     animated 
     color="#1296db"
+    active="{{ selection }}"
     bind:click="chooseActivity"
   >
     <van-tab title="每日活动">
@@ -79,12 +80,36 @@
               wx:for-index="idx"
               wx:key="index"
             >
-              <view 
-                class="card"
-                bindtap="clickActivity"
-                data-idx="{{ idx }}"
-              >
-                <van-button plain type="primary">预约</van-button>
+              <view class="card">
+                <cover-image 
+                  bindtap="clickActivity"
+                  data-idx="{{ idx }}"  
+                  src="cloud://cloud1-0gyu6anlffcd11a5.636c-cloud1-0gyu6anlffcd11a5-1306965577/{{ item.bg }}"
+                  style="opacity: {{ 0.6 }};"
+                ></cover-image>
+                <!-- 颜色好丑 -->
+                <view 
+                  style="position: absolute; left: 20rpx; top: 20rpx; color: white; background-color: #1296db; opacity: {{ 0.3 }}; padding: 15rpx; border-radius: 10rpx;"
+                >
+                  <view
+                    style="font-size: 40rpx; margin-bottom: 10rpx;"
+                  >{{ item.name }}</view>
+                  <view
+                    style="font-size: 50rpx; margin-bottom: 10rpx;"
+                  >{{ item.start }} ~ {{ item.end }}</view>
+                  <view
+                    style="font-size: 40rpx; margin-bottom: 10rpx;"
+                  >{{ item.addr }}</view>
+                </view>
+                <van-button  
+                  round="{{ true }}"
+                  type="primary"
+                  style="position: absolute; right: 10rpx; top: 35%; opacity: {{ 0.4 }};"
+                  color="#1296db"
+                  data-idx="{{ idx }}" 
+                  bind:click="reserveBtn"
+                  size="small"
+                >预约</van-button>       
               </view>
             </block>
           
@@ -114,8 +139,34 @@
               wx:item="item"
               wx:key="key"
             >
-              <view class="panel">
-                <van-button plain type="primary">所有活动</van-button>
+              <view class="panels">
+                <view class="panel">
+                  <image src="https://thirdwx.qlogo.cn/mmopen/vi_32/EHTB2Xnk4vFZ0Udibiaaia9uoMpf5saSuqSRXEeuXmbOhusQhk2wUzicXia7LMu2zDnWh9He4Lan5oZlkuZiaTl1E05Q/132"></image>
+                  <view 
+                    style="color: white;"
+                  >{{item.name}}</view>
+                  <van-button  
+                    type="primary"
+                    round="{{ true }}"
+                    color="#1296db"
+                    size='small'
+                    style="position: absolute; right: 10rpx;"
+                  >sy</van-button>
+                </view>
+                <block>
+                  <view class="panel">
+                    <view 
+                      style="color: white; margin: 20rpx"
+                    >瑜伽新人活动</view>
+                    <van-button  
+                      type="primary"
+                      round="{{ true }}"
+                      color="#1296db"
+                      style="position: absolute; right: 10rpx;"
+                      size='mini'
+                    >预约</van-button>
+                  </view>
+                </block>
               </view>
             </block>
 

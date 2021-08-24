@@ -1,26 +1,38 @@
 /* pages/select/select.wxss */
 
 .card {
-  margin-top: 20rpx;
-  margin-left: 10rpx;
-  margin-right: 10rpx;
-  margin-bottom: 20rpx;
+  margin-top: 30rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  margin-bottom: 30rpx;
   border-radius: 10rpx;
-  height: 100px;
-  background-color: aqua;
+  height: 140px;
   box-shadow: 0 8rpx 12rpx #bcc0c9;
-  /* background-image: "../../img/huangshi.jpg"; */
+  position: relative; 
+}
+
+.panels {
+  margin: 20rpx;
+  border-radius: 10rpx;
+  box-shadow: 0 8rpx 12rpx #7d8086;
 }
 
 .panel {
-  margin-top: 20rpx;
-  margin-left: 10rpx;
-  margin-right: 10rpx;
-  margin-bottom: 20rpx;
-  border-radius: 10rpx;
-  height: 50px;
   background-color: #110110;
-  box-shadow: 0 8rpx 12rpx #7d8086;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative; 
+  border-bottom-style: dashed;
+  border-width: 1rpx;
+  border-color: azure;
+}
+
+.panel image {
+  width: 112rpx;
+  height: 112rpx;
+  margin: 20rpx;
+  border-radius: 50%;
 }
 
 /*
