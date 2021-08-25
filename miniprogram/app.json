@@ -29,7 +29,7 @@
     "van-tabs": "@vant/weapp/tabs/index",
     "van-nav-bar": "@vant/weapp/nav-bar/index",
     "van-image": "@vant/weapp/image/index",
-    "van-divider": "@vant/weapp/divider/index"
+    "van-empty": "@vant/weapp/empty/index"
   },
   "window": {
     "backgroundTextStyle": "light",

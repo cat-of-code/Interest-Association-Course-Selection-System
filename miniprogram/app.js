@@ -22,7 +22,7 @@ App({
           _openid: res.result.openid
         }).get({
           success: function(res) {
-            console.log("登录成功")
+            // console.log("登录成功")
             page.globalData.nickName = res.data[0].nickName,
             page.globalData.avatarUrl = res.data[0].avatarUrl,
             page.globalData.login = true

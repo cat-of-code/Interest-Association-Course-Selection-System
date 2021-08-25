@@ -1,6 +1,6 @@
 var app = getApp()
 var db = wx.cloud.database()
-var userCollection = db.collection("user")
+var userCollection = db.collection("test_db_user")
 
 Page({
   /**
