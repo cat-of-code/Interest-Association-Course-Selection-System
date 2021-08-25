@@ -82,14 +82,11 @@
           <view class="panel">
             <image 
               src="{{ item.association_logo }}"
-              bindtap="redictToAssociation"
             ></image>
             <view 
-              bindtap="redictToAssociation"
               style="color: white; padding-left: 10rpx;"
             >{{item.association_name}}</view>
             <view 
-              bindtap="redictToAssociation"
               style="color: white; padding-left: 10rpx;"
             >{{item.manager_phone}}</view>
             <van-button  
