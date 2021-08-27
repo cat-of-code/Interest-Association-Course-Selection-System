@@ -134,7 +134,7 @@ Page({
   clickActivity: function (e) {
     console.log(e.currentTarget.dataset.idx)
     wx.redirectTo({
-      url: '../courseDetail/courseDetail',
+      url: '../activityDetail/activityDetail',
     })
 
   },
