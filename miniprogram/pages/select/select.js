@@ -13,7 +13,7 @@ Page({
     disable: false,
     dates: [],
     associations: [],
-    selection: 1,
+    selection: 0,
     color: "#8CA6FD"
   },
 
