@@ -1,1 +1,11 @@
-/* pages/association/association.wxss */
+.card {
+  margin-left: 35rpx;
+  margin-right: 35rpx;
+}
+
+.associationCard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}

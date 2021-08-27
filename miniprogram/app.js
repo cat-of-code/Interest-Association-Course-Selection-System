@@ -17,7 +17,7 @@ App({
         page.globalData.openid = res.result.openid
         // 3.查询数据库，看用户是否注册，如果注册则自动登录
         var db = wx.cloud.database()
-        var userCollection = db.collection("user")
+        var userCollection = db.collection("test_db_user")
         userCollection.where({
           _openid: res.result.openid
         }).get({
@@ -37,6 +37,7 @@ App({
     nickName: "",
     avatarUrl: "",
     openid: "",
-    login: false
+    login: false,
+
   }
 })

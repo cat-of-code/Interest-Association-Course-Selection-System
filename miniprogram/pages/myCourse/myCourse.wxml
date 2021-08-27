@@ -1,4 +1,4 @@
-
+<!-- 
 <view class="waveWrapper waveAnimation" style='background-color:{{evening}}'>
   <view class="word">我的课程</view>
   <view class="waveWrapperInner bgTop">
@@ -43,4 +43,47 @@
           </view>
   </van-cell>
 </block>
-</scroll-view>
+</scroll-view> -->
+
+<!--活动列表-->
+<block
+  wx:for="{{ activities }}"
+  wx:for-item="item"
+  wx:for-index="idx"
+  wx:key="index"
+>
+  <view class="card">
+    <cover-image 
+      bindtap="clickActivity"
+      data-idx="{{ idx }}"  
+      src="{{ item.img }}"
+      style="opacity: {{ 0.6 }}; border-radius: 20rpx;"
+    ></cover-image>
+    <!-- 颜色好丑 -->
+    <view 
+      style="position: absolute; left: 20rpx; top: 20rpx; color: white; background-color: #1296db; opacity: {{ 0.5 }}; padding: 15rpx; border-radius: 10rpx;"
+    >
+      <view
+        style="font-size: 35rpx; margin-bottom: 10rpx;"
+      >{{ item.course_name }}</view>
+      <view
+        style="font-size: 40rpx; margin-bottom: 10rpx;"
+      >{{ item.course_date }}</view>
+      <view
+        style="font-size: 40rpx; margin-bottom: 10rpx;"
+      >{{ item.course_start_time }} ~ {{ item.course_end_time }}</view>
+      <view
+        style="font-size: 35rpx; margin-bottom: 10rpx;"
+      >{{ item.address }}</view>
+    </view>
+    <van-button  
+      round="{{ true }}"
+      type="primary"
+      style="position: absolute; right: 10rpx; top: 40%; opacity: {{ 0.5 }};"
+      color="#ff3300"
+      data-idx="{{ idx }}" 
+      bind:click="deselectBtn"
+      size="small"
+    >退选</van-button>       
+  </view>
+</block>

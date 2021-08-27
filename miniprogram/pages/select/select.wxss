@@ -28,11 +28,3 @@
   margin: 20rpx;
   border-radius: 50%;
 }
-
-.divider {
-  position: absolute;
-  background-color: #4f5d64;
-  width: 100%;
-  height: 1rpx;
-  top: -5rpx;
-}

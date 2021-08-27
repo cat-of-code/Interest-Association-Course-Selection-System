@@ -2,10 +2,7 @@
 var app = getApp()
 var db = wx.cloud.database()
 var courseCollection = db.collection("test_db_course")
-var courseListCollection = db.collection("list")
-var stuListListCollection = db.collection("stuList")
 var managerCollection = db.collection("test_db_manager")
-var user = db.collection("user")
 const _ = db.command
 Page({
 
@@ -16,7 +13,8 @@ Page({
     disable: false,
     dates: [],
     associations: [],
-    selection: 0,
+    selection: 1,
+    color: "#8CA6FD"
   },
 
   /**
@@ -77,9 +75,9 @@ Page({
   },
 
   getAssociationDetail() {
-    // wx.redirectTo({
-    //   url: '../association/association',
-    // })
+    wx.redirectTo({
+      url: '../association/association',
+    })
   },
 
 
@@ -135,9 +133,9 @@ Page({
    */
   clickActivity: function (e) {
     console.log(e.currentTarget.dataset.idx)
-    // wx.redirectTo({
-    //   url: '../courseDetail/courseDetail',
-    // })
+    wx.redirectTo({
+      url: '../courseDetail/courseDetail',
+    })
 
   },
 

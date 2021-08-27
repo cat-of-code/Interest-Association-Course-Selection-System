@@ -1,40 +1,89 @@
-
-<view class="waveWrapper waveAnimation" style='background-color:{{evening}}'>
-  <view class="word">课程详情</view>
-  <view class="waveWrapperInner bgTop">
-    <image class="wave waveTop" src="../../img/wave-top.png"></image>
+<cover-image
+  src="{{ img }}"
+></cover-image>
+<view class="card">
+  <view
+    style="margin-top: 30rpx; margin-bottom: 20rpx;"
+  >{{ course_name }}</view>
+  <view
+    style="font-size: smaller; color: rgb(120, 120, 120);"
+  >6人小团课（满2人开课）</view>
+  <van-divider />
+  <view class="associationCard">
+    <image 
+      style="width: 112rpx;  height: 112rpx;  border-radius: 50%;"
+      src="{{ association_logo }}"
+    ></image>
+    <view style="display: flex;  flex-direction: column;">
+      <view
+      style="margin-left: 30rpx; margin-bottom: 20rpx;"
+      >{{ association_name }}</view>
+      <view
+      style="font-size: smaller; color: rgb(120, 120, 120); margin-left: 30rpx;"
+      >简介</view>
+    </view>
+    <image
+      style="width: 52rpx;  height: 52rpx; position: absolute; right: 0;"
+      src="cloud://cloud1-0gyu6anlffcd11a5.636c-cloud1-0gyu6anlffcd11a5-1306965577/arrow.png"
+    ></image>
   </view>
-  <view class="waveWrapperInner bgBottom">
-    <image class="wave waveBottom" src="../../img/wave-bot.png"></image>
+  <van-divider />
+  <view
+    style="display: flex;  flex-direction: row; margin-bottom: 25rpx;"
+  >
+    <van-icon 
+      name="underway-o" 
+      custom-style="margin-right: 10rpx"
+      size="30rpx" 
+    />
+    <view
+      style="font-size: small;"
+    >时间 ：{{ course_date }} {{ course_start_time }} ~ {{ course_end_time }}</view>
+  </view>
+  <view
+    style="display: flex;  flex-direction: row; margin-bottom: 25rpx;"
+  >
+    <van-icon 
+      name="location-o" 
+      custom-style="margin-right: 10rpx"
+      size="30rpx" 
+    />
+    <view
+      style="font-size: small;"
+    >地点 ：{{ address }}</view>
+  </view>
+  <view
+    style="display: flex;  flex-direction: row; margin-bottom: 25rpx;"
+  >
+    <van-icon 
+      name="phone-o" 
+      custom-style="margin-right: 10rpx"
+      size="30rpx" 
+    />
+    <view
+      style="font-size: small;"
+    >电话 ：{{ manager_phone }}</view>
+  </view>
+  <van-divider />
+  <view
+    style="display: flex;  flex-direction: row; margin-bottom: 25rpx;"
+  >
+    <van-icon 
+      name="notes-o" 
+      custom-style="margin-right: 20rpx"
+      size="30rpx" 
+    />
+    <view
+      style="font-size: small;"
+    >活动介绍</view>
+  </view>
+  <view
+    style="font-size: small;"
+  >
+  这是云开发的快速启动指引，其中演示了如何上手使用云开发的三大基础能力：
+
+  数据库：一个既可在小程序前端操作，也能在云函数中读写的 JSON 文档型数据库
+  文件存储：在小程序前端直接上传/下载云端文件，在云开发控制台可视化管理
+  云函数：在云端运行的代码，微信私有协议天然鉴权，开发者只需编写业务逻辑代码
   </view>
 </view>
-
-<view class="top"></view>
-
-
-<!-- 
-<view id="titleview"> -->
-<!-- 以下是课程名块 -->
-<!-- <view id="coursename">{{courseName}}</view>
-
-</view>
-
-  <view class="tabview">
-    <view class="introview">
-      <text class="introkey">时间：</text>
-      <text class="introvalue">{{time}}</text>
-    </view>
-    
-    <view class="introview">
-      <text class="introkey">学分：</text>
-      <text class="introvalue">{{xuefen}}</text>
-    </view>
-    <view class="introview">
-      <text class="introkey">开课老师：</text>
-      <text class="introvalue">{{teacherName}}</text>
-    </view>
-    <view class="introview2">
-      <text class="introkey2">课程简介：</text>
-      <text class="introvalue2">{{desc}}</text>
-    </view>
-  </view> --> 

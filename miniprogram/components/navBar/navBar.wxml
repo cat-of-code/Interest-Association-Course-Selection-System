@@ -1,0 +1,30 @@
+<view 
+  class="navBar" 
+  style="height: 0;"
+  wx:if="{{ !showNavBar }}"
+>
+  <image 
+    wx:if="{{ showLeftArrow }}"
+    class="img"
+    style="top: 110rpx;"
+    src="../../img/left.png"
+    bindtap="navBack"
+  ></image>
+  <view class="title">
+    <text>{{ titleName }}</text>
+  </view>
+</view>
+<view 
+  class="navBar" 
+  wx:if="{{ showNavBar }}"
+>
+  <image 
+    wx:if="{{ showLeftArrow }}"
+    class="img"
+    src="../../img/left.png"
+    bindtap="navBack"
+  ></image>
+  <view class="title">
+    <text>{{ titleName }} </text>
+  </view>
+</view>

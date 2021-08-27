@@ -1,0 +1,21 @@
+.navBar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 158rpx;
+  background-color: #8CA6FD;
+}
+
+.img {
+  position: absolute;
+  left: 20rpx;
+  top: 70rpx;
+  height: 50rpx;
+  width: 50rpx;
+}
+
+.title {
+  position: absolute;
+  top: 70rpx;
+  color: white;
+}

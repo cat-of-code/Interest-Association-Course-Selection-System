@@ -7,48 +7,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-    storage: "cloud://cloud1-0gyu6anlffcd11a5.636c-cloud1-0gyu6anlffcd11a5-1306965577/",
-    img: "yoga.jpeg",
+    "course_name": "篮球基础入门(上)",
+    "course_start_time": "14:00",
+    "course_end_time": "16:00",
+    "course_date": "2021/08/30",
+    "address": "篮球场01",
+    "dec": "简介",
+    "img": "cloud://cloud1-0gyu6anlffcd11a5.636c-cloud1-0gyu6anlffcd11a5-1306965577/basketball_bg.jpeg",
+    "max_people": 10.0,
+    "association_uid": 1.0,
+    association_logo: "cloud://cloud1-0gyu6anlffcd11a5.636c-cloud1-0gyu6anlffcd11a5-1306965577/basketball_logo.jpg",
+    association_name: "篮球协会",
+    manager_phone: "123-456789"
   },
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

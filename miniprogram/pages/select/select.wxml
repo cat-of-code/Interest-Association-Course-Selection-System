@@ -1,15 +1,20 @@
+<navBar
+  titleName="广研兴趣协会预约系统"
+  showNavBar="{{ true }}"
+  showLeftArrow="{{ false }}"
+/>
 <view class="tabs">
   <van-tabs 
     type="card" 
     animated 
-    color="#1296db"
+    color="{{ color }}"
     active="{{ selection }}"
     bind:click="chooseActivity"
   >
     <van-tab title="每日活动">
       <van-tabs 
         active="{{ active }}" 
-        title-active-color="#1296db"
+        title-active-color="{{ color }}"
         bind:click="clickTheDateActivity"
       >
         <block 
@@ -19,7 +24,7 @@
         >
           <van-tab 
             title="{{ it.month }}月 {{it.day }}" 
-            title-active-color="#1296db"
+            title-active-color="{{ color }}"
             name="key"            
           >
             <van-empty 
@@ -43,7 +48,7 @@
                 ></cover-image>
                 <!-- 颜色好丑 -->
                 <view 
-                  style="position: absolute; left: 20rpx; top: 20rpx; color: white; background-color: #1296db; opacity: {{ 0.3 }}; padding: 15rpx; border-radius: 10rpx;"
+                  style="position: absolute; left: 20rpx; top: 20rpx; color: white; background-color: {{ color }}; opacity: {{ 0.9 }}; padding: 15rpx; border-radius: 10rpx;"
                 >
                   <view
                     style="font-size: 40rpx; margin-bottom: 10rpx;"
@@ -58,8 +63,8 @@
                 <van-button  
                   round="{{ true }}"
                   type="primary"
-                  style="position: absolute; right: 10rpx; top: 35%; opacity: {{ 0.4 }};"
-                  color="#1296db"
+                  style="position: absolute; right: 10rpx; top: 35%; opacity: {{ 0.9 }};"
+                  color="{{ color }}"
                   data-idx="{{ idx }}" 
                   bind:click="reserveBtn"
                   size="small"
@@ -92,7 +97,7 @@
             <van-button  
               type="primary"
               round="{{ true }}"
-              color="#1296db"
+              color="{{ color }}"
               size='small'
               style="position: absolute; right: 10rpx;"
               data-idx="{{ idx }}"

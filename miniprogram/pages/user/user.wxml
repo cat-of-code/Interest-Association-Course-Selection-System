@@ -28,8 +28,17 @@
   <view style="height: 10rpx;"></view>
   <!-- TODO: 点击图标跳转到相应页面 -->
   <van-grid gutter="{{ 10 }}" column-num="3" >
-    <block wx:for="{{ projets }}"  wx:for-item="item" wx:key="key">
-      <van-grid-item icon="{{ item.icon }}" text="{{ item.text }}" />
+    <block 
+      wx:for="{{ projets }}"  
+      wx:for-item="item" 
+      wx:key="key"
+    >
+      <van-grid-item 
+        icon="{{ item.icon }}" 
+        text="{{ item.text }}" 
+        link-type="navigateTo"
+        url="{{ item.redirectUrl }}"
+      />
     </block>
   </van-grid>
   <!-- 协会管理员的专属功能 -->
@@ -38,8 +47,17 @@
     column-num="3" 
     wx:if="{{ managerLogin }}"
   >
-    <block wx:for="{{ manages }}"  wx:for-item="item" wx:key="key">
-      <van-grid-item icon="{{ item.icon }}" text="{{ item.text }}" />
+    <block 
+      wx:for="{{ manages }}"  
+      wx:for-item="item" 
+      wx:key="key"
+    >
+      <van-grid-item 
+        icon="{{ item.icon }}" 
+        text="{{ item.text }}" 
+        link-type="navigateTo"
+        url="{{ item.redirectUrl }}"
+      />
     </block>
   </van-grid>
   <view style="height: 10rpx;"></view>
@@ -63,7 +81,7 @@
     plain
     round="{{ true }}"
     style="display: flex;  flex-direction: column;  align-items: center;"
-    color="#1296db"
+    color="{{ color }}"
     bind:click="managerLogin" 
   >
     协会管理员登录
@@ -89,7 +107,7 @@
       open-type='getUserInfo' 
       bindgetuserinfo='getUserInfo'
       plain = "{{ true }}"
-      color="#1296db"
+      color="{{ color }}"
       custom-style="width: 320rpx"
       round="{{ true }}"
     >
