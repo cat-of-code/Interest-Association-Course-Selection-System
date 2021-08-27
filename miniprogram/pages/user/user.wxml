@@ -1,24 +1,8 @@
-<!--
-  
-<view class="today">
-  <view class="info">
-    <view class="temp">  {{today.wendu}}℃</view>
-    <view class="weather">{{today.todayInfo.type}} {{today.todayInfo.fengxiang}}</view>
-    <view >友情提示：{{today.ganmao}}</view>
-    <view class="city">{{city}}</view>
-  </view>
-</view>
-
-<van-cell size="large" is-link icon="eye" title="我要选课" bind:click="select"/>
-<van-cell size="large" is-link icon="underway" title="我的课程" bind:click="showCourse"/>
-<van-cell size="large" is-link icon="bars" title="我要开课" bind:click="open"/>
-<van-cell size="large" is-link icon="star" title="Github开源地址" bind:click	='github' />
-
-<view class="footer">
-    @广州服务支持部
-</view>
--->
-
+<navBar 
+  titleName="我的"
+  showNavBar="{{ true }}"
+  showLeftArrow="{{ false }}"
+/>
  <!--登录之后的页面-->
 <block wx:if="{{login}}"> 
   <view class="user">

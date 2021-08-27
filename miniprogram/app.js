@@ -38,6 +38,6 @@ App({
     avatarUrl: "",
     openid: "",
     login: false,
-
+    managerLogin: false
   }
 })

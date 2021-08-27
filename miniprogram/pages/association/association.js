@@ -1,5 +1,9 @@
 // pages/association/association.js
 var app = getApp()
+var db = wx.cloud.database()
+var courseCollection = db.collection("test_db_course")
+var managerCollection = db.collection("test_db_manager")
+const _ = db.command
 
 Page({
 
@@ -7,17 +11,36 @@ Page({
    * 页面的初始数据
    */
   data: {
-    "course_name": "篮球基础入门(上)",
-    "course_start_time": "14:00",
-    "course_end_time": "16:00",
-    "course_date": "2021/08/30",
-    "address": "篮球场01",
-    "dec": "简介",
-    "img": "cloud://cloud1-0gyu6anlffcd11a5.636c-cloud1-0gyu6anlffcd11a5-1306965577/basketball_bg.jpeg",
-    "max_people": 10.0,
-    "association_uid": 1.0,
-    association_logo: "cloud://cloud1-0gyu6anlffcd11a5.636c-cloud1-0gyu6anlffcd11a5-1306965577/basketball_logo.jpg",
-    association_name: "篮球协会",
-    manager_phone: "123-456789"
+    association: {},
+    activities: [],
+    color: "#8CA6FD"
   },
+
+  onShow() {
+    var page = this
+    var uid = "1"
+    var date = new Date()
+    var today = "" + date.getFullYear() + "/" + (date.getMonth() + 1 < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth() + 1) + "/" + (date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate())
+    // console.log(today)
+    courseCollection.where({
+      association_uid: uid,
+      course_date: _.gte(today)
+    }).get({
+      success(res) {
+        page.setData({
+          activities: res.data
+        })
+      }
+    })
+    managerCollection.where({
+      association_uid: uid
+    }).get({
+      success(res) {
+        page.setData({
+          association: res.data[0]
+        })
+        // console.log(res.data[0])
+      }
+    })
+  }
 })

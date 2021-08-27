@@ -7,7 +7,7 @@
     wx:if="{{ showLeftArrow }}"
     class="img"
     style="top: 110rpx;"
-    src="../../img/left.png"
+    src="cloud://cloud1-0gyu6anlffcd11a5.636c-cloud1-0gyu6anlffcd11a5-1306965577/left.png"
     bindtap="navBack"
   ></image>
   <view class="title">
@@ -21,7 +21,7 @@
   <image 
     wx:if="{{ showLeftArrow }}"
     class="img"
-    src="../../img/left.png"
+    src="cloud://cloud1-0gyu6anlffcd11a5.636c-cloud1-0gyu6anlffcd11a5-1306965577/left.png"
     bindtap="navBack"
   ></image>
   <view class="title">

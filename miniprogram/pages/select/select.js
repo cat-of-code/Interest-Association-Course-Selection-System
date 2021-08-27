@@ -64,7 +64,7 @@ Page({
     })
     // 从数据库获取所有协会信息
     managerCollection.where({
-      association_uid: _.lt(100)
+      association_uid: _.gte("")
     }).get({
       success(res) {
         page.setData({

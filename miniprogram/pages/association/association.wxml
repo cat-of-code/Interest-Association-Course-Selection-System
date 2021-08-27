@@ -5,18 +5,18 @@
 
 <cover-image
   style="opacity: 0.7;"
-  src="{{ img }}"
+  src="{{ association.association_background }}"
 ></cover-image>
 <view 
   style="position: absolute; left: 30rpx; top: 150rpx;"
 >
   <image 
     style="width: 112rpx;  height: 112rpx;  border-radius: 50%; "
-    src="{{ association_logo }}"
+    src="{{ association.association_logo }}"
   ></image>
   <view
     style="font-size: x-large; color: white; margin-bottom: 10rpx;"
-  >{{ association_name }}</view>
+  >{{ association.association_name }}</view>
   <view
     style="font-size: small; color: white;  margin-bottom: 10rpx;"
   >累计发布32次活动</view>
@@ -28,21 +28,46 @@
     style="font-size: larger; margin-bottom: 20rpx;"
   >协会简介</view>
   <view>
-  你好border-radius属性其实是border-top-left-radius、border-top-right-radius、border-bottom-right-radius、border-bottom-left-radius四个属性的简写模式，因此，border-radius : 30px;，其实等价于border-radius : 30px 30px 30px 30px;（ps：与padding和margin一样，各个数字之间用空格隔开）。
-
-　　这里要注意四个数值的书写顺序，不同于padding和margin的“上、右、下、左”的顺序，border-radius采用的是左上角、右上角、右下角、左下角的顺序，如下图所示：
+  {{ association.association_desc }}
   </view>
 </view>
-
-<view
-  style="background-color: #f4f4f4; padding: 20rpx"
+<block
+  wx:for="{{ activities }}"
+  wx:for-item="item"
+  wx:key="key"
+  wx:for-index="idx"
 >
   <view
-    style="background-color: white; border-radius: 8rpx; padding: 30rpx;"
+    style="background-color: #f4f4f4; padding: 20rpx"
   >
-    <image 
-      style="width: 112rpx;  height: 112rpx;  border-radius: 50%; "
-      src="{{ association_logo }}"
-    ></image>
+    <view
+      style="background-color: white; border-radius: 8rpx; padding: 20rpx; display: flex; flex-direction: row; align-items: center;"
+    >
+      <image 
+        style="width: 112rpx;  height: 112rpx;  border-radius: 50%; "
+        src="{{ association.association_logo }}"
+      ></image>
+      <view 
+        style="display: flex; flex-direction: column; align-items: flex-start; margin-left: 20rpx;">
+        <view
+          style="margin-bottom: 10rpx;"
+        >{{ item.course_name }}</view>
+        <view
+          style="font-size: small; color: #333333; margin-bottom: 10rpx;"
+        >{{ item.course_date }}  {{ item.course_start_time }} ~ {{ item.course_end_time }}</view>
+        <view
+          style="font-size: small; color: #333333; margin-bottom: 10rpx;"
+        >{{ item.address }}</view>
+      </view>
+      <van-button  
+        round="{{ true }}"
+        type="primary"
+        style="position: absolute; right: 30rpx; opacity: {{ 0.9 }};"
+        color="{{ color }}"
+        data-idx="{{ idx }}" 
+        bind:click="reserveBtn"
+        size="small"
+      >预约</van-button>  
+    </view>
   </view>
-</view>
+</block>
