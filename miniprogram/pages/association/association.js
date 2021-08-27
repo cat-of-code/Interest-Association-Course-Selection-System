@@ -42,5 +42,9 @@ Page({
         // console.log(res.data[0])
       }
     })
+  }, 
+
+  reserveBtn (e) {
+    console.log(e.currentTarget.dataset.idx)
   }
 })

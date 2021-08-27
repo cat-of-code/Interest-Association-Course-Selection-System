@@ -1,12 +1,15 @@
 {
   "pages": [
     "pages/select/select",
-    "pages/courseDetail/courseDetail",
-    "pages/myCourse/myCourse",
+    "pages/activityDetail/activityDetail",
+    "pages/myActivities/myActivities",
     "pages/user/user",
     "pages/openCourse/openCourse",
     "pages/manager/manager",
-    "pages/association/association"
+    "pages/association/association",
+    "pages/createActivity/createActivity",
+    "pages/myCreatedCourse/myCreatedCourse",
+    "pages/updateActivityDetail/updateActivityDetail"
   ],
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
@@ -28,7 +31,8 @@
     "van-image": "@vant/weapp/image/index",
     "van-empty": "@vant/weapp/empty/index",
     "van-divider": "@vant/weapp/divider/index",
-    "navBar": "/components/navBar/navBar"
+    "navBar": "/components/navBar/navBar",
+    "van-uploader": "@vant/weapp/uploader/index"
   },
   "window": {
     "backgroundTextStyle": "light",
