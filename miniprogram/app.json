@@ -7,7 +7,6 @@
     "pages/openCourse/openCourse",
     "pages/manager/manager",
     "pages/association/association",
-    "pages/createActivity/createActivity",
     "pages/myCreatedCourse/myCreatedCourse",
     "pages/updateActivityDetail/updateActivityDetail"
   ],
@@ -19,7 +18,7 @@
     "van-cell-group": "@vant/weapp/cell-group",
     "van-dialog": "@vant/weapp/dialog",
     "van-icon": "@vant/weapp/icon",
-    "van-field":"@vant/weapp/field",
+    "van-field": "@vant/weapp/field",
     "van-radio": "@vant/weapp/radio",
     "van-radio-group": "@vant/weapp/radio-group",
     "van-popup": "@vant/weapp/popup",
@@ -32,7 +31,10 @@
     "van-empty": "@vant/weapp/empty/index",
     "van-divider": "@vant/weapp/divider/index",
     "navBar": "/components/navBar/navBar",
-    "van-uploader": "@vant/weapp/uploader/index"
+    "van-uploader": "@vant/weapp/uploader/index",
+    "van-swipe-cell": "@vant/weapp/swipe-cell/index",
+    "van-tag": "@vant/weapp/tag/index",
+    "van-toast": "@vant/weapp/toast/index"
   },
   "window": {
     "backgroundTextStyle": "light",
@@ -53,7 +55,7 @@
       "text": "活动预约",
       "iconPath": "img/activity.png",
       "selectedIconPath": "img/activity-o.png"
-    },{
+    }, {
       "pagePath": "pages/user/user",
       "text": "个人中心",
       "iconPath": "img/user.png",
