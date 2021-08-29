@@ -74,7 +74,7 @@
  <!--登录前的页面-->
 <block wx:if="{{!login}}">
   <view class="login">
-    <image src='../../img/logo.png'></image>
+    <image src='../../img/logo1.png'></image>
     <!-- TODO: 样式有点丑 -->
     <view
       style="margin-top: 10rpx;"

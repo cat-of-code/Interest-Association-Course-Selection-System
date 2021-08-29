@@ -6,9 +6,9 @@
     "pages/user/user",
     "pages/openCourse/openCourse",
     "pages/manager/manager",
-    "pages/association/association",
-    "pages/myCreatedCourse/myCreatedCourse",
-    "pages/updateActivityDetail/updateActivityDetail"
+    "pages/association/association"
+  
+
   ],
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",

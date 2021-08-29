@@ -146,9 +146,7 @@ Page({
   reserveBtn: function (e) {
     console.log(e.currentTarget.dataset.idx)
   },
-
-  /**
-   * 李天红写的
-   * 功能：展开页面
-   */
+  getAssociationDetail(e) {
+    console.log(e.currentTarget.dataset.idx)
+  }
 })
