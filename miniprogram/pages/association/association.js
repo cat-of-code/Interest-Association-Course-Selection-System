@@ -13,25 +13,32 @@ Page({
   data: {
     association: {},
     activities: [],
-    color: "#8CA6FD"
+    color: "#8CA6FD",
+    left_color: "cloud://cloud1-0gyu6anlffcd11a5.636c-cloud1-0gyu6anlffcd11a5-1306965577/left-color.png",
   },
 
   onShow() {
     var page = this
-    var uid = "1"
+    var uid = app.globalData.association_uid
+    // console.log(uid)
     var date = new Date()
     var today = "" + date.getFullYear() + "/" + (date.getMonth() + 1 < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth() + 1) + "/" + (date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate())
     // console.log(today)
-    courseCollection.where({
-      association_uid: uid,
-      course_date: _.gte(today)
-    }).get({
-      success(res) {
-        page.setData({
-          activities: res.data
-        })
-      }
-    })
+    // 从数据库获取协会详细信息
+    this.getAssociationInfo(uid)
+    // 从数据库获取协会未办活动信息
+    this.getActivitiesInfo(uid, today)
+    // 从数据库获取协会所办所有活动数
+    this.getActivitiesLength(uid)
+  }, 
+
+
+  /**
+   * 李天红写的
+   * 功能：从数据库获取协会详细信息
+   */
+  getAssociationInfo(uid) {
+    var page = this
     managerCollection.where({
       association_uid: uid
     }).get({
@@ -42,9 +49,51 @@ Page({
         // console.log(res.data[0])
       }
     })
-  }, 
+  },
+
+  /**
+   * 李天红写的
+   * 功能：从数据库获取协会未办活动信息
+   */
+  getActivitiesInfo(uid, today) {
+    var page = this
+    courseCollection.where({
+      association_uid: uid,
+      course_date: _.gte(today)
+    }).get({
+      success(res) {
+        page.setData({
+          activities: res.data
+        })
+      }
+    })
+  },
+
+  /**
+   * 李天红写的
+   * 功能：从数据库获取协会所办活动数
+   */
+  getActivitiesLength(uid) {
+    var page = this
+    courseCollection.where({
+      association_uid: uid
+    }).get({
+      success(res) {
+        page.setData({
+          count: res.data.length
+        })
+      }
+    })
+  },
 
   reserveBtn (e) {
     console.log(e.currentTarget.dataset.idx)
+  },
+
+
+  navBack(e) {
+    wx.navigateBack({
+      delta: 1
+    })
   }
 })

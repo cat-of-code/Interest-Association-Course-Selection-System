@@ -1,6 +1,5 @@
 <navBar
   titleName="广研兴趣协会预约系统"
-  showNavBar="{{ true }}"
   showLeftArrow="{{ false }}"
 />
 <view class="tabs">
@@ -41,10 +40,10 @@
             >
               <view class="card">
                 <cover-image 
-                  bindtap="clickActivity"
+                  bindtap="navigateToActivity"
                   data-idx="{{ idx }}"  
                   src="{{ item.img }}"
-                  style="opacity: {{ 0.6 }}; border-radius: 20rpx;"
+                  style="opacity: {{ 0.8 }}; border-radius: 20rpx;"
                 ></cover-image>
                 <!-- 颜色好丑 -->
                 <view 
@@ -101,7 +100,7 @@
               size='small'
               style="position: absolute; right: 10rpx;"
               data-idx="{{ idx }}"
-              bind:click="getAssociationDetail"
+              bind:click="navigateToAssociationDetail"
             >协会详情</van-button>
           </view>
       </block>

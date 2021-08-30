@@ -15,29 +15,29 @@ Page({
       {
         icon: "todo-list-o",
         text: "我的预约记录",
-        redirectUrl: "/pages/myActivities/myActivities"
+        navigateUrl: "/pages/myActivities/myActivities"
       },
       {
         icon: "label-o",
         text: "我的活动记录",
-        redirectUrl: "/pages/myActivities/myActivities"
+        navigateUrl: "/pages/myActivities/myActivities"
       },
       {
         icon: "orders-o",
         text: "我的报名记录",
-        redirectUrl: "/pages/myActivities/myActivities"
+        navigateUrl: "/pages/myActivities/myActivities"
       }
     ],
     manages: [
       {
         icon: "todo-list-o",
         text: "已发布的活动",
-        redirectUrl: "pages/myActivities/myActivities"
+        navigateUrl: "pages/myActivities/myActivities"
       },
       {
         icon: "label-o",
         text: "协会的学员",
-        redirectUrl: "pages/myActivities/myActivities"
+        navigateUrl: "pages/myActivities/myActivities"
       }
     ]
   },

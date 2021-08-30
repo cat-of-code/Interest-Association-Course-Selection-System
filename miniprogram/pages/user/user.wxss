@@ -22,8 +22,14 @@
 }
 
 .login image {
+  margin: auto;
   width: 188rpx;
   height: 188rpx;
-  margin: 40rpx;
+  margin: 20rpx;
   border-radius: 50%;
+}
+
+.info {
+  margin: auto;
+  width: 70%;
 }

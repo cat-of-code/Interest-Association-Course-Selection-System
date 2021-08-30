@@ -6,9 +6,18 @@
   background-color: #8CA6FD;
 }
 
+.op-navBar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 0rpx;
+  background-color: #8CA6FD;
+  opacity: 1;
+}
+
 .img {
   position: absolute;
-  left: 20rpx;
+  left: 35rpx;
   top: 70rpx;
   height: 50rpx;
   width: 50rpx;

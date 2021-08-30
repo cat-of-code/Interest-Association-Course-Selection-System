@@ -1,30 +1,13 @@
 <view 
   class="navBar" 
-  style="height: 0;"
-  wx:if="{{ !showNavBar }}"
 >
   <image 
-    wx:if="{{ showLeftArrow }}"
+    hidden="{{ !showLeftArrow }}"
     class="img"
-    style="position: absolute; top: 110rpx;"
-    src="cloud://cloud1-0gyu6anlffcd11a5.636c-cloud1-0gyu6anlffcd11a5-1306965577/left.png"
+    src="{{ left }}"
     bindtap="navBack"
   ></image>
   <view class="title">
     <text>{{ titleName }}</text>
-  </view>
-</view>
-<view 
-  class="navBar" 
-  wx:if="{{ showNavBar }}"
->
-  <image 
-    wx:if="{{ showLeftArrow }}"
-    class="img"
-    src="cloud://cloud1-0gyu6anlffcd11a5.636c-cloud1-0gyu6anlffcd11a5-1306965577/left.png"
-    bindtap="navBack"
-  ></image>
-  <view class="title">
-    <text>{{ titleName }} </text>
   </view>
 </view>

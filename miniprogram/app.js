@@ -38,6 +38,8 @@ App({
     avatarUrl: "",
     openid: "",
     login: false,
-    managerLogin: false
+    managerLogin: false,
+    association_uid: "",
+    activityId: ""
   }
 })

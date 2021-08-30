@@ -1,6 +1,5 @@
 <navBar 
   titleName="我的"
-  showNavBar="{{ true }}"
   showLeftArrow="{{ false }}"
 />
  <!--登录之后的页面-->
@@ -40,7 +39,7 @@
         icon="{{ item.icon }}" 
         text="{{ item.text }}" 
         link-type="navigateTo"
-        url="{{ item.redirectUrl }}"
+        url="{{ item.navigateUrl }}"
       />
     </block>
   </van-grid>
@@ -74,25 +73,37 @@
  <!--登录前的页面-->
 <block wx:if="{{!login}}">
   <view class="login">
-    <image src='../../img/logo1.png'></image>
-    <!-- TODO: 样式有点丑 -->
+    <image src='../../img/logo.png'></image>
     <view
       style="margin-top: 10rpx;"
     >
       广研兴趣协会预约系统
     </view>
     <view
-      style="margin-top: 10rpx; margin-bottom: 20rpx;"
+      style="width: 10%; height: 5rpx; background-color: {{ color }}; margin-top: 80rpx;"
+    ></view>
+    <!-- TODO: 样式有点丑 -->
+  </view>
+  <view class="info">
+    <view
+      style="margin-top: 50rpx;margin-bottom: 20rpx;"
     >
       请确认授权以下信息
     </view>
+    <view
+      style="margin-top: 10rpx; margin-bottom: 60rpx; font-size: smaller; color: #6f6f6f;"
+    >
+      . 获得你的公开信息（昵称、头像等）
+    </view> 
+  </view> 
+  <view class="login">
     <van-button
       type='primary' 
       open-type='getUserInfo' 
       bindgetuserinfo='getUserInfo'
-      plain = "{{ true }}"
+      plain = "{{ false }}"
       color="{{ color }}"
-      custom-style="width: 320rpx"
+      custom-style="width: 530rpx"
       round="{{ true }}"
     >
       授权登录

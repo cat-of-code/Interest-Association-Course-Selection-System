@@ -1,26 +1,23 @@
-
-<navBar
-  showNavBar="{{ false }}"
-  showLeftArrow="{{ true }}"
-/>
-
-<cover-image
-  style="opacity: 0.7;"
-  src="{{ association.association_background }}"
-></cover-image>
-<view 
-  style="position: absolute; left: 30rpx; top: 150rpx;"
->
-  <image 
-    style="width: 112rpx;  height: 112rpx;  border-radius: 50%; "
-    src="{{ association.association_logo }}"
-  ></image>
-  <view
-    style="font-size: x-large; color: white; margin-bottom: 10rpx;"
-  >{{ association.association_name }}</view>
-  <view
-    style="font-size: small; color: white;  margin-bottom: 10rpx;"
-  >累计发布32次活动</view>
+<view>
+  <cover-image
+    style="opacity: 0.7;"
+    src="{{ association.association_background }}"
+  ></cover-image> 
+  <view 
+    style="position: absolute; left: 30rpx; top: 150rpx;"
+  >
+    <image 
+      style="width: 112rpx;  height: 112rpx;  border-radius: 50%; "
+      src="{{ association.association_logo }}"
+    ></image>
+    <view
+      style="font-size: x-large; color: white; margin-bottom: 10rpx;"
+    >{{ association.association_name }}</view>
+    <view
+      style="font-size: small; color: white;  margin-bottom: 10rpx;"
+    >累计发布{{ count }}次活动</view>
+  </view>
+>>>>>>> Stashed changes
 </view>
 <view
   style="position: relative; top: -50rpx; background-color: white; border-top-left-radius: 50rpx; border-top-right-radius: 50rpx; padding-top: 50rpx; padding-left: 35rpx; padding-right: 35rpx;"
@@ -29,7 +26,7 @@
     style="font-size: larger; margin-bottom: 20rpx;"
   >协会简介</view>
   <view>
-  {{ association.association_desc }}
+    {{ association.association_desc }}
   </view>
 </view>
 <block
@@ -72,3 +69,9 @@
     </view>
   </view>
 </block>
+<image 
+  style="width: 50rpx; height: 50rpx; position: fixed; top: 70rpx; left: 35rpx;"
+  src="{{ left_color }}"
+  bindtap="navBack"
+></image>
+

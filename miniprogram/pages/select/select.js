@@ -10,11 +10,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    disable: false,
-    dates: [],
-    associations: [],
-    selection: 0,
-    color: "#8CA6FD"
+    disable: false,             // 这个是什么？
+    dates: [],                  // 保存未来30天的活动列表
+    associations: [],           // 协会列表
+    selection: 0,               // 当前选的是“每日活动”或者“协会信息”的id
+    color: "#8CA6FD",           // 统一颜色
+    day_index: 0,               // 日期索引，当前查看的是第几天的活动内容
   },
 
   /**
@@ -46,9 +47,21 @@ Page({
       dates: dates
     })
     // 从数据库中获取每日活动当天的活动
-    var today = "" + date.getFullYear() + "/" + (date.getMonth() < 10 ? ("0" + date.getMonth()) : date.getMonth()) + "/" + (date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate())
+    date = new Date()
+    var today = "" + date.getFullYear() + "/" + (date.getMonth() + 1 < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth() + 1) + "/" + (date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate())
     // console.log(today)
+    // console.log(date)
     // console.log(date.getMonth() + 1)
+    this.getTodayActivitiesInfo(today)
+
+    // 从数据库获取所有协会信息
+    this.getAssociationsInfo()
+  },
+
+  getTodayActivitiesInfo(today) {
+    // console.log("进入onLoad")
+    // console.log(today)
+    var page = this
     courseCollection.where({
       course_date: today
     }).get({
@@ -62,7 +75,15 @@ Page({
         }
       }
     })
-    // 从数据库获取所有协会信息
+  },
+
+
+  /**
+   * 李天红写的
+   * 功能：从数据库获取所有协会信息
+   */
+  getAssociationsInfo() {
+    var page = this
     managerCollection.where({
       association_uid: _.gte("")
     }).get({
@@ -74,8 +95,14 @@ Page({
     })
   },
 
-  getAssociationDetail() {
-    wx.redirectTo({
+  /**
+   * 李天红写的
+   * 功能：点击按钮跳转到协会详情页
+   */
+  navigateToAssociationDetail(e) {
+    var index = e.currentTarget.dataset.idx
+    app.globalData.association_uid = this.data.associations[index].association_uid
+    wx.navigateTo({
       url: '../association/association',
     })
   },
@@ -99,6 +126,9 @@ Page({
     var index = e.detail.index
     if (this.data.dates[index].empty) {
       this.getDateActivities(index)
+      this.setData({
+        day_index: index
+      })
     }
   },
 
@@ -118,6 +148,7 @@ Page({
       success(res) {
         // console.log(res.data)
         if (res.data.length != 0) {
+          // console.log(res.data)
           page.setData({
             [`dates[${index}].empty`]: false,
             [`dates[${index}].activities`]: res.data
@@ -131,9 +162,14 @@ Page({
    * 李天红写的
    * 功能：点击某个活动进入活动详情页
    */
-  clickActivity: function (e) {
-    console.log(e.currentTarget.dataset.idx)
-    wx.redirectTo({
+  navigateToActivity: function (e) {
+    // console.log(e.currentTarget.dataset.idx)
+    // 1.将点击的活动id保存到全局变量
+    var index = e.currentTarget.dataset.idx
+    app.globalData.activityId = this.data.dates[this.data.day_index].activities[index]._id
+    // console.log(this.data.dates[this.data.day_index].activities[index]._id)
+    // 2.跳转到活动详情页面
+    wx.navigateTo({
       url: '../activityDetail/activityDetail',
     })
 
@@ -144,9 +180,8 @@ Page({
    * 功能：点击预约按钮
    */
   reserveBtn: function (e) {
-    console.log(e.currentTarget.dataset.idx)
-  },
-  getAssociationDetail(e) {
-    console.log(e.currentTarget.dataset.idx)
+    var index = e.currentTarget.dataset.idx
+    // console.log(e.currentTarget.dataset.idx)
+    var activity_id = this.data.dates[this.data.day_index].activities[index]._id
   }
 })
