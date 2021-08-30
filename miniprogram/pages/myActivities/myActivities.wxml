@@ -14,52 +14,76 @@
   <van-image round width="65" height="65" src="{{userInfo.avatarUrl}}" fit="cover" custom-class='avatar_class' />
 </view>
 <van-toast id="van-toast" />
+<van-dialog id="van-dialog" />
+<van-dropdown-menu>
+  <van-dropdown-item value="{{ value1 }}" options="{{ menu.option1 }}" bind:change="onValue1Change" />
+  <van-dropdown-item id="item" title="{{ menu.itemTitle }}" bind:close="onSwitchClose">
+    <van-cell title="{{ menu.switchTitle1 }}">
+      <van-switch slot="right-icon" size="24px" style="height: 26px" checked="{{ switch1 }}" active-color="#ee0a24"
+        bind:change="onSwitch1Change" />
+    </van-cell>
+    <van-cell title="{{ menu.switchTitle2 }}">
+      <van-switch slot="right-icon" size="24px" style="height: 26px" checked="{{ switch2 }}" active-color="#ee0a24"
+        bind:change="onSwitch2Change" />
+    </van-cell>
+    <view style="padding: 5px 16px;">
+      <van-button type="danger" block round bind:click="onConfirm">
+        确认
+      </van-button>
+    </view>
+  </van-dropdown-item>
+</van-dropdown-menu>
 <scroll-view scroll-y="true" class="scroll" refresher-enabled="true" bindrefresherrefresh="refresh"
-  bindrefresherabort="refreshAbort">
+  refresher-triggered="{{refresh_triggered}}" bindrefresherabort="refreshAbort">
   <block wx:for="{{courses}}" wx:key="key" wx:for-index="idx" wx:for-item="itemName">
     <view wx:if="{{courses_flag[itemName._id]}}">
-      <!-- <cover-image src="{{ itemName.img }}" style="opacity: {{ 0.6 }}; border-radius: 20rpx;"></cover-image> -->
-      <van-swipe-cell right-width="{{ current_time < itemName.date_time_number + itemName.end_time_number? 130: 65 }}">
-        <van-cell-group>
-          <van-cell icon="label-o" use-label-slot="true" size="large">
-            <view slot="title">
-              <view class="titleview">
-                <view>
-                  <text> {{itemName.course_name}} </text>
-                  <van-tag mark type="success" size="large"
-                    wx:if="{{current_time < itemName.date_time_number + itemName.end_time_number}}">进行中</van-tag>
-                  <van-tag mark type="danger" size="large" wx:else>已结束</van-tag>
+      <view wx:if="{{(current_time < itemName.date_time_number + itemName.start_time_number && switch1) || (current_time >= itemName.date_time_number + itemName.end_time_number && switch2) || (current_time < itemName.date_time_number + itemName.end_time_number && current_time >= itemName.date_time_number + itemName.start_time_number)}}">
+        <!-- <cover-image src="{{ itemName.img }}" style="opacity: {{ 0.6 }}; border-radius: 20rpx;"></cover-image> -->
+        <van-swipe-cell
+          right-width="{{ current_time < itemName.date_time_number + itemName.end_time_number? 130: 65 }}">
+          <van-cell-group>
+            <van-cell icon="label-o" use-label-slot="true" size="large">
+              <view slot="title">
+                <view class="titleview">
+                  <view>
+                    <text> {{itemName.course_name}} </text>
+                    <van-tag mark type="primary" size="large"
+                      wx:if="{{current_time < itemName.date_time_number + itemName.start_time_number}}">已预约</van-tag>
+                    <van-tag mark type="success" size="large"
+                      wx:elif="{{current_time < itemName.date_time_number + itemName.end_time_number}}">进行中</van-tag>
+                    <van-tag mark type="danger" size="large" wx:else>已结束</van-tag>
+                  </view>
                 </view>
               </view>
-            </view>
-            <view slot="label" data-courseName="{{itemName.course_name}}" data-index="{{idx}}" class="detail">
-              <van-icon name="user-o" size="25rpx" />
-              <text> 授课老师 : {{itemName.teacher_name}}\n </text>
-              <!-- <van-icon name="manager" size="25rpx" />
+              <view slot="label" data-courseName="{{itemName.course_name}}" data-index="{{idx}}" class="detail">
+                <van-icon name="user-o" size="25rpx" />
+                <text> 授课老师 : {{itemName.teacher_name}}\n </text>
+                <!-- <van-icon name="manager" size="25rpx" />
               <text> 发布人员 : {{itemName.manager_name}}\n </text> -->
-              <van-icon name="calendar-o" size="25rpx" />
-              <text> 上课日期 : {{itemName.course_date}} \n</text>
-              <van-icon name="clock" size="25rpx" />
-              <text> 上课时间 : {{itemName.course_start_time}} - {{itemName.course_end_time}}\n</text>
-              <van-icon name="award" size="25rpx" />
-              <text> 课程学分 : {{itemName.score}}\n</text>
-              <!-- <van-icon name="friends" size="25rpx" />
+                <van-icon name="calendar-o" size="25rpx" />
+                <text> 上课日期 : {{itemName.course_date}} \n</text>
+                <van-icon name="clock" size="25rpx" />
+                <text> 上课时间 : {{itemName.course_start_time}} - {{itemName.course_end_time}}\n</text>
+                <van-icon name="award" size="25rpx" />
+                <text> 课程学分 : {{itemName.score}}\n</text>
+                <!-- <van-icon name="friends" size="25rpx" />
               <text> 剩余名额 : {{itemName.max_people - itemName.current_member_number}}</text> -->
-            </view>
-          </van-cell>
-        </van-cell-group>
-        <view slot="right" style="height: 100%;"
-          wx:if="{{current_time < itemName.date_time_number + itemName.end_time_number}}">
-          <van-button type="danger" custom-style="height: 100%;" data-course_id="{{itemName._id}}"
-            data-user_id="{{userInfo.openid}}" bind:click="quit_course"> 退选</van-button>
-          <van-button type="info" custom-style="height: 100%;" data-course_id="{{itemName._id}}"
-            bind:click="into_coursePage"> 详细</van-button>
-        </view>
-        <view slot="right" style="height: 100%;" wx:else>
-          <van-button type="info" custom-style="height: 100%;" data-course_id="{{itemName._id}}"
-            bind:click="into_coursePage"> 详细</van-button>
-        </view>
-      </van-swipe-cell>
+              </view>
+            </van-cell>
+          </van-cell-group>
+          <view slot="right" style="height: 100%;"
+            wx:if="{{current_time < itemName.date_time_number + itemName.end_time_number}}">
+            <van-button type="danger" custom-style="height: 100%;" data-course_id="{{itemName._id}}"
+              data-user_id="{{userInfo.openid}}" bind:click="quit_course"> 退选</van-button>
+            <van-button type="info" custom-style="height: 100%;" data-course_id="{{itemName._id}}"
+              bind:click="into_coursePage"> 详细</van-button>
+          </view>
+          <view slot="right" style="height: 100%;" wx:else>
+            <van-button type="info" custom-style="height: 100%;" data-course_id="{{itemName._id}}"
+              bind:click="into_coursePage"> 详细</van-button>
+          </view>
+        </van-swipe-cell>
+      </view>
     </view>
   </block>
 </scroll-view>
