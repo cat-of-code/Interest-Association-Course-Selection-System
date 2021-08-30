@@ -40,6 +40,7 @@ App({
     login: false,
     managerLogin: false,
     association_uid: "",
-    activityId: ""
+    activityId: "",
+    association_name: ""
   }
 })

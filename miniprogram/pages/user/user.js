@@ -16,21 +16,15 @@ Page({
         icon: "todo-list-o",
         text: "我的预约记录",
         navigateUrl: "/pages/myActivities/myActivities"
-      },
-      {
-        icon: "label-o",
-        text: "我的活动记录",
-        navigateUrl: "/pages/myActivities/myActivities"
-      },
-      {
-        icon: "orders-o",
-        text: "我的报名记录",
-        navigateUrl: "/pages/myActivities/myActivities"
+      }, {
+        icon: "info-o",
+        text: "敬请关注",
+        navigateUrl: ""
       }
     ],
     manages: [
       {
-        icon: "todo-list-o",
+        icon: "orders-o",
         text: "已发布的活动",
         navigateUrl: "pages/myActivities/myActivities"
       },
@@ -69,11 +63,8 @@ Page({
    */
 
   managerLogin: function (e) {
-    // wx.redirectTo({
-    //   url: '../manager/manager',
-    // })
-    this.setData({
-      managerLogin: true
+    wx.navigateTo({
+      url: '../manager/manager',
     })
   },
 
@@ -82,10 +73,12 @@ Page({
    * 功能：退出协会管理员
    */
   managerLogout: function (e) {
-    // TODO: 退出后要把数据清除
+    // 退出后要把数据清除
     this.setData({
       managerLogin: false
     })
+    app.globalData.managerLogin = false
+    app.globalData.association_name = ""
   },
 
   /**

@@ -9,7 +9,7 @@
     <text>{{userInfo.nickName}}</text>
   </view>
   <view style="height: 10rpx;"></view>
-  <!-- TODO: 点击图标跳转到相应页面 -->
+  <!-- 点击图标跳转到相应页面 -->
   <van-grid gutter="{{ 10 }}" column-num="3" >
     <block 
       wx:for="{{ projets }}"  
@@ -20,7 +20,7 @@
         icon="{{ item.icon }}" 
         text="{{ item.text }}" 
         link-type="navigateTo"
-        url="{{ item.redirectUrl }}"
+        url="{{ item.navigateUrl }}"
       />
     </block>
   </van-grid>

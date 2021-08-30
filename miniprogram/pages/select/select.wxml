@@ -47,7 +47,7 @@
                 ></cover-image>
                 <!-- 颜色好丑 -->
                 <view 
-                  style="position: absolute; left: 20rpx; top: 20rpx; color: white; background-color: {{ color }}; opacity: {{ 0.9 }}; padding: 15rpx; border-radius: 10rpx;"
+                  style="position: absolute; left: 20rpx; top: 20rpx; color: white; background-color: {{ color }}; opacity: {{ 0.8 }}; padding: 15rpx; border-radius: 10rpx;"
                 >
                   <view
                     style="font-size: 40rpx; margin-bottom: 10rpx;"
@@ -60,6 +60,7 @@
                   >{{ item.address }}</view>
                 </view>
                 <van-button  
+                  wx:if="{{ !item.isEnd }}"
                   round="{{ true }}"
                   type="primary"
                   style="position: absolute; right: 10rpx; top: 35%; opacity: {{ 0.9 }};"
@@ -67,7 +68,18 @@
                   data-idx="{{ idx }}" 
                   bind:click="reserveBtn"
                   size="small"
-                >预约</van-button>       
+                >预约</van-button>  
+                <van-button  
+                  wx:if="{{ item.isEnd }}"
+                  round="{{ true }}"
+                  disabled="{{ true }}"
+                  type="primary"
+                  style="position: absolute; right: 10rpx; top: 35%;"
+                  color="black"
+                  data-idx="{{ idx }}" 
+                  bind:click="reserveBtn"
+                  size="small"
+                >暂停预约</van-button>       
               </view>
             </block>
           

@@ -10,7 +10,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    disable: false,             // 这个是什么？
     dates: [],                  // 保存未来30天的活动列表
     associations: [],           // 协会列表
     selection: 0,               // 当前选的是“每日活动”或者“协会信息”的id
@@ -61,16 +60,31 @@ Page({
   getTodayActivitiesInfo(today) {
     // console.log("进入onLoad")
     // console.log(today)
+    var now = new Date()
+    // console.log(now)
+    var todayParse = Date.parse(new Date(today))
+    // console.log(Date.parse(now))
     var page = this
     courseCollection.where({
       course_date: today
     }).get({
       success(res) {
+        var result = res.data
         // console.log(res.data)
+        // console.log(result)
         if (res.data.length != 0) {
+          for (var i = 0; i < result.length; i++) {
+            if (Date.parse(now) + 7200000 >= Date.parse(today + ' ' + result[i].course_start_time)) {
+              result[i].isEnd = true
+            } else {
+              result[i].isEnd = false
+            }
+          }
+          // console.log(result)
+          // console.log(Date.parse(today + ' ' + res.data[0].course_start_time))
           page.setData({
             "dates[0].empty": false,
-            "dates[0].activities": res.data
+            "dates[0].activities": result
           })
         }
       }

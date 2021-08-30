@@ -1,2 +1,35 @@
-<!--pages/manager/manager.wxml-->
-<text>管理员登录页面</text>
+<navBar titleName="协会管理员登录" showLeftArrow="{{ true }}" />
+<view class="xiaohui">
+  <cover-image src="../../img/100.jpg"></cover-image>
+
+</view>
+<view class="container">
+  <van-cell-group>
+    <view>协会名称：</view>
+    <view class='select_box'>
+      <view class='select' catchtap='selectTap'>
+        <text class='select_text'>{{selectData[index]}}</text>
+        <image class='select_img {{show&&"select_img_rotate"}}' src='/img/xiala.png'></image>
+      </view>
+      <view class='option_box' style='height:{{show?(selectData.length>5?300:selectData.length*60):0}}rpx;'>
+        <text class='option' wx:for='{{selectData}}' wx:key='this' data-index='{{index}}'
+          catchtap='optionTap'>{{item}}</text>
+      </view>
+    </view>
+
+    <van-field value="{{ password }}" type="password" :type:="showornot" label="密码" placeholder="请输入密码"
+      left-icon="closed-eye" border="{{ false }}" bind:input="setPassword" />
+
+
+    <van-radio-group value="{{ identity }}" bind:change="onChange">
+
+    </van-radio-group>
+    <view style="text-align: center;">
+      <view class="btn btn-primary">
+        <van-button color="#3b87dd" type="primary" size="normal" bindclick="handleLogin">登录</van-button>
+      </view>
+    </view>
+  </van-cell-group>
+
+</view>
+<view>{{ name }}</view>
