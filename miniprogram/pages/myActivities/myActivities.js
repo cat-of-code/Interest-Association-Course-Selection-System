@@ -1,5 +1,6 @@
-// pages/myCourse/myCourse.js
+// pages/myActivities/myActivities.js
 import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
+import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 
 var app = getApp()
 var db = wx.cloud.database()
@@ -17,6 +18,26 @@ Page({
     courses: [],
     userInfo: {},
     current_time: "",
+    refresh_triggered: true,
+    switch1: true,
+    switch2: true,
+    old_switch1: true,
+    old_switch2: true,
+    value1: 0,
+    menu: {
+      switchTitle1: '显示预约中',
+      switchTitle2: '显示已结束',
+      itemTitle: '筛选',
+      option1: [{
+          text: '日期倒序',
+          value: 0
+        },
+        {
+          text: '日期升序',
+          value: 1
+        },
+      ],
+    }
   },
   /**
    * 退选课程
@@ -24,33 +45,43 @@ Page({
   quit_course(e) {
     var course_id = e.currentTarget.dataset.course_id
     var user_id = e.currentTarget.dataset.user_id
-    console.log(course_id)
-    console.log(user_id)
+    // console.log(course_id)
+    // console.log(user_id)
     if (user_id == this.data.userInfo.openid) {
-      
-      wx.cloud.callFunction({
-        name: 'quitCourse',
-        data: {
-          user_id: user_id,
-          course_id: course_id
-        },
-        success: res => {
-          console.log('[云函数] [quitCourse] '+ res);
-          Toast.success('退选成功');
-          this.onLoad();
-        },
-        fail: err => {
-          console.error('[云函数] [quitCourse]', err);
-          Toast.fail('退选失败');
-        }
-      })
+      // 判断用户是否为本用户id
+      Dialog.confirm({
+          title: '确认',
+          message: '是否确认退选活动',
+        })
+        .then(() => {
+          // on confirm
+          wx.cloud.callFunction({
+            name: 'quitCourse',
+            data: {
+              user_id: user_id,
+              course_id: course_id
+            },
+            success: res => {
+              // console.log('[云函数] [quitCourse] ' + res);
+              Toast.success('退选成功');
+              this.onLoad();
+            },
+            fail: err => {
+              // console.error('[云函数] [quitCourse]', err);
+              Toast.fail('退选失败');
+            }
+          })
+        })
+        .catch(() => {
+          // on cancel
+        });
     }
   },
   /**
    * 跳转到课程详细页面
    */
   into_coursePage: function (e) {
-    console.log(e)
+    // console.log(e)
     // app.globalData.courseName = e.currentTarget.dataset.course_id
     var jf_course_id = JSON.stringify(e.currentTarget.dataset.course_id)
     wx.navigateTo({
@@ -68,7 +99,7 @@ Page({
         resolve(courseInfos)
       })
     })
-    console.log(courseInfos)
+    // console.log(courseInfos)
     return courseInfos
   },
 
@@ -96,7 +127,7 @@ Page({
     // console.log(Y + M + D + h + m)
 
     for (var i = 0; i < course_ids.length; i++) {
-      console.log(course_ids[i])
+      // console.log(course_ids[i])
       cf[course_ids[i].course_id] = course_ids[i].enroll_flag
       var p = new Promise((resolve, reject) => {
         wx.cloud.callFunction({
@@ -119,7 +150,16 @@ Page({
       prom.push(p)
     }
     Promise.all(prom).then(res => {
-      console.log(res)
+      // console.log(res)
+      if (this.data.value1 == 0){
+        res.sort(function (a, b) {
+          return Number(b.date_time_number + b.end_time_number) - Number(a.date_time_number + a.end_time_number)
+        });
+      }else if(this.data.value1 == 1){
+        res.sort(function (a, b) {
+          return Number(a.date_time_number + a.end_time_number) - Number(b.date_time_number + b.end_time_number)
+        });
+      }
       this.setData({
         courses: res
       })
@@ -174,21 +214,50 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  async refresh() {
-    var nickName = app.globalData.nickName
-    var user_openid = app.globalData.openid
-    // console.log(nickName)
-    // console.log(user_openid)
-    // console.log(app.globalData.avatarUrl)
-    var p1 = await this.getMyCourses(user_openid)
-    await this.addMyCourses(p1)
+  refresh() {
+    this.onLoad();
+    this.setData({
+      refresh_triggered: false
+    })
+    wx.pageScrollTo({
+      scrollTop: 0,
+    })
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
+  onConfirm() {
+    this.setData({
+      old_switch1: this.data.switch1,
+      old_switch2: this.data.switch2
+     });
+    this.onLoad();
+    this.selectComponent('#item').toggle();
+  },
 
+  onSwitchClose(e){
+    // console.log(e)
+    this.setData({
+      switch1: this.data.old_switch1,
+      switch2: this.data.old_switch2
+     });
+  },
+
+  onValue1Change({detail}){
+    this.setData({ value1: detail });
+    this.onLoad();
+  },
+
+  onSwitch1Change({ detail }) {
+    this.setData({
+      switch1: detail,
+      old_switch1: this.data.switch1
+    });
+  },
+
+  onSwitch2Change({ detail }) {
+    this.setData({
+      switch2: detail,
+      old_switch2: this.data.switch2
+    });
   },
 
 })
