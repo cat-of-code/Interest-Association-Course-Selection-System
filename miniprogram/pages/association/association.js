@@ -22,7 +22,7 @@ Page({
     var uid = app.globalData.association_uid
     // console.log(uid)
     var date = new Date()
-    var today = "" + date.getFullYear() + "/" + (date.getMonth() + 1 < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth() + 1) + "/" + (date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate())
+    var today = "" + date.getFullYear() + "-" + (date.getMonth() + 1 < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth() + 1) + "-" + (date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate())
     // console.log(today)
     // 从数据库获取协会详细信息
     this.getAssociationInfo(uid)

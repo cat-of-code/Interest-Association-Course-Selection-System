@@ -93,7 +93,7 @@ Page({
     var m = date.getMinutes();
     //秒
     var s = date.getSeconds();
-    console.log(Y + M + D + h + m)
+    // console.log(Y + M + D + h + m)
 
     for (var i = 0; i < course_ids.length; i++) {
       console.log(course_ids[i])
@@ -111,11 +111,11 @@ Page({
             var new_res = res.result.list[0]
             // console.log(course_ids[i].course_id)
             // course_ids[i]['enroll_flag'] = true
-            console.log(res)
+            // console.log(res)
             resolve(new_res)
           })
       })
-      console.log(p)
+      // console.log(p)
       prom.push(p)
     }
     Promise.all(prom).then(res => {
@@ -136,9 +136,9 @@ Page({
     if (app.globalData.login) {
       var nickName = app.globalData.nickName
       var user_openid = app.globalData.openid
-      console.log(nickName)
-      console.log(user_openid)
-      console.log(app.globalData.avatarUrl)
+      // console.log(nickName)
+      // console.log(user_openid)
+      // console.log(app.globalData.avatarUrl)
       var p1 = await this.getMyCourses(user_openid)
       await this.addMyCourses(p1)
     }
@@ -155,7 +155,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log(app.globalData.login)
+    // console.log(app.globalData.login)
     if (app.globalData.login) {
       this.setData({
         userInfo: {
@@ -177,9 +177,9 @@ Page({
   async refresh() {
     var nickName = app.globalData.nickName
     var user_openid = app.globalData.openid
-    console.log(nickName)
-    console.log(user_openid)
-    console.log(app.globalData.avatarUrl)
+    // console.log(nickName)
+    // console.log(user_openid)
+    // console.log(app.globalData.avatarUrl)
     var p1 = await this.getMyCourses(user_openid)
     await this.addMyCourses(p1)
   },

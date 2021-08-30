@@ -47,7 +47,7 @@ Page({
     })
     // 从数据库中获取每日活动当天的活动
     date = new Date()
-    var today = "" + date.getFullYear() + "/" + (date.getMonth() + 1 < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth() + 1) + "/" + (date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate())
+    var today = "" + date.getFullYear() + "-" + (date.getMonth() + 1 < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth() + 1) + "-" + (date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate())
     // console.log(today)
     // console.log(date)
     // console.log(date.getMonth() + 1)
@@ -153,7 +153,7 @@ Page({
     var page = this
     var date = new Date()
     date = new Date(Date.parse(date) + index * 86400000)
-    var day = "" + date.getFullYear() + "/" + (date.getMonth() + 1 < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth()) + "/" + (date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate())
+    var day = "" + date.getFullYear() + "-" + (date.getMonth() + 1 < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth()) + "-" + (date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate())
     // console.log(day)
     courseCollection.where({
       course_date: day
