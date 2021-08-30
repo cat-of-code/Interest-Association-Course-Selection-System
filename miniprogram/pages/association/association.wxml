@@ -17,7 +17,6 @@
       style="font-size: small; color: white;  margin-bottom: 10rpx;"
     >累计发布{{ count }}次活动</view>
   </view>
->>>>>>> Stashed changes
 </view>
 <view
   style="position: relative; top: -50rpx; background-color: white; border-top-left-radius: 50rpx; border-top-right-radius: 50rpx; padding-top: 50rpx; padding-left: 35rpx; padding-right: 35rpx;"

@@ -4,10 +4,10 @@
     "pages/activityDetail/activityDetail",
     "pages/myActivities/myActivities",
     "pages/user/user",
-    "pages/openCourse/openCourse",
     "pages/manager/manager",
     "pages/association/association",
-    "pages/updateActivityDetail/updateActivityDetail"
+    "pages/updateActivityDetail/updateActivityDetail",
+    "pages/login/login"
   ],
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",

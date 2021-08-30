@@ -101,6 +101,12 @@
           "pathName": "pages/association/association",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "login",
+          "pathName": "pages/login/login",
+          "query": "",
+          "scene": null
         }
       ]
     }

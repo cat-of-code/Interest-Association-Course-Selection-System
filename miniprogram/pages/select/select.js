@@ -91,7 +91,6 @@ Page({
     })
   },
 
-
   /**
    * 李天红写的
    * 功能：从数据库获取所有协会信息
@@ -197,5 +196,12 @@ Page({
     var index = e.currentTarget.dataset.idx
     // console.log(e.currentTarget.dataset.idx)
     var activity_id = this.data.dates[this.data.day_index].activities[index]._id
+    if (app.globalData.login) {
+
+    } else {
+      wx.navigateTo({
+        url: '../login/login',
+      })
+    }
   }
 })
