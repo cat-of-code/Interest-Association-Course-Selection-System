@@ -3,7 +3,9 @@ var app = getApp()
 var db = wx.cloud.database()
 var courseCollection = db.collection("test_db_course")
 var managerCollection = db.collection("test_db_manager")
+var selectListCollection = db.collection("test_db_selectList")
 const _ = db.command
+
 Page({
 
   /**
@@ -47,7 +49,7 @@ Page({
     })
     // 从数据库中获取每日活动当天的活动
     date = new Date()
-    var today = "" + date.getFullYear() + "-" + (date.getMonth() + 1 < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth() + 1) + "-" + (date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate())
+    var today = "" + date.getFullYear() + "/" + (date.getMonth() + 1 < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth() + 1) + "/" + (date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate())
     // console.log(today)
     // console.log(date)
     // console.log(date.getMonth() + 1)
@@ -65,8 +67,10 @@ Page({
     var todayParse = Date.parse(new Date(today))
     // console.log(Date.parse(now))
     var page = this
+    var openid = app.globalData.openid
     courseCollection.where({
-      course_date: today
+      course_date: today,
+      course_start_time: _.gte('')
     }).get({
       success(res) {
         var result = res.data
@@ -153,10 +157,11 @@ Page({
     var page = this
     var date = new Date()
     date = new Date(Date.parse(date) + index * 86400000)
-    var day = "" + date.getFullYear() + "-" + (date.getMonth() + 1 < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth()) + "-" + (date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate())
+    var day = "" + date.getFullYear() + "/" + (date.getMonth() + 1 < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth()) + "/" + (date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate())
     // console.log(day)
     courseCollection.where({
-      course_date: day
+      course_date: day,
+      course_start_time: _.gte('')
     }).get({
       success(res) {
         // console.log(res.data)
@@ -193,12 +198,89 @@ Page({
    * 功能：点击预约按钮
    */
   reserveBtn: function (e) {
+    var page = this
     var index = e.currentTarget.dataset.idx
     // console.log(e.currentTarget.dataset.idx)
     var activity_id = this.data.dates[this.data.day_index].activities[index]._id
+    var openid = app.globalData.openid
+    // 判断是否登录
     if (app.globalData.login) {
+      var now = new Date()
+      var date = now.getFullYear() + "/" + ((now.getMonth() + 1) < 10 ? '0' + (now.getMonth() + 1) : now.getMonth() + 1) + "/" + (now.getDate() < 10 ? ('0' + now.getDate()) : now.getDate())
+      var time = (now.getHours() < 10 ? ('0' + now.getHours()) : now.getHours()) + ":" + (now.getMinutes() < 10 ? ('0' + now.getMinutes()) : now.getMinutes())
 
+      var isExisted = false
+      var isEnrollFlag = false
+      var select_id = ""
+      Promise.resolve().then(function() {
+        console.log(1)
+        // 首先查询这条记录存不存在
+        selectListCollection.where({
+          _openid: openid,
+          course_id: activity_id
+        }).get({
+          success(res) {
+            if (res.data.length != 0) {
+              console.log(5)
+              isExisted = true
+              select_id = res.data[0]._id
+              // 如果存在且已经报名了
+              if (res.data[0].enroll_flag) {
+                isEnrollFlag = true
+              }
+            }
+          }
+        })
+      }).then(function() {
+        // 如果报名了
+        if (isEnrollFlag) {
+          console.log(2)
+          wx.showToast({
+            title: '您已报名',
+            icon: 'none',
+            duration: 2000
+          })
+        } else {
+          // 没有报名，如果记录存在，把enroll_flag改成true即可
+          if (isExisted) {
+            console.log(3)
+            selectListCollection.doc(select_id).update({
+              data:{
+                enroll_flag: true
+              },
+              success (res) {
+                wx.showToast({
+                  title: '预约成功',
+                })
+              }
+            })
+          } else {
+            console.log(4)
+            // 记录不存在，插入到数据库
+            selectListCollection.add({
+              data: {
+                course_id: activity_id,
+                date: date,
+                time: time,
+                enroll_flag: true
+              },
+              success (res) {
+                // console.log(res)
+                // 预约成功，弹出提示，显示出已预约按钮
+                page.setData({
+                  [ `page.data.dates[${page.data.day_index}].activities[${index}].enroll_flag`]: true
+                })
+                wx.showToast({
+                  title: '预约成功',
+                })
+              }
+            })
+          }
+        }
+      })
+      
     } else {
+      // 没有登录，跳转登录页面
       wx.navigateTo({
         url: '../login/login',
       })

@@ -22,9 +22,10 @@
           wx:key="key"
         >
           <van-tab 
-            title="{{ it.month }}月 {{it.day }}" 
+            title="{{ it.month }}/{{it.day }}" 
             title-active-color="{{ color }}"
-            name="key"            
+            name="key"
+            ellipsis="{{false}}"
           >
             <van-empty 
               wx:if="{{ it.empty }}"
@@ -79,7 +80,7 @@
                   data-idx="{{ idx }}" 
                   bind:click="reserveBtn"
                   size="small"
-                >暂停预约</van-button>       
+                >停止预约</van-button>    
               </view>
             </block>
           

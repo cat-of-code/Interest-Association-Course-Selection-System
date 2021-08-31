@@ -12,6 +12,18 @@ Page({
   },
 
   /**
+   * @Author: 李天红
+   * @Description: 可能存在登录延时的情况，在生命周期中判断是否登录，如果登录就无需重新登录了。
+   */
+  onShow() {
+    if (app.globalData.login) {
+      wx.navigateBack({
+        delta: 1,
+      })
+    }
+  },
+
+  /**
    * 李天红写的
    * 功能：获取用户信息
    */
