@@ -38,9 +38,13 @@ App({
     avatarUrl: "",
     openid: "",
     login: false,
+
     managerLogin: false,
     association_uid: "",
     activityId: "",
-    association_name: ""
+    activityName:"",
+    managerLogin: false,
+    association_name:"",
+    association_uid:0,
   }
 })

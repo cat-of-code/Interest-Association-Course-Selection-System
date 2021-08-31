@@ -24,15 +24,21 @@ Page({
     ],
     manages: [
       {
-        icon: "orders-o",
-        text: "已发布的活动",
-        navigateUrl: "pages/myActivities/myActivities"
+        icon: "edit",
+        text: "我要发布活动",
+        redirectUrl: "/pages/createActivity/createActivity"
       },
       {
-        icon: "label-o",
+        icon: "records",
+        text: "已发布的活动",
+        redirectUrl: "/pages/myCreatedActivity/myCreatedActivity"
+      },
+      {
+        icon: "user-o",
         text: "协会的学员",
-        navigateUrl: "pages/myActivities/myActivities"
+        navigateUrl: "/pages/myActivities/myActivities"
       }
+
     ]
   },
 
@@ -56,6 +62,18 @@ Page({
       })
     }
   },
+  
+  /**
+   * 郭心德写的
+   * 功能：管理员点击icon进入对应页面
+   */
+  enter: function (e) {
+    var url = e.target.id
+    wx.navigateTo({
+      url: url,
+    })
+  },
+
 
   /**
    * 李天红写的
@@ -112,6 +130,4 @@ Page({
     // console.log(userInfo.nickName)
     // console.log(userInfo.avatarUrl)
   },
-  
-
 })

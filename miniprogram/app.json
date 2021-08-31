@@ -2,11 +2,14 @@
   "pages": [
     "pages/select/select",
     "pages/activityDetail/activityDetail",
-    "pages/myActivities/myActivities",
     "pages/user/user",
     "pages/manager/manager",
     "pages/association/association",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/myCreatedActivity/myCreatedActivity",
+    "pages/updataActivityDetail/updataActivityDetail",
+    "pages/createActivity/createActivity",
+    "pages/myActivities/myActivities"
   ],
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",

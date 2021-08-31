@@ -39,7 +39,7 @@
         icon="{{ item.icon }}" 
         text="{{ item.text }}" 
         link-type="navigateTo"
-        url="{{ item.navigateUrl }}"
+        url="{{item.redirectUrl}}"
       />
     </block>
   </van-grid>

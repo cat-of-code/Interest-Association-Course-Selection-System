@@ -105,6 +105,21 @@
         {
           "name": "login",
           "pathName": "pages/login/login",
+          "name": "pages/createActivity/createActivity",
+          "pathName": "pages/createActivity/createActivity",
+          "query": "",
+          "scene": null
+        },
+
+        {
+          "name": "pages/updataActivityDetail/updataActivityDetail",
+          "pathName": "pages/updataActivityDetail/updataActivityDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/myCreatedActivity/myCreatedActivity",
+          "pathName": "pages/myCreatedActivity/myCreatedActivity",
           "query": "",
           "scene": null
         }

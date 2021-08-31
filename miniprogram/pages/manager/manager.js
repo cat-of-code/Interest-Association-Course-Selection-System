@@ -10,7 +10,7 @@ Page({
    */
   data: {
     show: false, //控制下拉列表的显示隐藏，false隐藏、true显示
-    selectData: ['-请选择-', '篮球协会', '跑步协会', '瑜伽协会', '乒乓球协会', '足球协会', '网球协会'], //下拉列表的数据
+    selectData: ['-请选择-','篮球协会', '跑步协会', '瑜伽协会', '乒乓球协会', '足球协会', '网球协会','摄影DV联合会','乐益会','书法协会', '舞蹈协会', '羽毛球协会', '乐器协会'],//下拉列表的数据
     index: 0, //选择的下拉列表下标
     password: "",
     disable: false,
@@ -75,7 +75,10 @@ Page({
           // console.log( uid, password)
           // console.log(res.data[0].association_name)
           app.globalData.managerLogin = true
+          console.log(res.data[0].association_name)
           app.globalData.association_name = res.data[0].association_name
+          app.globalData.association_uid = this.data.index
+          console.log(app.globalData.association_uid)
           wx.switchTab({
             url: '../user/user',
           })
