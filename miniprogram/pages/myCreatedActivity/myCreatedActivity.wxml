@@ -1,3 +1,7 @@
+<navBar
+  titleName="我发布的活动"
+  showLeftArrow="{{ true }}"
+/>
 <wxs module="util" src="../../utils/utils.wxs"></wxs>
 <view class="waveWrapper waveAnimation" style='background-color:{{evening}}'>
   <view class="word">我发布的活动</view>

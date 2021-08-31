@@ -87,6 +87,30 @@ Page({
     wx.navigateTo({
       url: '../activityDetail/activityDetail?course_id=' + jf_course_id,
     })
+    /**
+     * 代码建议👇👇👇👇👇亲测能用-----by 李天红
+     */
+
+     /*
+    // 1.把course_id保存到全局变量，跳转到详情页面再取出
+    var course_id = e.currentTarget.dataset.course_id
+    app.globalData.activityId = course_id
+    // 2.获取协会的uid，保存到全局变量，跳转到详情页面再取出
+    courseCollection.doc(course_id).get({
+      success(res) {
+        // console.log(res.data)
+        app.globalData.association_uid = res.data.association_uid
+        // 3.跳转
+        wx.navigateTo({
+          url: '../activityDetail/activityDetail'
+        })
+      }
+    })
+    */
+    /**
+     * 代码建议👆👆👆👆👆亲测能用-----by 李天红
+     */
+    
   },
 
   async getMyCourses(user_openid) {

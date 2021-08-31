@@ -1,3 +1,7 @@
+<navBar
+  titleName="发布活动"
+  showLeftArrow="{{ true }}"
+/>
 <view class="waveWrapper waveAnimation" style='background-color:{{evening}}'>
   <view class="word">发布活动</view>
   <view class="waveWrapperInner bgTop">

@@ -1,89 +1,111 @@
-<cover-image
-  src="{{ img }}"
-></cover-image>
-<view class="card">
-  <view
-    style="margin-top: 30rpx; margin-bottom: 20rpx;"
-  >{{ course_name }}</view>
-  <view
-    style="font-size: smaller; color: rgb(120, 120, 120);"
-  >6人小团课（满2人开课）</view>
-  <van-divider />
-  <view class="associationCard">
-    <image 
-      style="width: 112rpx;  height: 112rpx;  border-radius: 50%;"
-      src="{{ association_logo }}"
-    ></image>
-    <view style="display: flex;  flex-direction: column;">
-      <view
-      style="margin-left: 30rpx; margin-bottom: 20rpx;"
-      >{{ association_name }}</view>
-      <view
-      style="font-size: smaller; color: rgb(120, 120, 120); margin-left: 30rpx;"
-      >简介</view>
-    </view>
-    <image
-      style="width: 52rpx;  height: 52rpx; position: absolute; right: 0;"
-      src="cloud://cloud1-0gyu6anlffcd11a5.636c-cloud1-0gyu6anlffcd11a5-1306965577/arrow.png"
-    ></image>
-  </view>
-  <van-divider />
-  <view
-    style="display: flex;  flex-direction: row; margin-bottom: 25rpx;"
-  >
-    <van-icon 
-      name="underway-o" 
-      custom-style="margin-right: 10rpx"
-      size="30rpx" 
-    />
-    <view
-      style="font-size: small;"
-    >时间 ：{{ course_date }} {{ course_start_time }} ~ {{ course_end_time }}</view>
-  </view>
-  <view
-    style="display: flex;  flex-direction: row; margin-bottom: 25rpx;"
-  >
-    <van-icon 
-      name="location-o" 
-      custom-style="margin-right: 10rpx"
-      size="30rpx" 
-    />
-    <view
-      style="font-size: small;"
-    >地点 ：{{ address }}</view>
-  </view>
-  <view
-    style="display: flex;  flex-direction: row; margin-bottom: 25rpx;"
-  >
-    <van-icon 
-      name="phone-o" 
-      custom-style="margin-right: 10rpx"
-      size="30rpx" 
-    />
-    <view
-      style="font-size: small;"
-    >电话 ：{{ manager_phone }}</view>
-  </view>
-  <van-divider />
-  <view
-    style="display: flex;  flex-direction: row; margin-bottom: 25rpx;"
-  >
-    <van-icon 
-      name="notes-o" 
-      custom-style="margin-right: 20rpx"
-      size="30rpx" 
-    />
-    <view
-      style="font-size: small;"
-    >活动介绍</view>
-  </view>
-  <view
-    style="font-size: small;"
-  >
-  这是云开发的快速启动指引，其中演示了如何上手使用云开发的三大基础能力：
+<!--pages/activityDetails/activityDetails.wxml-->
+<!-- <text>pages/activityDetails/activityDetails.wxml</text> -->
+<view class="@">
 
-  数据库：一个既可在小程序前端操作，也能在云函数中读写的 JSON 文档型数据库
-  文件存储：在小程序前端直接上传/下载云端文件，在云开发控制台可视化管理
-  云函数：在云端运行的代码，微信私有协议天然鉴权，开发者只需编写业务逻辑代码
-  </view>
 </view>
+<view>
+    <view class="activity_detail_image_view">
+        <image class="activity_detail_image" src="{{ activity.img }}">
+        </image>
+    </view>
+
+    <view class="row1">
+        <view class="activityName">
+            {{activity.course_name}}
+        </view>
+        <view class="applicantsNumber">
+            15人小活动（满2人进行）
+        </view>
+    </view>
+    <view 
+        class="row2"
+        bindtap="navigateToAssociation"
+    >
+        <view class="coachImage_view">
+            <image class="coachImage" src="{{association.association_logo}}">
+            </image>
+        </view>
+        <view class="coachProfile">
+            <view class="coachName">
+                {{association.association_name}}
+            </view>
+            <view class="coachExperience">
+                {{association.association_desc}}
+            </view>
+        </view>
+        <view class="arrowImage_view">
+            <image class="arrowImage"
+                style="width: 70rpx;  height: 70rpx; position: absolute; right: 20rpx;"
+                src="cloud://cloud1-0gyu6anlffcd11a5.636c-cloud1-0gyu6anlffcd11a5-1306965577/arrow.png">
+            </image>
+        </view>
+    </view>
+    <view class="row3">
+        <view class="activityTime">
+            <image class="timeIcon"
+                src="https://636c-cloud1-0gyu6anlffcd11a5-1306965577.tcb.qcloud.la/timeIcon.png?sign=7bbad3a2724042435333be241d85111c&t=1629874837">
+            </image>
+            <view class="timeTitle">
+                时间：
+            </view>
+            <view class="timeText">
+                {{ activity.course_date }} {{ activity.course_start_time }} ~ {{ activity.course_end_time }}
+            </view>
+        </view>
+        <view class="activityLocation">
+            <image class="locationIcon"
+                src="https://636c-cloud1-0gyu6anlffcd11a5-1306965577.tcb.qcloud.la/locationIcon.png?sign=f4762303c5d7b703d1c34ae7ed5d3a4d&t=1629875044">
+            </image>
+            <view class="locationTitle">
+                地点：
+            </view>
+            <view class="locationText">
+                {{ activity.address }}
+            </view>
+        </view>
+        <view class="activityPhone">
+            <image class="phoneIcon"
+                src="https://636c-cloud1-0gyu6anlffcd11a5-1306965577.tcb.qcloud.la/phoneIcon.png?sign=7ef5c136727434ededd226873328f982&t=1629875016">
+            </image>
+            <view class="phoneTitle">
+                电话：
+            </view>
+            <view class="phoneText">
+                {{association.manager_phone}}
+            </view>
+        </view>
+    </view>
+
+    <view class="row4">
+        <view class="activityIntroduce">
+            <image class="courseIcon"
+                src="https://636c-cloud1-0gyu6anlffcd11a5-1306965577.tcb.qcloud.la/courseIcon.png?sign=85b9267ce294e11dc81163c619ea06ce&t=1629877767">
+            </image>
+            <view class="activityIntroduceTitle">
+                课程介绍
+            </view>
+        </view>
+        <text
+            class="activityIntroduceText" 
+            decode="{{true}}" 
+            space="{{true}}"
+        >
+            {{ activity.dec }}
+        </text>
+        <!-- <text class="activityIntroduceText" decode="{{true}}" space="{{true}}">{{activityIntroduceText_0}}
+        </text>
+        <text class="activityIntroduceText" decode="{{true}}" space="{{true}}">{{activityIntroduceText_1}}
+        </text>
+        <text class="activityIntroduceText" decode="{{true}}" space="{{true}}">{{activityIntroduceText_2}}
+        </text> -->
+
+        <button class="btn" bindtap="order" wx:if="{{!haveOrdered}}">预约</button>
+        <button class="btn_clear" bindtap="clearOrder" wx:if="{{haveOrdered}}">已预约</button>
+        <!-- 如果需要为false,就必须采用数据绑定的方式{{false}} -->
+        <toast hidden="{{status}}" duration="3000" bindchange="toastHide">
+            您已成功预约！
+        </toast>
+    </view>
+</view>
+<image style="width: 50rpx; height: 50rpx; position: fixed; top: 70rpx; left: 35rpx;" src="{{ left_color }}"
+    bindtap="navBack"></image>

@@ -95,5 +95,17 @@ Page({
     wx.navigateBack({
       delta: 1
     })
+  },
+
+
+  navigateToActivity(e) {
+    // console.log(e.currentTarget.dataset.idx)
+    var index = e.currentTarget.dataset.idx
+    app.globalData.activityId = this.data.activities[index]._id
+    // console.log(this.data.dates[this.data.day_index].activities[index]._id)
+    // 2.跳转到活动详情页面
+    wx.navigateTo({
+      url: '../activityDetail/activityDetail',
+    })
   }
 })

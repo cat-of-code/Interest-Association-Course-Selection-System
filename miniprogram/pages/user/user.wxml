@@ -10,7 +10,7 @@
   </view>
   <view style="height: 10rpx;"></view>
   <!-- 点击图标跳转到相应页面 -->
-  <van-grid gutter="{{ 10 }}" column-num="3" >
+  <van-grid gutter="{{ 10 }}" column-num="2" >
     <block 
       wx:for="{{ projets }}"  
       wx:for-item="item" 
@@ -27,7 +27,7 @@
   <!-- 协会管理员的专属功能 -->
   <van-grid 
     gutter="{{ 10 }}" 
-    column-num="3" 
+    column-num="2" 
     wx:if="{{ managerLogin }}"
   >
     <block 

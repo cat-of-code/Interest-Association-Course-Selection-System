@@ -32,13 +32,7 @@ Page({
         icon: "records",
         text: "已发布的活动",
         redirectUrl: "/pages/myCreatedActivity/myCreatedActivity"
-      },
-      {
-        icon: "user-o",
-        text: "协会的学员",
-        navigateUrl: "/pages/myActivities/myActivities"
       }
-
     ]
   },
 

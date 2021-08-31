@@ -17,7 +17,7 @@ function formatNumber(n) {
 }
 
 function formatDay(date) {
-  console.log(date)
+  // console.log(date)
   var year = date.getFullYear()
   var month = date.getMonth() + 1;
   if(month<10){

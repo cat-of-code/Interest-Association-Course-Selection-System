@@ -9,7 +9,7 @@ var activityListCollection = db.collection("list")
 var stuListCollection = db.collection("stuList")
 
 var _ = db.command
-console.log(activityCollection)
+// console.log(activityCollection)
 
 Page({
 
