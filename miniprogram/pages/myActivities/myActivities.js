@@ -24,8 +24,9 @@ Page({
     old_switch1: true,
     old_switch2: true,
     value1: 0,
+    isempty: false,
     menu: {
-      switchTitle1: '显示预约中',
+      switchTitle1: '显示已预约',
       switchTitle2: '显示已结束',
       itemTitle: '筛选',
       option1: [{
@@ -82,16 +83,11 @@ Page({
    */
   into_coursePage: function (e) {
     // console.log(e)
-    // app.globalData.courseName = e.currentTarget.dataset.course_id
-    var jf_course_id = JSON.stringify(e.currentTarget.dataset.course_id)
-    wx.navigateTo({
-      url: '../activityDetail/activityDetail?course_id=' + jf_course_id,
-    })
-    /**
-     * 代码建议👇👇👇👇👇亲测能用-----by 李天红
-     */
+    // var jf_course_id = JSON.stringify(e.currentTarget.dataset.course_id)
+    // wx.navigateTo({
+    //   url: '../activityDetail/activityDetail?course_id=' + jf_course_id,
+    // })
 
-     /*
     // 1.把course_id保存到全局变量，跳转到详情页面再取出
     var course_id = e.currentTarget.dataset.course_id
     app.globalData.activityId = course_id
@@ -106,11 +102,6 @@ Page({
         })
       }
     })
-    */
-    /**
-     * 代码建议👆👆👆👆👆亲测能用-----by 李天红
-     */
-    
   },
 
   async getMyCourses(user_openid) {
@@ -136,20 +127,20 @@ Page({
     //获取当前时间
     var n = timestamp * 1000;
     var date = new Date(n);
-    //年
     var Y = date.getFullYear();
-    //月
     var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
-    //日
     var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
-    //时
     var h = date.getHours();
-    //分
     var m = date.getMinutes();
-    //秒
     var s = date.getSeconds();
     // console.log(Y + M + D + h + m)
-
+    var isempty = true;
+    for (var i = 0; i < course_ids.length; i++) {
+      if (course_ids[i].enroll_flag){
+        isempty = false;
+        break;
+      }
+    }
     for (var i = 0; i < course_ids.length; i++) {
       // console.log(course_ids[i])
       cf[course_ids[i].course_id] = course_ids[i].enroll_flag
@@ -164,9 +155,6 @@ Page({
           })
           .then(res => {
             var new_res = res.result.list[0]
-            // console.log(course_ids[i].course_id)
-            // course_ids[i]['enroll_flag'] = true
-            // console.log(res)
             resolve(new_res)
           })
       })
@@ -175,17 +163,18 @@ Page({
     }
     Promise.all(prom).then(res => {
       // console.log(res)
-      if (this.data.value1 == 0){
+      if (this.data.value1 == 0) {
         res.sort(function (a, b) {
           return Number(b.date_time_number + b.end_time_number) - Number(a.date_time_number + a.end_time_number)
         });
-      }else if(this.data.value1 == 1){
+      } else if (this.data.value1 == 1) {
         res.sort(function (a, b) {
           return Number(a.date_time_number + a.end_time_number) - Number(b.date_time_number + b.end_time_number)
         });
       }
       this.setData({
-        courses: res
+        courses: res,
+        isempty: isempty
       })
     })
     this.setData({
@@ -198,11 +187,7 @@ Page({
    */
   async onLoad(options) {
     if (app.globalData.login) {
-      var nickName = app.globalData.nickName
       var user_openid = app.globalData.openid
-      // console.log(nickName)
-      // console.log(user_openid)
-      // console.log(app.globalData.avatarUrl)
       var p1 = await this.getMyCourses(user_openid)
       await this.addMyCourses(p1)
     }
@@ -252,32 +237,40 @@ Page({
     this.setData({
       old_switch1: this.data.switch1,
       old_switch2: this.data.switch2
-     });
+    });
     this.onLoad();
     this.selectComponent('#item').toggle();
   },
 
-  onSwitchClose(e){
+  onSwitchClose(e) {
     // console.log(e)
     this.setData({
       switch1: this.data.old_switch1,
       switch2: this.data.old_switch2
-     });
+    });
   },
 
-  onValue1Change({detail}){
-    this.setData({ value1: detail });
+  onValue1Change({
+    detail
+  }) {
+    this.setData({
+      value1: detail
+    });
     this.onLoad();
   },
 
-  onSwitch1Change({ detail }) {
+  onSwitch1Change({
+    detail
+  }) {
     this.setData({
       switch1: detail,
       old_switch1: this.data.switch1
     });
   },
 
-  onSwitch2Change({ detail }) {
+  onSwitch2Change({
+    detail
+  }) {
     this.setData({
       switch2: detail,
       old_switch2: this.data.switch2
