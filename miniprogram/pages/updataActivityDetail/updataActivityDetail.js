@@ -165,37 +165,14 @@ Page({
 
   //输入手机号
   inputPhone(e){
-    let phoneNumber = e.detail.value
-    if (phoneNumber.length === 11) {
-      if(this.checkPhoneNum(phoneNumber)){
-        this.setData({phoneNumber:phoneNumber})
-      }
-    } else {
-      wx.showToast({
-      title: '手机号不正确',
-      icon: 'error'
-      })
-      return false
-       }
-  },
-
-  checkPhoneNum: function (phoneNumber) {
-    let str = /^1\d{10}$/
-    if (str.test(phoneNumber)) {
-    return true
-    } else {
-    wx.showToast({
-    title: '请输入11位手机号',
-    icon: 'error'
+    this.setData({
+      phoneNumber: e.detail.value
     })
-    return false
-     }
   },
-
 
   //点击确认修改
   updataInfo(){
-    var associationName = app.globalData.association_name
+    var associationName = this.data.matchArr[parseInt(this.data.matchIndex)]
     var activityName = this.data.activityName
     var beginDate = this.data.startDate
     var startTime = this.data.startTime
@@ -205,7 +182,7 @@ Page({
     var creatorPhone = this.data.phoneNumber
     var imgID = this.data.fileID
     var desc = this.data.desc
-    if(beginDate==""||startTime==""||deadTime==""||address==""||creator==""||creatorPhone==""||imgID==""||activityName==""||desc==""){
+    if(associationName==""||beginDate==""||startTime==""||deadTime==""||address==""||creator==""||creatorPhone==""||imgID==""||activityName==""||desc==""){
       wx.showModal({
         title: '修改失败',
         content: '请填写完整活动的内容',

@@ -15,7 +15,7 @@ Page({
   data: {
     dates: [],                  // 保存未来30天的活动列表
     associations: [],           // 协会列表
-    selection: 1,               // 当前选的是“每日活动”或者“协会信息”的id
+    selection: 0,               // 当前选的是“每日活动”或者“协会信息”的id
     color: "#8CA6FD",           // 统一颜色
     day_index: 0,               // 日期索引，当前查看的是第几天的活动内容
   },

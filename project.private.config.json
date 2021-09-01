@@ -103,14 +103,11 @@
           "scene": null
         },
         {
-          "name": "login",
-          "pathName": "pages/login/login",
           "name": "pages/createActivity/createActivity",
           "pathName": "pages/createActivity/createActivity",
           "query": "",
           "scene": null
         },
-
         {
           "name": "pages/updataActivityDetail/updataActivityDetail",
           "pathName": "pages/updataActivityDetail/updataActivityDetail",
@@ -120,6 +117,12 @@
         {
           "name": "pages/myCreatedActivity/myCreatedActivity",
           "pathName": "pages/myCreatedActivity/myCreatedActivity",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "manager_index",
+          "pathName": "pages/manager_index/manager_index",
           "query": "",
           "scene": null
         }

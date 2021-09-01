@@ -1,38 +1,35 @@
 <navBar titleName="协会管理员登录" showLeftArrow="{{ true }}" />
 <view class="xiaohui">
   <cover-image src="../../img/100.jpg"></cover-image>
-
 </view>
-<view class="container">
-  <van-cell-group>
-    <view>协会名称：</view>
 
-
-    <view class='select_box'>
-      <view class='select' catchtap='selectTap'>
-        <text class='select_text'>{{selectData[index]}}</text>
-        <image class='select_img {{show&&"select_img_rotate"}}' src='/img/xiala.png'></image>
+<movable-area style="height: 280rpx; margin-top: 30rpx;">
+  <movable-view direction="horizontal" style="display: flex; flex-direction: row; width: {{150 * len}}rpx;">
+    <radio-group bindchange="radioChange" wx:for="{{ associations }}" wx:for-item="item" wx:key="key"
+      wx:for-index="idx">
+      <view style="display: flex; flex-direction: column; height: auto; width: auto;">
+        <image
+          style="width: 112rpx; height: 112rpx; border-radius: 50%; margin-left: 50rpx; margin-right: 50rpx; margin-bottom: 15rpx;"
+          src="{{ item.association_logo }}"></image>
+        <radio 
+          value="{{ idx }}" 
+          checked="{{ item.checked }}"
+          color="#8CA6FD"
+        >{{ item.association_name }}</radio>
       </view>
-
-      <view class='option_box' style='height:{{show?(selectData.length>5?300:selectData.length*60):0}}rpx;'>
-        <text class='option' wx:for='{{selectData}}' wx:key='this' data-index='{{index}}'
-          catchtap='optionTap'>{{item}}</text>
-      </view>
-    </view>
-
-    <van-field value="{{ password }}" type="password" :type:="showornot" label="密码" placeholder="请输入密码"
-      left-icon="closed-eye" border="{{ false }}" bind:input="setPassword" />
-
-
-    <van-radio-group value="{{ identity }}" bind:change="onChange">
-
-    </van-radio-group>
-    <view style="text-align: center;">
-      <view class="btn btn-primary">
-        <van-button color="#3b87dd" type="primary" size="normal" bindclick="handleLogin">登录</van-button>
-      </view>
-    </view>
-  </van-cell-group>
-
-</view>
-<view>{{ name }}</view>
+    </radio-group>
+  </movable-view>
+</movable-area>
+<van-field
+  value="{{ password }}"
+  icon='{{ defaultType ? "closed-eye" : "eye-o" }}'
+  type='{{ passwordType ? "password" : "text" }}'
+  label="密码"
+  placeholder="请输入密码"
+  border="{{ false }}"
+  bind:click-icon="eyeStatus"
+/>
+<button 
+  class="btn" 
+  bindtap="managerLogin" 
+>登录</button>
