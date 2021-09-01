@@ -90,32 +90,17 @@ Page({
     }
     return flag
   },
-  // 点击下拉显示框
-  selectTap() {
-    this.setData({
-      show: !this.data.show
-    });
-  },
-  // 点击下拉列表
-  optionTap(e) {
-    let Index = e.currentTarget.dataset.index; //获取点击的下拉列表的下标
-    // console.log(Index)
-    this.setData({
-      index: Index,
-      show: !this.data.show
-    });
-  },
 
   handleLogin: function (e) {
     var page = this
-    var uid = page.data.index
+    var id = page.data.associations[page.data.index]._id
     var password = page.data.password
     //var name= page.data.selectData[index]
     var index = page.data.index
 
-    if (page.judge(uid, password) == false) {
+    if (page.judge(id, password) == false) {
       manager.where({
-        xiala_id: uid,
+        _id: id,
         password: password,
       }).get().then(res => {
         // console.log(res.data)
@@ -129,10 +114,10 @@ Page({
           // console.log( uid, password)
           // console.log(res.data[0].association_name)
           app.globalData.managerLogin = true
-          console.log(res.data[0].association_name)
+          // console.log(res.data[0].association_name)
           app.globalData.association_name = res.data[0].association_name
-          app.globalData.association_uid = this.data.index
-          console.log(app.globalData.association_uid)
+          app.globalData.association_uid = res.data[0].association_uid
+          // console.log(app.globalData.association_uid)
           wx.switchTab({
             url: '../user/user',
           })

@@ -28,6 +28,7 @@
   placeholder="请输入密码"
   border="{{ false }}"
   bind:click-icon="eyeStatus"
+  bind:input="setPassword"
 />
 <button 
   class="btn" 
