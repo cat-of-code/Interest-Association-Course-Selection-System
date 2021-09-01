@@ -185,8 +185,7 @@ Page({
     // 1.将点击的活动id保存到全局变量
     var index = e.currentTarget.dataset.idx
     app.globalData.activityId = this.data.dates[this.data.day_index].activities[index]._id
-    app.globalData.association_uid = this.data.dates[this.data.day_index].activities[index].association_uid
-    // console.log(this.data.dates[this.data.day_index].activities[index]._id)
+    console.log(this.data.dates[this.data.day_index].activities[index]._id)
     // 2.跳转到活动详情页面
     wx.navigateTo({
       url: '../activityDetail/activityDetail',

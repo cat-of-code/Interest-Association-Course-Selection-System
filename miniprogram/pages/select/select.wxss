@@ -15,7 +15,7 @@
   margin: 20rpx;
   border-radius: 10rpx;
   box-shadow: 0 8rpx 12rpx #7d8086;
-  background-color: #110110;
+  background-color: #e5dbff;
   display: flex;
   flex-direction: row;
   align-items: center;

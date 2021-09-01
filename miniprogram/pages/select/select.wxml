@@ -101,7 +101,7 @@
               src="{{ item.association_logo }}"
             ></image>
             <view 
-              style="color: white; padding-left: 10rpx;"
+              style="color: #7d8086; padding-left: 10rpx;"
             >{{item.association_name}}</view>
             <!-- <view 
               style="color: white; padding-left: 10rpx;"

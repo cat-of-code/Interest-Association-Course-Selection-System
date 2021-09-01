@@ -1,35 +1,16 @@
 {
-  "setting": {},
-  "condition": {
-    "plugin": {
-      "list": []
-    },
-    "game": {
-      "list": []
-    },
-    "gamePlugin": {
-      "list": []
-    },
-    "miniprogram": {
-      "list": [
-        {
-          "id": -1,
-          "name": "db guide",
-          "pathName": "pages/databaseGuide/databaseGuide",
-          "query": ""
+    "setting": {},
+    "condition": {
+        "plugin": {
+            "list": []
         },
-        {
-          "name": "pages/getOpenId/index",
-          "pathName": "pages/getOpenId/index",
-          "query": "",
-          "scene": null
+        "game": {
+            "list": []
         },
-        {
-          "name": "pages/deployService/index",
-          "pathName": "pages/deployService/index",
-          "query": "",
-          "scene": null
+        "gamePlugin": {
+            "list": []
         },
+<<<<<<< Updated upstream
         {
           "name": "pages/selectRecord/index",
           "pathName": "pages/selectRecord/index",
@@ -119,14 +100,116 @@
           "pathName": "pages/myCreatedActivity/myCreatedActivity",
           "query": "",
           "scene": null
+<<<<<<< Updated upstream
         },
         {
           "name": "manager_index",
           "pathName": "pages/manager_index/manager_index",
           "query": "",
           "scene": null
+=======
+=======
+        "miniprogram": {
+            "list": [
+                {
+                    "id": -1,
+                    "name": "db guide",
+                    "pathName": "pages/databaseGuide/databaseGuide",
+                    "query": ""
+                },
+                {
+                    "name": "pages/user/user",
+                    "pathName": "pages/user/user",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/deployService/index",
+                    "pathName": "pages/deployService/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/selectRecord/index",
+                    "pathName": "pages/selectRecord/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/sumRecordResult/index",
+                    "pathName": "pages/sumRecordResult/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/updateRecord/index",
+                    "pathName": "pages/updateRecord/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/updateRecordResult/index",
+                    "pathName": "pages/updateRecordResult/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/updateRecordSuccess/index",
+                    "pathName": "pages/updateRecordSuccess/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "个人中心",
+                    "pathName": "pages/user/user",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "courseDetail",
+                    "pathName": "pages/courseDetail/courseDetail",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "index",
+                    "pathName": "pages/index/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "openCourse",
+                    "pathName": "pages/openCourse/openCourse",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "manager",
+                    "pathName": "pages/manager/manager",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/myCourse/myCourse",
+                    "pathName": "pages/myCourse/myCourse",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "association",
+                    "pathName": "pages/association/association",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "login",
+                    "pathName": "pages/login/login",
+                    "query": "",
+                    "scene": null
+                }
+            ]
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
         }
-      ]
     }
-  }
 }
