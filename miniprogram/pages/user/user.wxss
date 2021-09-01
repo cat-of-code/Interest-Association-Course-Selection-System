@@ -23,10 +23,11 @@
 
 .login image {
   margin: auto;
-  width: 188rpx;
-  height: 188rpx;
+  width: 200rpx;
+  height: 200rpx;
   margin: 20rpx;
   border-radius: 30rpx;
+  overflow: hidden;
 }
 
 .info {
