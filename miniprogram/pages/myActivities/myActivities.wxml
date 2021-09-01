@@ -85,7 +85,7 @@
           </view>
           <view slot="right" style="height: 100%;" wx:else>
             <van-button type="info" custom-style="height: 100%;" data-course_id="{{itemName._id}}"
-              bind:click="into_coursePage"> 详细</van-button>
+              bind:click="into_coursePage">详细</van-button>
           </view>
         </van-swipe-cell>
       </view>

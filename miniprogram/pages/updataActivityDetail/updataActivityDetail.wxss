@@ -303,9 +303,9 @@ page {
 .waveWrapper {
   overflow: hidden;
   position: relative;
-  height: 200rpx;
+  height: 100rpx;
   width: 100%;
-  background: #33AEFD;
+  background: #8CA6FD;
 }
 
 .waveWrapperInner {
@@ -353,13 +353,4 @@ page {
 
 .waveAnimation .waveBottom {
   animation: move_wave 12s linear infinite;
-}
-.word{
-  margin-top: 100rpx;
-  margin-left: 50rpx;
-  font-size: 37rpx;
-  font-style: bold;
-  background: #33AEFD;
-  color: #fff;
-
 }

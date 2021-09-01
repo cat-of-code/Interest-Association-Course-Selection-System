@@ -1,5 +1,5 @@
+<navBar titleName="修改活动详情" showLeftArrow="{{ true }}" />
 <view class="waveWrapper waveAnimation" style='background-color:{{evening}}'>
-  <view class="word">修改活动详情</view>
   <view class="waveWrapperInner bgTop">
     <image class="wave waveTop" src="../../img/wave-top.png"></image>
   </view>
@@ -17,14 +17,14 @@
         
     </view> -->
 
-    <view class="sim-form-group">
+    <!-- <view class="sim-form-group">
       <label>协会名称:</label>
       <picker bindchange="bindPickerChange" value="{{matchIndex}}" range="{{matchArr}}" bindchange="matchChange">
         <view class="picker">
           {{matchArr[matchIndex]}}<text class="sim-arrow-bottom"></text>
         </view>
       </picker>
-    </view>
+    </view> -->
 
     <view class="sim-form-group">
       <label>活动名称:</label>
@@ -87,7 +87,7 @@
 
     <view class="sim-form-group">
       <label>联系电话:</label>
-      <input placeholder="请输入您的手机号码" value="{{phoneNumber}}" bindinput="inputPhone" />
+      <input placeholder="请输入您的手机号码" value="{{phoneNumber}}" bindblur="inputPhone" />
     </view>
   </view>
 

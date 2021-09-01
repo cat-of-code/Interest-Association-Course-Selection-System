@@ -1,9 +1,9 @@
+
 <navBar
   titleName="发布活动"
   showLeftArrow="{{ true }}"
 />
 <view class="waveWrapper waveAnimation" style='background-color:{{evening}}'>
-  <view class="word">发布活动</view>
   <view class="waveWrapperInner bgTop">
     <image class="wave waveTop" src="../../img/wave-top.png"></image>
   </view>
@@ -22,14 +22,10 @@
         
     <!-- </view> -->
 
-    <view class="sim-form-group">
+    <!-- <view class="sim-form-group">
       <label>协会名称:</label>
-      <picker bindchange="bindPickerChange" value="{{matchIndex}}" range="{{matchArr}}" bindchange="matchChange">
-        <view class="picker">
-          {{matchArr[matchIndex]}}<text class="sim-arrow-bottom"></text>
-        </view>
-      </picker>
-    </view>
+      <text>{{associationName}}</text>
+    </view> -->
 
     <view class="sim-form-group">
       <label>活动名称:</label>
@@ -77,7 +73,7 @@
 
     <view class="sim-form-group">
       <label style="width:200rpx; display:block">上传海报图片：</label>
-      <van-uploader file-list="{{ fileList }}" deletable="{{ true }}" max-count="1" bind:after-read="afterRead" bind:delete="deleteImg"/>
+      <van-uploader file-list="{{ fileList }}" deletable="{{ true }}" max-count="1" bind:after-read="afterRead" bind:delete="deleteImg" accep="image"/>
     </view>
   </view>
 
@@ -92,7 +88,8 @@
 
     <view class="sim-form-group">
       <label>联系电话:</label>
-      <input placeholder="请输入您的手机号码" bindinput="inputPhone" />
+      <!-- <van-field value="{{ phone }}" label="联系电话:" label-class="label" placeholder="请输入手机号" error-message="手机号格式错误" border="{{ 11 }}" fixed="true" maxlength="11" bindinput="inputPhone"/> -->
+      <input placeholder="请输入您的手机号码" type="number" bindblur="inputPhone" />
     </view>
   </view>
 

@@ -1,8 +1,6 @@
 var util={
   date2num:function(activity_date){
-    console.log(activity_date)
     var num2 = parseInt(activity_date.slice(0,4))*10000+parseInt(activity_date.slice(5,7))*100+parseInt(activity_date.slice(8,10))
-    console.log(num2)
     return num2
   },
 }

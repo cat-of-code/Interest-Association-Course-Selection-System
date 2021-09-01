@@ -3,8 +3,8 @@
   showLeftArrow="{{ true }}"
 />
 <wxs module="util" src="../../utils/utils.wxs"></wxs>
+<navBar titleName="我发布的活动" showLeftArrow="{{ true }}" />
 <view class="waveWrapper waveAnimation" style='background-color:{{evening}}'>
-  <view class="word">我发布的活动</view>
   <view class="waveWrapperInner bgTop">
     <image class="wave waveTop" src="../../img/wave-top.png"></image>
   </view>
@@ -14,15 +14,16 @@
 </view>
 
 <scroll-view scroll-y="true" class="scroll" refresher-enabled="true" bindrefresherrefresh="refresh" bindrefresherabort="refreshAbort">
-<block wx:for="{{activity}}">
-  <view class="sim-form"> 
-  <view class="sim-form-group">
+<!-- <block wx:key="{{activity}}" wx:if="item"> -->
+  <block wx:for="{{activity}}" wx:key="key" wx:for-item="item">
+  <!-- <view class="sim-form">  -->
+  <!-- <view class="sim-form-group"> -->
 
     <!-- <view data-index='{{index}}' class="order-item" bindtouchstart="drawStart" bindtouchmove="drawMove" bindtouchend="drawEnd" style="right:{{item.right}}rpx"></view> -->
-  
-  <van-cell  icon="label-o" use-label-slot="true" size="large" >
+  <van-swipe-cell id="swipe-cell2" right-width="{{ 65 }}" left-width="{{ 0 }}">
+  <van-cell  icon="records" use-label-slot="true" size="large" >
     <view slot="title">
-      <text>{{item.course_name}}\t</text>
+      <text class="titleview">{{item.course_name}}\t</text>
         <van-tag mark type="success" size="smaller"
           wx:if="{{util.date2num(item.course_date) >= current_date}}">进行中</van-tag>
         <van-tag mark type="danger" size="smaller" wx:else>已结束</van-tag>
@@ -40,15 +41,20 @@
     </view>
 
     <!-- <view class="remove" bindtap="delItem">删除 </view> -->
-  <view class="btn1">
+  <!-- <view class="btn1">
             <van-button id="{{item._id}}" size="small" color="#33AEFD" hairline="true" disabled="{{disable}}" bind:click="updata">修改详情</van-button>
     </view>
     <view class="btn1">
             <van-button id="{{item._id}}" size="small" color="#33AEFD" disabled="{{disable}}" bind:click="quit">取消活动</van-button>
-    </view>
+    </view> -->
   </van-cell>
-
-  </view></view> 
+  <view slot="right" style="height: 100%;width:50%" class="van-swipe-cell__right">
+    <van-button type="danger" custom-style="height: 100%;width:50%" id="{{item._id}}" bind:click="quit"  size="normal">取\n消</van-button>
+    <van-button type="info" custom-style="height: 100%;width:50%" id="{{item._id}}" bind:click="updata"  size="normal">详\n情</van-button>
+  </view>
+</van-swipe-cell>
+  <!-- </view> -->
+ <!-- </view>  -->
 </block>
 </scroll-view>
 

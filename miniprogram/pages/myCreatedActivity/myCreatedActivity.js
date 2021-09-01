@@ -2,14 +2,9 @@
 var utils = require('../../utils/util.js');
 var app = getApp()
 var db = wx.cloud.database()
-
-
 var activityCollection = db.collection("test_db_course")
-var activityListCollection = db.collection("list")
-var stuListCollection = db.collection("stuList")
-
 var _ = db.command
-// console.log(activityCollection)
+
 
 Page({
 
@@ -83,10 +78,7 @@ Page({
  */
   async onLoad(options) {
     var stuName = app.globalData.association_name
-    // var stuName = "摄影DV联合会"
     await this.addMyActivity(stuName)
-  
-  
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -100,7 +92,7 @@ Page({
    */
   async refresh() {
     var stuName = app.globalData.association_name
-    // var stuName = "摄影DV联合会"
+    
     await this.addMyActivity(stuName)
  
   },

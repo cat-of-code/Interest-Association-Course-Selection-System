@@ -6,8 +6,7 @@ var courseCollection = db.collection("test_db_course")
 
 Page({
   data: {
-    matchArr:['篮球协会', '跑步协会', '瑜伽协会', '乒乓球协会', '足球协会', '网球协会','摄影DV联合会','乐益会','书法协会', '舞蹈协会', '羽毛球协会', '乐器协会'],
-    matchIndex:0,
+    associationName:app.globalData.association_name,
     activityName:'',
     startDate: utils.formatDay(new Date),
     startTime: "12:00",
@@ -22,8 +21,6 @@ Page({
 
 
   onLoad: function (options) {
-    this.setData({matchIndex:app.globalData.association_uid-1})
-    console.log(this.data.matchIndex)
   },
 
   onShow: function () {
@@ -43,12 +40,6 @@ Page({
   
   },
 
-  //修改比赛类型
-  matchChange(e){
-    this.setData({
-      matchIndex: e.detail.value
-    })
-  },
 
   //输入活动名称
   inputActivityName(e){
@@ -59,11 +50,11 @@ Page({
 
   //修改开始日期
   startDateChange(e){
-    console.log(e)
+    // console.log(e)
     this.setData({
       startDate: e.detail.value
     })
-    console.log(this.data.startDate)
+    // console.log(this.data.startDate)
   },
 
   //修改开始时间
@@ -92,24 +83,25 @@ Page({
   afterRead(event) {
 
     const { file } = event.detail;
-    console.log(event.detail.file.url)
+    // console.log(event.detail.file.url)
     wx.cloud.uploadFile({
       cloudPath: this.data.activityName +'.png', // 上传至云端的路径
       filePath: event.detail.file.url,
       success: res => {
         // 返回文件 ID
-        console.log(new Date)
-        console.log(res)
+        // console.log(new Date)
+        // console.log(res)
         this.setData({fileID:res.fileID})
         const { fileList = [] } = this.data
         fileList.push({ ...file, url: res.data })
         this.setData({ fileList })
-        console.log(this.data.fileList)
+        // console.log(this.data.fileList)
       },
       fail: console.error
     })
   },
 
+//删除图片
   deleteImg(event){
     wx.cloud.deleteFile({
       fileList: [this.data.fileID],
@@ -140,14 +132,34 @@ Page({
 
   //输入手机号
   inputPhone(e){
-    this.setData({
-      phoneNumber: e.detail.value
-    })
+    let phoneNumber = e.detail.value
+    if (phoneNumber.length === 11) {
+      if(this.checkPhoneNum(phoneNumber)){
+        this.setData({phoneNumber:phoneNumber})
+      }
+    }else{
+      wx.showToast({
+        title: '手机号不正确',
+        icon: 'error'
+        })
+    }
   },
+
+  checkPhoneNum: function (phoneNumber) {
+    let str = /^1\d{10}$/
+    if (str.test(phoneNumber)) {
+    return true
+    } else {
+    wx.showToast({
+    title: '手机号不正确',
+    icon: 'error'
+    })
+    return false
+     }
+    },
 
   //点击提交
   submitInfo(){
-    var associationName = this.data.matchArr[parseInt(this.data.matchIndex)]
     var activityName = this.data.activityName
     var beginDate = this.data.startDate
     var startTime = this.data.startTime
@@ -157,7 +169,7 @@ Page({
     var creatorPhone = this.data.phoneNumber
     var imgID = this.data.fileID
     var desc = this.data.desc
-    if(associationName==""||beginDate==""||startTime==""||deadTime==""||address==""||creator==""||creatorPhone==""||imgID==""||activityName==""||desc==""){
+    if(beginDate==""||startTime==""||deadTime==""||address==""||creator==""||creatorPhone==""||imgID==""||activityName==""||desc==""){
       wx.showModal({
         title: '发布失败',
         content: '请填写完整活动的内容',
@@ -166,7 +178,7 @@ Page({
     else{
       courseCollection.add({
         data:{
-          associationName:associationName,
+          associationName:app.globalData.association_name,
           association_uid:app.globalData.association_uid,
           course_date:beginDate,
           course_start_time:startTime,
