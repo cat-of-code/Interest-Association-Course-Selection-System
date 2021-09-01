@@ -15,6 +15,7 @@ Page({
     association: {},
     activities: [],
     color: "#8CA6FD",
+    empty: true,
     left_color: "cloud://cloud1-0gyu6anlffcd11a5.636c-cloud1-0gyu6anlffcd11a5-1306965577/left-color.png",
   },
 
@@ -63,9 +64,16 @@ Page({
       course_date: _.gte(today)
     }).get({
       success(res) {
-        page.setData({
-          activities: res.data
-        })
+        if (res.data.length != 0){
+          page.setData({
+            activities: res.data,
+            empty: false
+          })
+        } else {
+          page.setData({
+            empty: true
+          })
+        }
       }
     })
   },

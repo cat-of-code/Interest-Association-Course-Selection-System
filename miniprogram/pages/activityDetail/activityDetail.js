@@ -6,6 +6,7 @@ var db = wx.cloud.database()
 var courseCollection = db.collection("test_db_course")
 var selectListCollection = db.collection("test_db_selectList")
 var managerCollection = db.collection("test_db_manager")
+var userCollection = db.collection("test_db_user")
 var utils = require('../../utils/util.js');
 
 Page({
@@ -42,6 +43,8 @@ Page({
     var openid = app.globalData.openid
     var activityId = app.globalData.activityId
     var association_uid = app.globalData.association_uid
+    var now = new Date()
+
     // console.log(openid)
     this.setData({
       openid: openid,
@@ -51,11 +54,19 @@ Page({
     // 获取活动详情信息
     courseCollection.doc(activityId).get({
       success(res) {
-        // console.log(res.data)
         page.setData({
           activity: res.data
         })
-        association_uid = res.data.association_uid
+        if (Date.parse(now) + 7200000 >= Date.parse(res.data.course_date + ' ' + res.data.course_start_time)) {
+
+          page.setData({
+            isEnd: true
+          })
+        } else {
+          page.setData({
+            isEnd: false
+          })
+        }
       }
     })
 
@@ -86,34 +97,17 @@ Page({
         }
       }
     })
-  },
 
-
-  getActivityIntroduceText() {
-    wx.showLoading({
-      title: '',
-    })
-    wx.cloud.callFunction({
-      name: 'getActivityIntroduceText1',
-      config: {
-        env: this.data.envId
-      },
-      data: {
-        type: 'selectRecord'
+    // 显示已报名学员的头像
+    selectListCollection.where({
+      course_id: activityId
+    }).get({
+      success(res) {
+        // console.log(res.data)
+        page.setData({
+          users: res.data
+        })
       }
-    }).then((resp) => {
-      // console.log('resp.result.activityName', resp.result.activityName)
-      this.setData({
-        // haveGetRecord: true,
-        activityIntroduceText: resp.result.activityDes
-      })
-      wx.hideLoading()
-    }).catch((e) => {
-      // console.log(e)
-      this.setData({
-        showUploadTip: true
-      })
-      wx.hideLoading()
     })
   },
 

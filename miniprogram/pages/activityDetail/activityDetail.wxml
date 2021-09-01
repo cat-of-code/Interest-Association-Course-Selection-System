@@ -76,6 +76,29 @@
         </view>
     </view>
 
+    <view class="row5">
+        <view
+            style="display: flex; flex-direction: row;"
+        >
+            <van-icon name="friends-o" />
+            <view style="font-size: small; margin-left: 10rpx;">当前已报名学员</view>
+        </view>
+        <view
+            style="display: flex; flex-direction: row; align-items: flex-start;"
+        >
+            <block
+                wx:for="{{ users }}"
+                wx:for-item="item"
+                wx:key="key"
+            >
+                <image 
+                    style="width: 50rpx; height: 50rpx; border-radius: 50%; margin: 5rpx;"
+                    src="{{ item.avatarUrl }}"
+                ></image>
+            </block>
+        </view>
+    </view>
+
     <view class="row4">
         <view class="activityIntroduce">
             <image class="courseIcon"
@@ -99,8 +122,21 @@
         <text class="activityIntroduceText" decode="{{true}}" space="{{true}}">{{activityIntroduceText_2}}
         </text> -->
 
-        <button class="btn" bindtap="order" wx:if="{{!haveOrdered}}">预约</button>
-        <button class="btn_clear" bindtap="clearOrder" wx:if="{{haveOrdered}}">已报名</button>
+        <button 
+            class="btn" 
+            bindtap="order" 
+            wx:if="{{ !haveOrdered && !isEnd }}"
+        >预约</button>
+        <button 
+            class="btn_clear" 
+            bindtap="clearOrder" 
+            wx:if="{{ haveOrdered && !isEnd }}"
+        >已报名</button>
+        <button 
+            class="btn_forbid" 
+            bindtap="clearOrder" 
+            wx:if="{{ isEnd }}"
+        >停止预约</button>
         <!-- 如果需要为false,就必须采用数据绑定的方式{{false}} -->
         <toast hidden="{{status}}" duration="3000" bindchange="toastHide">
             您已成功预约！

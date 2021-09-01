@@ -75,7 +75,8 @@ function enroll(activity_id) {
               data:{
                 date: date,
                 time: time,
-                enroll_flag: true
+                enroll_flag: true,
+                avatarUrl: app.globalData.avatarUrl
               },
               success (res) {
                 wx.showToast({

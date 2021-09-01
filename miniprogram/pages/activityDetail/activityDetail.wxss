@@ -133,6 +133,20 @@ page {
     margin: 15rpx;
     /* padding: 15rpx; */
 }
+
+.row5{
+  /* border-style:dashed;
+  border-width: 1px;
+  border-color: aqua; */
+  padding: 8rpx 25rpx;
+  border-radius: 5px; 
+  background-color: white;
+  /* width:93%rpx; */
+  height: auto;
+  margin: 15rpx;
+  /* padding: 15rpx; */
+}
+
     .activityTime{
         display: flex;
         margin-top: 8rpx;
@@ -407,4 +421,14 @@ page {
     color: rgba(0, 0, 0, 0.4);
     font-size: 24rpx;
     margin-top: 25%;
+  }
+
+  .btn_forbid {
+    border-style:solid;
+    border-width: 2px;
+    border-color:black;
+    border-radius: 35px;
+    background-color: #faf9f9; 
+    color: black;
+    margin-top: 15rpx;
   }
