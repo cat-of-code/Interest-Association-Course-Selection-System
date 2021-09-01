@@ -22,14 +22,20 @@
         bindtap="navigateToAssociation"
     >
         <view class="coachImage_view">
-            <image class="coachImage" src="{{association.association_logo}}">
+            <image 
+                class="coachImage" 
+                mode="aspectFit"
+                src="{{association.association_logo}}">
             </image>
         </view>
         <view class="coachProfile">
             <view class="coachName">
                 {{association.association_name}}
             </view>
-            <view class="coachExperience">
+            <view 
+                class="coachExperience"
+                style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;"
+            >
                 {{association.association_desc}}
             </view>
         </view>

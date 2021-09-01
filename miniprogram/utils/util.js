@@ -53,6 +53,8 @@ function enroll(activity_id) {
 
     // var info = await this.searchSelectionCollection(openid, activity_id)
     var select_id = ''
+    var avatarUrl = app.globalData.avatarUrl
+    // console.log(avatarUrl)
     // 首先查询这条记录存不存在
     selectListCollection.where({
       _openid: app.globalData.openid,
@@ -75,8 +77,7 @@ function enroll(activity_id) {
               data:{
                 date: date,
                 time: time,
-                enroll_flag: true,
-                avatarUrl: app.globalData.avatarUrl
+                enroll_flag: true
               },
               success (res) {
                 wx.showToast({
@@ -92,7 +93,8 @@ function enroll(activity_id) {
               course_id: activity_id,
               date: date,
               time: time,
-              enroll_flag: true
+              enroll_flag: true,
+              avatarUrl: avatarUrl
             },
             success (res) {
               // console.log(res)

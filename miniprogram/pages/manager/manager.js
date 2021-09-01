@@ -105,7 +105,6 @@ Page({
       }).get().then(res => {
         // console.log(res.data)
         if (res.data.length == 0) {
-
           wx.showModal({
             title: '提示',
             content: '登录失败',
