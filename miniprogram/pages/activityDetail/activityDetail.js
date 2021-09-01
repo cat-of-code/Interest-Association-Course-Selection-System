@@ -6,9 +6,7 @@ var db = wx.cloud.database()
 var courseCollection = db.collection("test_db_course")
 var selectListCollection = db.collection("test_db_selectList")
 var managerCollection = db.collection("test_db_manager")
-// var course_id = ' Welcom to China'
-// const_ = db.command
-var course_id_var = ' '
+var utils = require('../../utils/util.js');
 
 Page({
   /**
@@ -32,23 +30,10 @@ Page({
   },
 
   order: function () {
-    // console.log("触发了点击事件，弹出toast")
-
+    utils.enroll(this.data.activityId)
     this.setData({
-      status: false,
+      // status: false,
       haveOrdered: true
-    })
-    selectListCollection.add({
-      data: {
-        course_id: course_id_var,
-        date: "2021/08/30",
-        enroll_flag: true,
-        time: "17:00"
-        // course_id : "010101" 
-      },
-      success: function (res) {
-        // console.log('--------', course_id_var)
-      }
     })
   },
 
@@ -59,8 +44,8 @@ Page({
     var association_uid = app.globalData.association_uid
     // console.log(openid)
     this.setData({
-      openid: openid
-      // envId: options.envId
+      openid: openid,
+      activityId: activityId
     })
     
     // 获取活动详情信息
@@ -74,7 +59,6 @@ Page({
       }
     })
 
-
     // 获取协会信息
     managerCollection.where({
       association_uid: association_uid
@@ -87,57 +71,19 @@ Page({
       }
     })
 
-    // courseCollection.where({
-    //   "activityName": "哈他瑜伽-平衡练习"
-
-    // }).get({
-    //   success(res) {
-    //     // console.log('-----*********---', res)
-    //     if (res.data.length != 0) {
-    //       // console.log("res.data", res.data[0].activityDes)
-    //       page.setData({
-    //         activityIntroduceText_0: res.data[0].activityDess[0],
-    //         activityIntroduceText_1: res.data[0].activityDess[1],
-    //         activityIntroduceText_2: res.data[0].activityDess[2],
-    //         activity_detail_image: res.data[0].imgID,
-    //         activityName: res.data[0].activityName,
-    //         coachImage: res.data[0].coachImg,
-    //         coachName: res.data[0].associationName,
-    //         coachExperience: res.data[0].associationDesc,
-    //         timeText: res.data[0].dateAndTime,
-    //         locationText: res.data[0].address,
-    //         phoneText: res.data[0].creatorPhone,
-
-    //       })
-    //       course_id_var = res.data[0]._id
-          // console.log('-----*********---', course_id_var)
-          // console.log('-----*********---openId', openid)
-      //   }
-      // }
-    // })
-
+    // 判断此活动是否已经报名
     selectListCollection.where({
-      "_openid": openid
+      _openid: openid,
+      course_id: activityId,
     }).get({
       success(res) {
         if (res.data.length != 0) {
-          // console.log("res.data", res.data[0].course_id)
-          for (let index = 0; index < res.data.length; index++) {
-            const element = res.data[index].course_id;
-            // console.log("你好呀，Mick", element)
-            // console.log("你好呀，Fine", course_id_var)
-            // if('0' != '1') {
-            if (element == course_id_var) {
-              // console.log('-----************course_id_var2222', course_id_var)
-              // console.log('-----************haveOrdered', haveOrdered)
-              page.setData({
-                status: false,
-                haveOrdered: true
-              })
-            }
+          if (res.data[0].enroll_flag) {
+            page.setData({
+              haveOrdered: true
+            })
           }
         }
-
       }
     })
   },

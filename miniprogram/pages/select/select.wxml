@@ -103,9 +103,9 @@
             <view 
               style="color: white; padding-left: 10rpx;"
             >{{item.association_name}}</view>
-            <view 
+            <!-- <view 
               style="color: white; padding-left: 10rpx;"
-            >{{item.manager_phone}}</view>
+            >{{item.manager_phone}}</view> -->
             <van-button  
               type="primary"
               round="{{ true }}"

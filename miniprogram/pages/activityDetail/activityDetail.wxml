@@ -100,7 +100,7 @@
         </text> -->
 
         <button class="btn" bindtap="order" wx:if="{{!haveOrdered}}">预约</button>
-        <button class="btn_clear" bindtap="clearOrder" wx:if="{{haveOrdered}}">已预约</button>
+        <button class="btn_clear" bindtap="clearOrder" wx:if="{{haveOrdered}}">已报名</button>
         <!-- 如果需要为false,就必须采用数据绑定的方式{{false}} -->
         <toast hidden="{{status}}" duration="3000" bindchange="toastHide">
             您已成功预约！

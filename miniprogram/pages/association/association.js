@@ -4,6 +4,7 @@ var db = wx.cloud.database()
 var courseCollection = db.collection("test_db_course")
 var managerCollection = db.collection("test_db_manager")
 const _ = db.command
+var utils = require('../../utils/util.js');
 
 Page({
 
@@ -86,8 +87,15 @@ Page({
     })
   },
 
+  /**
+   * 李天红写的
+   * 功能：活动报名
+   */
   reserveBtn (e) {
-    console.log(e.currentTarget.dataset.idx)
+    var index = e.currentTarget.dataset.idx
+    // console.log(this.data.activities[index])
+    var activity_id = this.data.activities[index]._id
+    utils.enroll(activity_id)
   },
 
 
