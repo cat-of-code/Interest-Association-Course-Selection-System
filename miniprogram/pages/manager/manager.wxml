@@ -31,5 +31,5 @@
 />
 <button 
   class="btn" 
-  bindtap="managerLogin" 
+  bindtap="handleLogin" 
 >登录</button>
