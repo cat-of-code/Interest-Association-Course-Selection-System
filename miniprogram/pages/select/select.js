@@ -146,6 +146,10 @@ Page({
       this.setData({
         day_index: index
       })
+    } else {
+      this.setData({
+        day_index: index
+      })
     }
   },
 

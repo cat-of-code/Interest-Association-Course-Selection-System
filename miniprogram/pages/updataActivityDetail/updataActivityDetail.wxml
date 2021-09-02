@@ -54,7 +54,7 @@
 
     <view class="sim-form-group">
       <label>活动简介:</label>
-      <input placeholder="请输入活动简介" value="{{ activity.dec }} "bindinput="inputDesc"/>
+      <textarea placeholder="请输入活动简介" auto-height value="{{ activity.dec }} "bindinput="inputDesc"/>
   </view>
 
     <view class="sim-form-group">

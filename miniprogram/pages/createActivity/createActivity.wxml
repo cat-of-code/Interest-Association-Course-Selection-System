@@ -68,7 +68,7 @@
 
     <view class="sim-form-group">
       <label>活动简介:</label>
-      <input placeholder="请输入活动简介" bindinput="inputDecs"/>
+      <textarea  placeholder="请输入活动简介" bindinput="inputDecs" auto-height/>
   </view>
 
     <view class="sim-form-group">

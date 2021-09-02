@@ -81,7 +81,7 @@
                 电话：
             </view>
             <view class="phoneText">
-                {{association.manager_phone}}
+                {{activity.creatorPhone}}
             </view>
         </view>
     </view>
