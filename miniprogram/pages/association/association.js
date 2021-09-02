@@ -70,7 +70,7 @@ Page({
         // console.log(result)
         if (res.data.length != 0) {
           for (var i = 0; i < result.length; i++) {
-            if (Date.parse(now) + 7200000 >= Date.parse(today + ' ' + result[i].course_start_time)) {
+            if (Date.parse(now) + 7200000 >= Date.parse(result[i].course_date + ' ' + result[i].course_start_time)) {
               result[i].isEnd = true
             } else {
               result[i].isEnd = false

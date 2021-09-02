@@ -3,7 +3,7 @@
   showLeftArrow="{{ true }}"
 />
 
-<view class="waveWrapper waveAnimation" style='background-color:{{evening}}'>
+<view class="waveWrapper waveAnimation" style='background-color:#8CA6FD'>
   <view class="word">我的活动</view>
   <view class="waveWrapperInner bgTop">
     <image class="wave waveTop" src="cloud://cloud1-0gyu6anlffcd11a5.636c-cloud1-0gyu6anlffcd11a5-1306965577/myActivities_img/wave-top.png"></image>

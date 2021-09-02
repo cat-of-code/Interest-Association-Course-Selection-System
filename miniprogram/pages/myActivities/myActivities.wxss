@@ -39,7 +39,7 @@
   margin: 30rpx;
   font-size: 37rpx;
   font-style: bold;
-  background: #116ec0;
+  background: #8CA6FD;
   color: #fff;
 
 }

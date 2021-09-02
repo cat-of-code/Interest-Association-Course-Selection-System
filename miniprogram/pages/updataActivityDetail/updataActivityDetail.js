@@ -20,19 +20,19 @@ Page({
     desc:''
   },
 
-  initActivityDetail:function(activityName){
+  initActivityDetail:function(activity_id){
     var temp = []
     var p = new Promise((resolve,reject)=>{
-      activityCollection.where({
-        _id: activityName
-      }).get().then(res => {
-        console.log(res.data[0])
+      activityCollection.doc(
+        activity_id
+      ).get().then(res => {
+        console.log(res.data)
         wx.cloud.getTempFileURL({
-          fileList: [res.data[0].img],
+          fileList: [res.data.img],
           success: res => {
-            console.log(res.fileList[0].tempFileURL)
+            console.log(res.fileList.tempFileURL)
             console.log(this.data.fileList)
-            temp[0]={url:res.fileList[0].tempFileURL, name:"11"}
+            temp={url:res.fileList.tempFileURL, name:"11"}
             this.setData({fileList:temp})
             console.log(this.data.fileList)
           },
@@ -43,32 +43,9 @@ Page({
     })
   },
 
-  async onLoad(options) {
-    var activityName = app.globalData.activityName
-    await this.initActivityDetail(activityName)
-  
-  },
-
-  // onLoad: function (options) {
-
-    
-  // },
-
-  onShow: function () {
-  
-  },
-
-
-  onPullDownRefresh: function () {
-  
-  },
-
-  onReachBottom: function () {
-  
-  },
-
-  onShareAppMessage: function () {
-  
+  async onShow(options) {
+    var activity_id = app.globalData.activity_id
+    await this.initActivityDetail(activity_id)
   },
 
   //修改比赛类型
