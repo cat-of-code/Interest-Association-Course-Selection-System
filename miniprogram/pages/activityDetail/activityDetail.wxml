@@ -5,7 +5,11 @@
 </view>
 <view>
     <view class="activity_detail_image_view">
-        <image class="activity_detail_image" src="{{ activity.img }}">
+        <image 
+            class="activity_detail_image" 
+            src="{{ activity.img }}"
+            mode="aspectFill"
+        >
         </image>
     </view>
 

@@ -3,7 +3,8 @@
 .avatar_class{
   position: absolute;
   display: flex;
-  top: -70%;
+  /* top: -70%; */
+  top: -100rpx;
   left: 75%;
   z-index: 20;
 }

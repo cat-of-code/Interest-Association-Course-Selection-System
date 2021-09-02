@@ -44,6 +44,7 @@
                   bindtap="navigateToActivity"
                   data-idx="{{ idx }}"  
                   src="{{ item.img }}"
+                  mode="aspectFill"
                   style="opacity: {{ 0.8 }}; border-radius: 20rpx; width: 100%; height: 140px;"
                 ></image>
                 <!-- 颜色好丑 -->
