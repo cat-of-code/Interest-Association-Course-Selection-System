@@ -59,14 +59,25 @@ Page({
    */
   getActivitiesInfo(uid, today) {
     var page = this
+    var now = new Date()
     courseCollection.where({
       association_uid: uid,
       course_date: _.gte(today)
     }).get({
       success(res) {
-        if (res.data.length != 0){
+        var result = res.data
+        // console.log(res.data)
+        // console.log(result)
+        if (res.data.length != 0) {
+          for (var i = 0; i < result.length; i++) {
+            if (Date.parse(now) + 7200000 >= Date.parse(today + ' ' + result[i].course_start_time)) {
+              result[i].isEnd = true
+            } else {
+              result[i].isEnd = false
+            }
+          }
           page.setData({
-            activities: res.data,
+            activities: result,
             empty: false
           })
         } else {

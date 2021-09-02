@@ -43,7 +43,7 @@
   },
   "appid": "wx06e52e2cd5575842",
   "projectname": "letsReserving",
-  "libVersion": "2.14.1",
+  "libVersion": "2.19.2",
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "condition": {
     "search": {
