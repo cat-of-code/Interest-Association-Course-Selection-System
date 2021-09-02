@@ -52,13 +52,13 @@
                   style="position: absolute; left: 20rpx; top: 20rpx; color: white; background-color: {{ color }}; opacity: {{ 0.8 }}; padding: 15rpx; border-radius: 10rpx;"
                 >
                   <view
-                    style="font-size: 40rpx; margin-bottom: 10rpx;"
+                    style="font-size: 40rpx; margin-bottom: 10rpx;color:black"
                   >{{ item.course_name }}</view>
                   <view
-                    style="font-size: 50rpx; margin-bottom: 10rpx;"
+                    style="font-size: 30rpx; margin-bottom: 10rpx;color:black"
                   >{{ item.course_start_time }} ~ {{ item.course_end_time }}</view>
                   <view
-                    style="font-size: 40rpx; margin-bottom: 10rpx;"
+                    style="font-size: 30rpx; margin-bottom: 10rpx;color:black"
                   >{{ item.address }}</view>
                 </view>
                 <van-button  
