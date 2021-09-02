@@ -23,22 +23,26 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
-function formatDay(date) {
+function formatDay(dd) {
   // console.log(date)
+  var date = new Date(dd)
   var year = date.getFullYear()
   var month = date.getMonth() + 1;
-  if(month<10){
-    month = 0+String(month)
+  if (month < 10) {
+    month = 0 + String(month)
   }
   var day = date.getDate()
+  if (day < 10) {
+    day = 0 + String(day)
+  }
 
-  return year+'/'+month+'/'+day
+  return year + '/' + month + '/' + day
 }
 
-function date2num(activity_date){
+function date2num(activity_date) {
   console.log(activity_date)
-  
-  var num2 = parseInt(activity_date.slice(0,3))*10000+parseInt(activity_date.slice(5,6))*100+parseInt(activity_date.slice(8,9))
+
+  var num2 = parseInt(activity_date.slice(0, 3)) * 10000 + parseInt(activity_date.slice(5, 6)) * 100 + parseInt(activity_date.slice(8, 9))
   console.log(num2)
   return num2
 }
@@ -74,12 +78,12 @@ function enroll(activity_id) {
           } else {
             // 没有报名，如果记录存在，把enroll_flag改成true即可
             selectListCollection.doc(select_id).update({
-              data:{
+              data: {
                 date: date,
                 time: time,
                 enroll_flag: true
               },
-              success (res) {
+              success(res) {
                 wx.showToast({
                   title: '预约成功',
                 })
@@ -96,7 +100,7 @@ function enroll(activity_id) {
               enroll_flag: true,
               avatarUrl: avatarUrl
             },
-            success (res) {
+            success(res) {
               // console.log(res)
               // 预约成功，弹出提示，显示出已预约按钮
               wx.showToast({

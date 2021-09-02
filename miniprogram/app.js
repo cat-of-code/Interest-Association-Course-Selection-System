@@ -42,6 +42,6 @@ App({
     managerLogin: false,
     association_uid: "",
     activity_id: "",
-    association_name:"",
+    association_name: "",
   }
 })

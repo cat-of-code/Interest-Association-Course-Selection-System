@@ -100,7 +100,8 @@ Page({
 
     // 显示已报名学员的头像
     selectListCollection.where({
-      course_id: activityId
+      course_id: activityId,
+      enroll_flag: true
     }).get({
       success(res) {
         // console.log(res.data)

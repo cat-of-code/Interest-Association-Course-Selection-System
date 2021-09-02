@@ -23,9 +23,10 @@
       <van-cell icon="records" use-label-slot="true" size="large">
         <view slot="title">
           <text class="titleview">{{item.course_name}}\t</text>
-          <van-tag mark type="success" size="smaller" wx:if="{{util.date2num(item.course_date) >= current_date}}">进行中
-          </van-tag>
-          <van-tag mark type="danger" size="smaller" wx:else>已结束</van-tag>
+          <van-tag mark type="primary " size="smaller" wx:if="{{ item.status == 1 }}">预约中</van-tag>
+          <van-tag mark type="warning " size="smaller" wx:elif="{{ item.status == 2 }}">停止预约</van-tag>
+          <van-tag mark type="success" size="smaller" wx:elif="{{ item.status == 3 }}">进行中</van-tag>
+          <van-tag mark type="danger" size="smaller" wx:elif="{{ item.status == 4 }}">已结束</van-tag>
         </view>
 
 
@@ -47,11 +48,10 @@
             <van-button id="{{item._id}}" size="small" color="#33AEFD" disabled="{{disable}}" bind:click="quit">取消活动</van-button>
     </view> -->
       </van-cell>
-      <view slot="right" style="height: 100%;width:50%" class="van-swipe-cell__right"
-        wx:if="{{util.date2num(item.course_date) >= current_date}}">
+      <view slot="right" style="height: 100%;width:50%" class="van-swipe-cell__right" wx:if="{{  item.status == 1  }}">
         <van-button type="danger" custom-style="height: 100%;width:50%" id="{{item._id}}" bind:click="quit"
           size="normal">取\n消</van-button>
-        <van-button type="info" custom-style="height: 100%;width:50%" id="{{item._id}}" bind:click="update"
+        <van-button type="info" custom-style="height: 100%;width:50%" id="{{item._id}}" bind:click="updata"
           size="normal">详\n情</van-button>
       </view>
     </van-swipe-cell>

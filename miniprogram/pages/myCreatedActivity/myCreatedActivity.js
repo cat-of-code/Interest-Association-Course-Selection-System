@@ -20,7 +20,7 @@ Page({
     // stuName:app.globalData.username
   },
 
-    /**
+  /**
    * 生命周期函数--监听页面加载
    */
   async onShow(options) {
@@ -61,7 +61,6 @@ Page({
         fileList: [res.data.imgID],
         success: res => {
           console.log(res.fileList)
-
         },
         fail: console.error
       })
@@ -71,7 +70,7 @@ Page({
   /**
    * 跳转到课程详细页面修改
    */
-  update(e) {
+  updata(e) {
     // console.log(e.target.id)
     app.globalData.activity_id = e.target.id
     wx.navigateTo({
@@ -80,31 +79,38 @@ Page({
   },
 
   addMyActivity: function (uid) {
-    var temp = []
-    var prom = []
+    var page = this
+    var now = Date.now()
+    var openid = app.globalData.openid
+    // console.log(now)
+    var result = []
     var p = new Promise((resolve, reject) => {
       activityCollection.where({
-        association_uid: uid
+        association_uid: uid,
+        _openid: openid
       }).get().then(res => {
         // resolve(res.data[0])
-        this.setData({
-          activity: res.data
+        result = res.data
+        // console.log(Date.parse(result[0].course_date + ' ' + result[0].course_start_time))
+        for (let i = 0; i < result.length; i++) {
+          if (now + 7200000 < Date.parse(result[i].course_date + ' ' + result[i].course_start_time)) {
+            result[i].status = 1
+          } else if (now < Date.parse(result[i].course_date + ' ' + result[i].course_start_time)) {
+            result[i].status = 2
+          } else if (now > Date.parse(result[i].course_date + ' ' + result[i].course_start_time) && now < Date.parse(result[i].course_date + ' ' + result[i].course_end_time)) {
+            result[i].status = 3
+          } else if (now > Date.parse(result[i].course_date + ' ' + result[i].course_end_time)){
+            result[i].status = 4
+          }
+        }
+        page.setData({
+          activity: result
         })
-        // console.log(this.data.activity)
+        // console.log(page.data.activity)
       })
     })
-    this.setCurrentDate()
-    // console.log("currnt_time:" + this.data.current_date)
   },
 
-  setCurrentDate: function () {
-    var current_date = utils.formatDay(new Date)
-    var num2 = parseInt(current_date.slice(0, 4)) * 10000 + parseInt(current_date.slice(5, 7)) * 100 + parseInt(current_date.slice(8, 10))
-    // console.log(num2)
-    this.setData({
-      current_date: num2
-    })
-  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作

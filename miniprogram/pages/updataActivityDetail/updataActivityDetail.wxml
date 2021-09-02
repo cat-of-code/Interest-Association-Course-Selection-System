@@ -9,35 +9,22 @@
 </view>
 
 
-  <!-- 比赛信息表单 -->
+  <!-- 信息表单 -->
   <label class="title_tips">修改活动信息</label>
   <view class="sim-form">
-    <!-- <view class="sim-form-group">
-      <label style="width:400rpx; display:block; color:#33AEFD">请完善活动信息</label>
-        
-    </view> -->
-
-    <!-- <view class="sim-form-group">
-      <label>协会名称:</label>
-      <picker bindchange="bindPickerChange" value="{{matchIndex}}" range="{{matchArr}}" bindchange="matchChange">
-        <view class="picker">
-          {{matchArr[matchIndex]}}<text class="sim-arrow-bottom"></text>
-        </view>
-      </picker>
-    </view> -->
 
     <view class="sim-form-group">
       <label>活动名称:</label>
-      <input placeholder="请输入活动名称" value="{{activityName}}" bindinput="inputActivityName"/>
+      <input placeholder="请输入活动名称" value="{{ activity.course_name }}" bindinput="inputActivityName"/>
     </view>
 
 
 
     <view class="sim-form-group">
       <label>活动日期:</label>
-      <picker mode="date" value="{{startDate}}" bindchange="startDateChange">
+      <picker mode="date" value="{{ activity.course_date }}" bindchange="startDateChange">
         <view class="picker">
-          {{startDate}}<text class="sim-arrow-bottom"></text>
+          {{ activity.course_date }}<text class="sim-arrow-bottom"></text>
         </view>
       </picker>
     </view>
@@ -46,7 +33,7 @@
       <label>开始时间:</label>
       <picker mode="time" value="{{startTime}}" bindchange="startTimeChange">
         <view class="picker">
-          {{startTime}}<text class="sim-arrow-bottom"></text>
+          {{ activity.course_start_time }}<text class="sim-arrow-bottom"></text>
         </view>
       </picker>
     </view>
@@ -55,19 +42,19 @@
       <label>结束时间:</label>
       <picker mode="time" value="{{deadTime}}" bindchange="deadTimeChange">
         <view class="picker">
-          {{deadTime}}<text class="sim-arrow-bottom"></text>
+          {{ activity.course_end_time }}<text class="sim-arrow-bottom"></text>
         </view>
       </picker>
     </view>
 
     <view class="sim-form-group">
       <label>活动地点:</label>
-      <input placeholder="{{address}}" value="{{address}}" bindinput="inputAddress"/>
+      <input placeholder="{{ activity.address }}" value="{{ activity.address }}" bindinput="inputAddress"/>
     </view>
 
     <view class="sim-form-group">
       <label>活动简介:</label>
-      <input placeholder="请输入活动简介" value="{{desc}} "bindinput="inputDecs"/>
+      <input placeholder="请输入活动简介" value="{{ activity.dec }} "bindinput="inputDesc"/>
   </view>
 
     <view class="sim-form-group">
@@ -82,12 +69,12 @@
   <view class="sim-form">
     <view class="sim-form-group">
       <label>称呼:</label>
-      <input placeholder="请输入您的称呼" value="{{ownerName}}" bindinput="inputName" />
+      <input placeholder="请输入您的称呼" value="{{ activity.creator }}" bindinput="inputName" />
     </view>
 
     <view class="sim-form-group">
       <label>联系电话:</label>
-      <input placeholder="请输入您的手机号码" value="{{phoneNumber}}" bindblur="inputPhone" />
+      <input placeholder="请输入您的手机号码" value="{{ activity.creatorPhone }}" bindblur="inputPhone" />
     </view>
   </view>
 
