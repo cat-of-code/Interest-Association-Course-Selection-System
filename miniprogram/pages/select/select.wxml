@@ -49,7 +49,7 @@
                 ></image>
                 <!-- 颜色好丑 -->
                 <view 
-                  style="position: absolute; left: 20rpx; top: 20rpx; color: white; background-color: {{ color }}; opacity: {{ 0.8 }}; padding: 15rpx; border-radius: 10rpx;"
+                  style="position: absolute; left: 20rpx; top: 45rpx; color: white; background-color: {{ color }}; opacity: {{ 0.8 }}; padding: 15rpx; border-radius: 10rpx;"
                 >
                   <view
                     style="font-size: 40rpx; margin-bottom: 10rpx;color:black"

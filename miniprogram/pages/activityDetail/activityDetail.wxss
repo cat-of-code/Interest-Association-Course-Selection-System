@@ -140,7 +140,7 @@ page {
   border-radius: 5px;
   background-color: white;
   /* width:93%rpx; */
-  height: 200rpx;
+  height: 160rpx;
   margin: 15rpx;
   /* padding: 15rpx; */
 }
@@ -208,7 +208,7 @@ page {
   /* border-style:dashed;
         border-width: 1px;
         border-color: aqua; */
-  height: 65rpx;
+  height: 40rpx;
 }
 
 .locationIcon {
@@ -239,7 +239,8 @@ page {
   font-family: PingFang SC;
   font-weight: 400;
   color: #030000;
-  margin-bottom: 28rpx;
+  margin-bottom: 15rpx;
+  height: 40rpx;
   /* border-style:dashed;
         border-width: 1px;
         border-color: aqua; */

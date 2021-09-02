@@ -139,7 +139,6 @@
         >预约</button>
         <button 
             class="btn_clear" 
-            bindtap="clearOrder" 
             wx:if="{{ haveOrdered && !isEnd }}"
         >已报名</button>
         <button 
