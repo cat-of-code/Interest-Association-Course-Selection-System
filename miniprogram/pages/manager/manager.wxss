@@ -1,6 +1,6 @@
 .btn {
   border-radius: 35px;
-  background-color: #a1b0e4;
+  background-color: #8CA6FD;
   color: #faf9f9;
   margin-top: 60rpx;
   width: 80%;

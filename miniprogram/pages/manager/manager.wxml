@@ -4,7 +4,7 @@
 </view>
 
 <movable-area style="height: 280rpx; margin-top: 30rpx;">
-  <movable-view direction="horizontal" style="display: flex; flex-direction: row; width: {{150 * len}}rpx;">
+  <movable-view direction="horizontal" style="display: flex; flex-direction: row; width: {{140 * len}}rpx;">
     <radio-group bindchange="radioChange" wx:for="{{ associations }}" wx:for-item="item" wx:key="key"
       wx:for-index="idx">
       <view style="display: flex; flex-direction: column; height: auto; width: auto;">
@@ -34,3 +34,4 @@
   class="btn" 
   bindtap="handleLogin" 
 >登录</button>
+<provider />

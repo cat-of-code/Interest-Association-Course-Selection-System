@@ -18,7 +18,7 @@
             {{activity.course_name}}
         </view>
         <view class="applicantsNumber">
-            15人小活动（满2人进行）
+            {{ activity.creator }}
         </view>
     </view>
     <view 
@@ -154,3 +154,4 @@
 </view>
 <image style="width: 50rpx; height: 50rpx; position: fixed; top: 70rpx; left: 35rpx;" src="{{ left_color }}"
     bindtap="navBack"></image>
+<provider />

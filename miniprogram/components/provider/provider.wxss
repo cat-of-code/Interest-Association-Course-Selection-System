@@ -1,0 +1,9 @@
+.provider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40rpx;
+  color: #BFBFBF;
+  font-size: small;
+  margin-bottom: 20rpx;
+}

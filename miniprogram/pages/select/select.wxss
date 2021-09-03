@@ -86,7 +86,7 @@
 .paddings {
   height: 50rpx;
   width: 100%;
-  background: linear-gradient(#82A0F0, #788CE6);
+  background: linear-gradient(#82A0F0, #7D96EB);
 }
 
 .card {

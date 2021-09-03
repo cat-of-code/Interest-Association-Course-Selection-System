@@ -10,7 +10,12 @@
   </view>
   <view style="height: 10rpx;"></view>
   <!-- 点击图标跳转到相应页面 -->
-  <van-grid gutter="{{ 10 }}" column-num="2" >
+  <van-grid 
+    gutter="{{ 10 }}" 
+    column-num="2" 
+    custom-class="{{ !managerLogin ? 'grid-grops-user' : 'grid-grops-user-o' }}"
+    border="{{false}}"
+  >
     <block 
       wx:for="{{ projets }}"  
       wx:for-item="item" 
@@ -21,6 +26,7 @@
         text="{{ item.text }}" 
         link-type="navigateTo"
         url="{{ item.navigateUrl }}"
+        icon-color="{{ color }}"
       />
     </block>
   </van-grid>
@@ -29,6 +35,8 @@
     gutter="{{ 10 }}" 
     column-num="2" 
     wx:if="{{ managerLogin }}"
+    custom-class="grid-grops-manager" 
+    border="{{false}}"
   >
     <block 
       wx:for="{{ manages }}"  
@@ -40,35 +48,39 @@
         text="{{ item.text }}" 
         link-type="navigateTo"
         url="{{item.redirectUrl}}"
+        icon-color="{{ color }}"
       />
     </block>
   </van-grid>
   <view style="height: 10rpx;"></view>
-  <van-button 
-    wx:if="{{ !managerLogin }}"
-    icon="manager-o"
-    type='warning'
-    plain
-    round="{{ true }}"
-    style="display: flex;  flex-direction: column;  align-items: center;"
-    bind:click="managerLogout" 
-    wx:if="{{ managerLogin }}"
-  >
-    退出协会管理员
-  </van-button>
-  <!-- TODO: 添加一个管理员登录的按钮，跳转到管理员登录页面 -->
-  <van-button 
-    wx:if="{{ !managerLogin }}"
-    icon="manager-o"
-    type='primary'
-    plain
-    round="{{ true }}"
-    style="display: flex;  flex-direction: column;  align-items: center;"
-    color="{{ color }}"
-    bind:click="managerLogin" 
-  >
-    协会管理员登录
-  </van-button>
+  <view style="display: flex;  flex-direction: column;  align-items: center; ">
+    <van-button 
+      wx:if="{{ !managerLogin }}"
+      icon="manager-o"
+      type='primary'
+      plain
+      round="{{ true }}"
+      color="{{ color }}"
+      style="position: absolute; z-index: 2; bottom: 420rpx;"
+      bind:click="managerLogout" 
+      wx:if="{{ managerLogin }}"
+    >
+      退出协会管理员
+    </van-button>
+    <!-- TODO: 添加一个管理员登录的按钮，跳转到管理员登录页面 -->
+    <van-button 
+      wx:if="{{ !managerLogin }}"
+      icon="manager-o"
+      type='primary'
+      round="{{ true }}"
+      style="position: absolute; z-index: 2; bottom: 520rpx;"
+      color="{{ color }}"
+      bind:click="managerLogin" 
+    >
+      协会管理员登录
+    </van-button>
+    <view class="provider" style="margin-top: 40rpx;  color: #BFBFBF;  font-size: small;  margin-bottom: 20rpx; position: absolute; z-index: 4; bottom: 20rpx;">由广州服务支持部提供技术支持</view>
+  </view>
 </block>
  <!--登录前的页面-->
 <block wx:if="{{!login}}">
@@ -109,4 +121,5 @@
       授权登录
     </van-button>
   </view>
+  <provider />
 </block>

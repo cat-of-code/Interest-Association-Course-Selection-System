@@ -49,3 +49,4 @@
     取消登录
   </van-button>
 </view>
+<provider />

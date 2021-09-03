@@ -100,20 +100,6 @@
           >{{ item.address }}</view>
         </view>
       </view>
-      <!-- 颜色好丑 -->
-      <!-- <view 
-        style="position: absolute; left: 20rpx; top: 45rpx; color: black; background-color: {{ color }}; opacity: {{ 0.7 }}; padding: 15rpx; border-radius: 10rpx;"
-      >
-        <view
-          style="font-size: 40rpx; margin-bottom: 10rpx"
-        >{{ item.course_name }}</view>
-        <view
-          style="font-size: 30rpx; margin-bottom: 10rpx;"
-        >{{ item.course_start_time }} ~ {{ item.course_end_time }}</view>
-        <view
-          style="font-size: 30rpx; margin-bottom: 10rpx;"
-        >{{ item.address }}</view>
-      </view> -->
       <van-button  
         wx:if="{{ !item.isEnd }}"
         round="{{ true }}"
@@ -168,3 +154,4 @@
       </view>
   </block>
 </view>
+<provider />
