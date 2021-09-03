@@ -131,7 +131,7 @@ Page({
    */
   chooseActivity: function (e) {
     this.setData({
-      selection: e.detail.index
+      selection: e.currentTarget.dataset.selection
     })
   },
 
@@ -140,17 +140,25 @@ Page({
    * 功能：点击日期获取当日的activity列表
    */
   clickTheDateActivity: function (e) {
-    var index = e.detail.index
+    // console.log(e.currentTarget.dataset.idx)
+    var index = e.currentTarget.dataset.idx
+    this.setData({
+      day_index: index
+    })
+    // console.log(this.data.dates[index].empty)
     if (this.data.dates[index].empty) {
       this.getDateActivities(index)
-      this.setData({
-        day_index: index
-      })
-    } else {
-      this.setData({
-        day_index: index
-      })
     }
+    // if (this.data.dates[index].empty) {
+    //   this.getDateActivities(index)
+    //   this.setData({
+    //     day_index: index
+    //   })
+    // } else {
+    //   this.setData({
+    //     day_index: index
+    //   })
+    // }
   },
 
   /**

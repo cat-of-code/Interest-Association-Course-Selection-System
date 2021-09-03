@@ -86,7 +86,7 @@ Page({
     } = event.detail;
     // console.log(event.detail.file.url)
     wx.cloud.uploadFile({
-      cloudPath: this.data.activityName + '.png', // 上传至云端的路径
+      cloudPath: "activity_img/" + Date.now() + '.png', // 上传至云端的路径
       filePath: event.detail.file.url,
       success: res => {
         // 返回文件 ID

@@ -19,7 +19,7 @@
     <!-- <view class="sim-form-group"> -->
 
     <!-- <view data-index='{{index}}' class="order-item" bindtouchstart="drawStart" bindtouchmove="drawMove" bindtouchend="drawEnd" style="right:{{item.right}}rpx"></view> -->
-    <van-swipe-cell id="swipe-cell2" right-width="{{ 65 }}" left-width="{{ 0 }}">
+    <van-swipe-cell id="swipe-cell2" right-width="{{ 75 }}" left-width="{{ 75 }}">
       <van-cell icon="records" use-label-slot="true" size="large">
         <view slot="title">
           <text class="titleview">{{item.course_name}}\t</text>
@@ -28,7 +28,6 @@
           <van-tag mark type="success" size="smaller" wx:elif="{{ item.status == 3 }}">进行中</van-tag>
           <van-tag mark type="danger" size="smaller" wx:elif="{{ item.status == 4 }}">已结束</van-tag>
         </view>
-
 
         <view slot="label" data-courseName="{{item.course_name}}" data-index="{{index}}" style="white-space:pre-line"
           class="detail">
@@ -39,20 +38,15 @@
           <van-icon name="location" size="25rpx" />
           <text> 活动地点 : {{item.address}}</text>
         </view>
-
-        <!-- <view class="remove" bindtap="delItem">删除 </view> -->
-        <!-- <view class="btn1">
-            <van-button id="{{item._id}}" size="small" color="#33AEFD" hairline="true" disabled="{{disable}}" bind:click="updata">修改详情</van-button>
-    </view>
-    <view class="btn1">
-            <van-button id="{{item._id}}" size="small" color="#33AEFD" disabled="{{disable}}" bind:click="quit">取消活动</van-button>
-    </view> -->
       </van-cell>
-      <view slot="right" style="height: 100%;width:50%" class="van-swipe-cell__right" wx:if="{{  item.status == 1  }}">
-        <van-button type="danger" custom-style="height: 100%;width:50%" id="{{item._id}}" bind:click="quit"
-          size="normal">取\n消</van-button>
-        <van-button type="info" custom-style="height: 100%;width:50%" id="{{item._id}}" bind:click="updata"
-          size="normal">详\n情</van-button>
+
+      <view slot="left" style="height: 100%;" class="van-swipe-cell__left" wx:if="{{  item.status == 1 }}">
+        <van-button type="info" custom-style="height: 100%;" id="{{item._id}}" bind:click="updata"
+          >编辑活动</van-button>
+      </view>
+      <view slot="right" style="height: 100%;" class="van-swipe-cell__right" wx:if="{{  item.status == 1 }}">
+        <van-button type="danger" custom-style="height: 100%;" id="{{item._id}}" bind:click="quit"
+          >取消活动</van-button>
       </view>
     </van-swipe-cell>
     <!-- </view> -->

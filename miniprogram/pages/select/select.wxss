@@ -1,5 +1,94 @@
 /* pages/select/select.wxss */
 
+.tabs {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(#8CA6FD, #82A0F0);
+}
+
+.tab {
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  padding-top: 10rpx;
+  padding-bottom: 20rpx;
+  background-color: #8CA6FD;
+  color: white;
+  border: white solid 1rpx;
+  border-radius: 10rpx;
+}
+
+.tab-active {
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  padding-top: 10rpx;
+  padding-bottom: 20rpx;
+  background-color: white;
+  color: #8CA6FD;
+  border: white solid 1rpx;
+  border-radius: 10rpx;
+}
+
+.time-selector {
+  height: 180rpx;
+  width: 100%;
+  background: linear-gradient(#82A0F0, #788CE6);
+}
+
+.date {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80rpx;
+  height: 140rpx;
+  /* background-color: red; */
+  padding-top: 25rpx;
+  margin-bottom: 25rpx;
+  margin-left: 35rpx;
+  color: white;
+}
+
+.day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 45rpx;
+  width: 45rpx;
+  border-radius: 50%;
+  font-size: large;
+  padding: 13rpx;
+}
+
+.day-active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 45rpx;
+  width: 45rpx;
+  background-color: white;
+  color: #8CA6FD;
+  border-radius: 50%;
+  font-size: large;
+  padding: 13rpx;
+}
+
+.month {
+  width: 100rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.paddings {
+  height: 50rpx;
+  width: 100%;
+  background: linear-gradient(#82A0F0, #788CE6);
+}
+
 .card {
   margin-top: 30rpx;
   margin-left: 20rpx;
@@ -27,4 +116,67 @@
   height: 112rpx;
   margin: 20rpx;
   border-radius: 50%;
+}
+
+.reserving {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to right, rgba(110, 140, 250, 0.9), rgba(110, 140, 250, 0.2));
+  position: absolute; 
+  left: 0; 
+  top: 0;
+  border-radius: 20rpx;
+  opacity: 0.7;
+  z-index: auto;
+}
+
+.stop-reserve {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to right, rgba(45, 45, 45, 0.9), rgba(45, 45, 45, 0.2));
+  position: absolute; 
+  left: 0; 
+  top: 0;
+  border-radius: 20rpx;
+  opacity: 0.7;
+  z-index: auto;
+}
+
+.left-top {
+  position: absolute;
+  font-size: x-large;
+  color: white;
+  opacity: 1;
+}
+
+.right-top {
+  position: absolute;
+  font-size: x-large;
+  color: white;
+  right: 250rpx;
+  opacity: 1;
+}
+
+.left-bottom {
+  position: absolute;
+  font-size: x-large;
+  color: white;
+  top: 220rpx;
+  opacity: 1;
+}
+
+.right-bottom {
+  position: absolute;
+  font-size: x-large;
+  color: white;
+  top: 220rpx;
+  right: 250rpx;
+  opacity: 1;
+}
+
+.info {
+  color: white;
+  position: absolute;
+  top: 45rpx;
+  left: 40rpx;
 }

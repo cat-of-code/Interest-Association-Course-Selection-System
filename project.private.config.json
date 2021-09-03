@@ -1,4 +1,5 @@
 {
+  "setting": {},
   "condition": {
     "plugin": {
       "list": []
@@ -20,6 +21,12 @@
         {
           "name": "myCreatedActivity",
           "pathName": "pages/myCreatedActivity/myCreatedActivity",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "user",
+          "pathName": "pages/user/user",
           "query": "",
           "scene": null
         }

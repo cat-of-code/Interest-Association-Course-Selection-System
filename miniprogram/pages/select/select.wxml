@@ -2,120 +2,169 @@
   titleName="广研兴趣协会预约系统"
   showLeftArrow="{{ false }}"
 />
+
 <view class="tabs">
-  <van-tabs 
-    type="card" 
-    animated 
-    color="{{ color }}"
-    active="{{ selection }}"
-    bind:click="chooseActivity"
+  <view 
+    style="display: flex; flex-direction: row;"
   >
-    <van-tab title="每日活动">
-      <van-tabs 
-        active="{{ active }}" 
-        title-active-color="{{ color }}"
-        bind:click="clickTheDateActivity"
-      >
-        <block 
-          wx:for="{{ dates }}" 
-          wx:for-item="it" 
-          wx:key="key"
-        >
-          <van-tab 
-            title="{{ it.month }}/{{it.day }}" 
-            title-active-color="{{ color }}"
-            name="key"
-            ellipsis="{{false}}"
-          >
-            <van-empty 
-              wx:if="{{ it.empty }}"
-              description="今日暂无活动" 
-            />
-            <!--活动列表-->
-            <block
-              wx:if="{{ !it.empty }}"
-              wx:for="{{ it.activities }}"
-              wx:for-item="item"
-              wx:for-index="idx"
-              wx:key="index"
-            >
-              <view class="card">
-                <image 
-                  bindtap="navigateToActivity"
-                  data-idx="{{ idx }}"  
-                  src="{{ item.img }}"
-                  mode="aspectFill"
-                  style="opacity: {{ 0.8 }}; border-radius: 20rpx; width: 100%; height: 140px;"
-                ></image>
-                <!-- 颜色好丑 -->
-                <view 
-                  style="position: absolute; left: 20rpx; top: 45rpx; color: white; background-color: {{ color }}; opacity: {{ 0.8 }}; padding: 15rpx; border-radius: 10rpx;"
-                >
-                  <view
-                    style="font-size: 40rpx; margin-bottom: 10rpx;color:black"
-                  >{{ item.course_name }}</view>
-                  <view
-                    style="font-size: 30rpx; margin-bottom: 10rpx;color:black"
-                  >{{ item.course_start_time }} ~ {{ item.course_end_time }}</view>
-                  <view
-                    style="font-size: 30rpx; margin-bottom: 10rpx;color:black"
-                  >{{ item.address }}</view>
-                </view>
-                <van-button  
-                  wx:if="{{ !item.isEnd }}"
-                  round="{{ true }}"
-                  type="primary"
-                  style="position: absolute; right: 10rpx; top: 35%; opacity: {{ 0.9 }};"
-                  color="{{ color }}"
-                  data-idx="{{ idx }}" 
-                  bind:click="reserveBtn"
-                  size="small"
-                >预约</van-button>  
-                <van-button  
-                  wx:if="{{ item.isEnd }}"
-                  round="{{ true }}"
-                  disabled="{{ true }}"
-                  type="primary"
-                  style="position: absolute; right: 10rpx; top: 35%;"
-                  color="black"
-                  size="small"
-                >停止预约</van-button>    
-              </view>
-            </block>
-          
-          </van-tab>
-        </block>
-      </van-tabs>
-    </van-tab>
-    <van-tab title="协会信息">
-      <!--协会列表-->
+    <view 
+      class="{{ selection == 0 ? 'tab-active' : 'tab' }}"
+      style="border-top-right-radius: 0; border-bottom-right-radius: 0;"
+      data-selection="{{ 0 }}"
+      bindtap="chooseActivity"
+    >每日活动</view>
+    <view 
+      class="{{ selection == 0 ? 'tab' : 'tab-active' }}"
+      style="border-top-left-radius: 0; border-bottom-left-radius: 0;"
+      data-selection="{{ 1 }}"
+      bindtap="chooseActivity"
+    >协会信息</view>
+  </view>
+</view>
+
+<view
+  class="time-selector"
+  wx:if="{{ selection == 0 }}"
+>
+  <movable-area
+    style="height: 150rpx;"
+  >
+    <movable-view
+      direction="horizontal"
+      style="width: {{ 100 * 27 }}rpx; display: flex; flex-direction: row;"
+    >
       <block
-        wx:for="{{ associations }}"
-        wx:for-item="item"
+        wx:for="{{ dates }}" 
+        wx:for-item="it" 
+        wx:for-index="day_idx"
         wx:key="key"
-        wx:for-index="idx"
       >
-          <view class="panel">
-            <image 
-              src="{{ item.association_logo }}"
-            ></image>
-            <view 
-              style="color: #7d8086; padding-left: 10rpx;"
-            >{{item.association_name}}</view>
-            <!-- <view 
-              style="color: white; padding-left: 10rpx;"
-            >{{item.manager_phone}}</view> -->
-            <van-button  
-              type="primary"
-              round="{{ true }}"
-              color="{{ color }}"
-              size='small'
-              style="position: absolute; right: 10rpx;"
-              data-idx="{{ idx }}"
-              bind:click="navigateToAssociationDetail"
-            >协会详情</van-button>
+        <view
+          class="date"
+        >
+          <view
+            class="{{ day_index == day_idx ? 'day-active' : 'day' }}"
+            data-idx="{{ day_idx }}"
+            bindtap="clickTheDateActivity"
+          >
+            {{ it.day }}
           </view>
+          <view
+            class="month"
+          >
+            {{ it.month }} 月
+          </view>
+        </view>
       </block>
-    </van-tab>
-  </van-tabs>
+    </movable-view>
+  </movable-area>
+</view>
+
+<view wx:if="{{ selection == 0 }}">
+  <van-empty 
+    wx:if="{{ dates[day_index].empty }}"
+    description="今日暂无活动" 
+  />
+  <!--活动列表-->
+  <block
+    wx:if="{{ !dates[day_index].empty }}"
+    wx:for="{{ dates[day_index].activities }}"
+    wx:for-item="item"
+    wx:for-index="idx"
+    wx:key="index"
+  >
+    <view class="card">
+      <view
+        bindtap="navigateToActivity"
+        data-idx="{{ idx }}"  
+      >
+        <image 
+          src="{{ item.img }}"
+          mode="aspectFill"
+          style="border-radius: 20rpx; width: 100%; height: 140px; position: absolute; z-index: auto;"
+        ></image>
+        <view class="{{ item.isEnd ? 'stop-reserve' : 'reserving' }}"></view>
+        <view class="left-top">┌</view>
+        <view class="right-top">┐</view>
+        <view class="left-bottom">└ </view>
+        <view class="right-bottom">┘</view>
+        <view class="info">
+          <view
+            style="font-size: 40rpx; margin-bottom: 20rpx"
+          >{{ item.course_name }}</view>
+          <view
+            style="font-size: 30rpx; margin-bottom: 20rpx;"
+          >{{ item.course_start_time }} ~ {{ item.course_end_time }}</view>
+          <view
+            style="font-size: 30rpx; margin-bottom: 20rpx;"
+          >{{ item.address }}</view>
+        </view>
+      </view>
+      <!-- 颜色好丑 -->
+      <!-- <view 
+        style="position: absolute; left: 20rpx; top: 45rpx; color: black; background-color: {{ color }}; opacity: {{ 0.7 }}; padding: 15rpx; border-radius: 10rpx;"
+      >
+        <view
+          style="font-size: 40rpx; margin-bottom: 10rpx"
+        >{{ item.course_name }}</view>
+        <view
+          style="font-size: 30rpx; margin-bottom: 10rpx;"
+        >{{ item.course_start_time }} ~ {{ item.course_end_time }}</view>
+        <view
+          style="font-size: 30rpx; margin-bottom: 10rpx;"
+        >{{ item.address }}</view>
+      </view> -->
+      <van-button  
+        wx:if="{{ !item.isEnd }}"
+        round="{{ true }}"
+        type="primary"
+        style="position: absolute; right: 40rpx; top: 35%; opacity: {{ 0.9 }};"
+        color="{{ color }}"
+        data-idx="{{ idx }}" 
+        bind:click="reserveBtn"
+        size="small"
+      >预约</van-button>  
+      <van-button  
+        wx:if="{{ item.isEnd }}"
+        round="{{ true }}"
+        disabled="{{ true }}"
+        type="primary"
+        style="position: absolute; right: 30rpx; top: 35%;"
+        color="black"
+        size="small"
+      >停止预约</van-button>   
+    </view>  
+  </block>
+</view>
+
+<view wx:if="{{ selection == 1 }}">
+  <view class="paddings">
+  </view>
+  <block
+    wx:for="{{ associations }}"
+    wx:for-item="item"
+    wx:key="key"
+    wx:for-index="idx"
+  >
+      <view class="panel">
+        <image 
+          src="{{ item.association_logo }}"
+        ></image>
+        <view 
+          style="color: #7d8086; padding-left: 10rpx;"
+        >{{item.association_name}}</view>
+        <!-- <view 
+          style="color: white; padding-left: 10rpx;"
+        >{{item.manager_phone}}</view> -->
+        <van-button  
+          type="primary"
+          round="{{ true }}"
+          color="{{ color }}"
+          size='small'
+          style="position: absolute; right: 10rpx;"
+          data-idx="{{ idx }}"
+          bind:click="navigateToAssociationDetail"
+        >协会详情</van-button>
+      </view>
+  </block>
 </view>
