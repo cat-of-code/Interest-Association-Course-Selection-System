@@ -31,6 +31,7 @@
   >
     <movable-view
       direction="horizontal"
+      x="{{ pageX }}"
       style="width: {{ 100 * 27 }}rpx; display: flex; flex-direction: row;"
     >
       <block

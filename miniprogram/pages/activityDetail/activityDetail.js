@@ -36,6 +36,57 @@ Page({
       // status: false,
       haveOrdered: true
     })
+
+    var user = {
+      avatarUrl: app.globalData.avatarUrl
+    }
+    var users = this.data.users
+    users.push(user)
+    this.setData({
+      users: users
+    })
+  },
+
+  /**
+   * 李天红
+   * 退选活动
+   */
+
+  quit(e) {
+    var page = this
+    // console.log(e)
+    wx.showModal({
+      title: '取消活动',
+      content: '确定要取消该活动',
+      cancelText: '否',
+      cancelColor: 'gray',
+      confirmText: '是',
+      confirmColor: '#8CA6FD',
+      success(re) {
+        if (re.cancel) {
+          // 点击取消，默认隐藏弹框
+        } else {
+          // 点击是
+          selectListCollection.doc(page.data.selectId).update({
+            data: {
+              enroll_flag: false
+            },
+            success(res) {
+              // console.log(res)
+              wx.showToast({
+                title: '成功取消活动',
+                icon: 'none',
+                duration: 2000
+              })
+              page.getAvatarUrls(page.data.activityId)
+              page.setData({
+                haveOrdered: false
+              })
+            }
+          })
+        }
+      }
+    })
   },
 
   onShow(options) {
@@ -89,6 +140,9 @@ Page({
     }).get({
       success(res) {
         if (res.data.length != 0) {
+          page.setData({
+            selectId: res.data[0]._id
+          })
           if (res.data[0].enroll_flag) {
             page.setData({
               haveOrdered: true
@@ -99,6 +153,16 @@ Page({
     })
 
     // 显示已报名学员的头像
+    this.getAvatarUrls(activityId)
+  },
+
+  /**
+   * 李天红
+   * 显示已报名学员的头像
+   */
+
+  getAvatarUrls(activityId) {
+    var page = this
     selectListCollection.where({
       course_id: activityId,
       enroll_flag: true

@@ -13,11 +13,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    dates: [],                  // 保存未来30天的活动列表
-    associations: [],           // 协会列表
-    selection: 0,               // 当前选的是“每日活动”或者“协会信息”的id
-    color: "#8CA6FD",           // 统一颜色
-    day_index: 0,               // 日期索引，当前查看的是第几天的活动内容
+    dates: [], // 保存未来30天的活动列表
+    associations: [], // 协会列表
+    selection: 0, // 当前选的是“每日活动”或者“协会信息”的id
+    color: "#8CA6FD", // 统一颜色
+    day_index: 0, // 日期索引，当前查看的是第几天的活动内容
+    isOnLoad: true, // 判断是不是onLoad生命周期
   },
 
   /**
@@ -54,10 +55,38 @@ Page({
     // console.log(today)
     // console.log(date)
     // console.log(date.getMonth() + 1)
+    this.setData({
+      today: today
+    })
     this.getTodayActivitiesInfo(today)
 
     // 从数据库获取所有协会信息
     this.getAssociationsInfo()
+    // for (var i = 0; i < 10; i++) {
+    //   if (app.globalData.login) {
+    //     console.log(app.globalData.openid)
+    //     break
+    //   } else {
+    //     setTimeout(function() {
+    //       console.log(i)
+    //     }, 1000)
+    //   }
+    // }
+  },
+
+  onShow() {
+    // 每次返回此页面都刷新
+    if (this.data.isOnLoad) {
+      this.setData({
+        isOnLoad: false
+      })
+    } else {
+      if (this.data.day_index == 0) {
+        this.getTodayActivitiesInfo(this.data.today)
+      } else {
+        this.getDateActivities(this.data.day_index)
+      }
+    }
   },
 
   getTodayActivitiesInfo(today) {
@@ -140,25 +169,29 @@ Page({
    * 功能：点击日期获取当日的activity列表
    */
   clickTheDateActivity: function (e) {
+    // console.log(e)
+    var x = e.detail.x
     // console.log(e.currentTarget.dataset.idx)
     var index = e.currentTarget.dataset.idx
+    // 让被点中的元素居中
+    if (x > 250) {
+      this.setData({
+        pageX: -index * 60 + 180
+      })
+    } else if (x < 70) {
+      this.setData({
+        pageX: -index * 60 + 190
+      })
+    }
     this.setData({
       day_index: index
     })
     // console.log(this.data.dates[index].empty)
-    if (this.data.dates[index].empty) {
+    if (index == 0) {
+      this.getTodayActivitiesInfo(this.data.today)
+    } else {
       this.getDateActivities(index)
     }
-    // if (this.data.dates[index].empty) {
-    //   this.getDateActivities(index)
-    //   this.setData({
-    //     day_index: index
-    //   })
-    // } else {
-    //   this.setData({
-    //     day_index: index
-    //   })
-    // }
   },
 
   /**
@@ -210,7 +243,7 @@ Page({
    * 李天红写的
    * 功能：点击预约按钮
    */
-    reserveBtn(e) {
+  reserveBtn(e) {
     var index = e.currentTarget.dataset.idx
     // console.log(e.currentTarget.dataset.idx)
     var activity_id = this.data.dates[this.data.day_index].activities[index]._id

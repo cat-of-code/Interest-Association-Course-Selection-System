@@ -48,7 +48,7 @@ function date2num(activity_date) {
 }
 
 
-function enroll(activity_id) {
+async function enroll(activity_id) {
   var page = this
   if (app.globalData.login) {
     var now = new Date()
@@ -68,6 +68,7 @@ function enroll(activity_id) {
         // console.log(res.data)
         if (res.data.length != 0) {
           select_id = res.data[0]._id
+          // app.globalData.selectId = select_id
           // 如果存在且已经报名了
           if (res.data[0].enroll_flag) {
             wx.showToast({
@@ -101,7 +102,8 @@ function enroll(activity_id) {
               avatarUrl: avatarUrl
             },
             success(res) {
-              // console.log(res)
+              // console.log(res._id)
+              // app.globalData.selectId = res._id
               // 预约成功，弹出提示，显示出已预约按钮
               wx.showToast({
                 title: '预约成功',

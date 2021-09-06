@@ -18,7 +18,7 @@
             {{activity.course_name}}
         </view>
         <view class="applicantsNumber">
-            {{ activity.creator }}
+           活动发起人： {{ activity.creator }}
         </view>
     </view>
     <view 
@@ -140,10 +140,10 @@
         <button 
             class="btn_clear" 
             wx:if="{{ haveOrdered && !isEnd }}"
-        >已报名</button>
+            bindtap="quit"
+        >取消预约</button>
         <button 
             class="btn_forbid" 
-            bindtap="clearOrder" 
             wx:if="{{ isEnd }}"
         >停止预约</button>
         <!-- 如果需要为false,就必须采用数据绑定的方式{{false}} -->
