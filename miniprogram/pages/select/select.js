@@ -27,6 +27,7 @@ Page({
    * 生命周期函数
    */
   onLoad: function (e) {
+    // console.log("开始执行onLoad")
     // 获取30天的日期
     var date = new Date()
     var page = this
@@ -67,11 +68,7 @@ Page({
 
   onShow() {
     // 每次返回此页面都刷新
-    if (this.data.isOnLoad) {
-      this.setData({
-        isOnLoad: false
-      })
-    } else {
+    if (!this.data.isOnLoad) {
       if (this.data.day_index == 0) {
         this.getTodayActivitiesInfo(this.data.today)
       } else {
@@ -133,15 +130,53 @@ Page({
               result[i].isEnd = false
             }
           }
-          // console.log(result)
-          // console.log(Date.parse(today + ' ' + res.data[0].course_start_time))
           page.setData({
             "dates[0].empty": false,
             "dates[0].activities": result
           })
+          if (!page.data.isOnLoad && app.globalData.login) {
+            // console.log("check")
+            page.checkWhatISign(result, 0) 
+          }
+          app.loginCallback = isLogin => {
+            if (isLogin) {
+              // console.log("登录成功")
+              page.checkWhatISign(result, 0)
+              page.setData({
+                isOnLoad: false
+              })
+            }
+          }
+          // console.log(Date.parse(today + ' ' + res.data[0].course_start_time))
         }
       }
     })
+  },
+
+  checkWhatISign(result, index) {
+    let page = this
+    // console.log(result)
+    for (let i = 0; i < result.length; i++) {
+      selectListCollection.where({
+        _openid: app.globalData.openid,
+        course_id: result[i]._id,
+        enroll_flag: true
+      }).get({
+        success(re) {
+
+          if (re.data.length != 0) {
+            result[i].isSign = true
+          } else {
+            result[i].isSign = false
+          }
+          // console.log(page.data.dates[index])
+          // console.log("查看列表活动是否已经预约")
+          page.setData({
+            [`dates[${index}].activities[${i}].isSign`]: result[i].isSign
+          })
+        }
+      })
+    }
   },
 
   /**
@@ -157,6 +192,7 @@ Page({
         page.setData({
           associations: res.data
         })
+        // console.log("onLoad执行结束")
       }
     })
   },
@@ -232,12 +268,17 @@ Page({
     }).get({
       success(res) {
         // console.log(res.data)
-        if (res.data.length != 0) {
+        var result = res.data
+        if (result.length != 0) {
           // console.log(res.data)
           page.setData({
             [`dates[${index}].empty`]: false,
-            [`dates[${index}].activities`]: res.data
+            [`dates[${index}].activities`]: result
           })
+          // console.log("是我干的getDateActivities" )
+          if (app.globalData.login) {
+            page.checkWhatISign(result, index)
+          }
         }
       }
     })
@@ -272,5 +313,8 @@ Page({
     // var openid = app.globalData.openid
     // 公共代码封装在utils文件里了
     utils.enroll(activity_id)
+    this.setData({
+      [`dates[${this.data.day_index}].activities[${index}].isSign`]: true
+    })
   }
 })

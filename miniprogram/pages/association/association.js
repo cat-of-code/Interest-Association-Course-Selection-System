@@ -3,6 +3,7 @@ var app = getApp()
 var db = wx.cloud.database()
 var courseCollection = db.collection("test_db_course")
 var managerCollection = db.collection("test_db_manager")
+var selectListCollection = db.collection("test_db_selectList")
 const _ = db.command
 var utils = require('../../utils/util.js');
 
@@ -97,6 +98,10 @@ Page({
             activities: result,
             empty: false
           })
+          if (app.globalData.login) {
+            // console.log(result)
+            page.checkWhatISign(result)
+          }
         } else {
           page.setData({
             empty: true
@@ -125,6 +130,36 @@ Page({
 
   /**
    * 李天红写的
+   * 查看自己是否报了名
+   */
+  checkWhatISign(result) {
+    let page = this
+    // console.log(result)
+    for (let i = 0; i < result.length; i++) {
+      selectListCollection.where({
+        _openid: app.globalData.openid,
+        course_id: result[i]._id,
+        enroll_flag: true
+      }).get({
+        success(re) {
+          // console.log(re)
+          if (re.data.length != 0) {
+            result[i].isSign = true
+          } else {
+            result[i].isSign = false
+          }
+          // console.log(result)
+          // console.log("查看列表活动是否已经预约")
+          page.setData({
+            [`activities[${i}].isSign`]: result[i].isSign
+          })
+        }
+      })
+    }
+  },
+
+  /**
+   * 李天红写的
    * 功能：活动报名
    */
   reserveBtn (e) {
@@ -132,6 +167,9 @@ Page({
     // console.log(this.data.activities[index])
     var activity_id = this.data.activities[index]._id
     utils.enroll(activity_id)
+    this.setData({
+      [`activities[${index}].isSign`]: true
+    })
   },
 
 

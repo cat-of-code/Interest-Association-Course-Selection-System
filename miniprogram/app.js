@@ -3,6 +3,7 @@
 App({
   // 打开小程序时连接云数据库的代码
   onLaunch: function () {
+    // console.log("开始执行onLauch")
     var page = this
     if (wx.cloud) {
       // 1.获取用户openid
@@ -28,6 +29,10 @@ App({
             page.globalData.avatarUrl = res.data[0].avatarUrl,
             page.globalData.login = true
             // console.log(res.data[0].avatarUrl)
+            // console.log("onLauch执行结束")
+            if (page.loginCallback) {
+              page.loginCallback(true)
+            }
           }
         })
       })

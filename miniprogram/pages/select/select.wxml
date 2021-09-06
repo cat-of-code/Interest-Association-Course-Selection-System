@@ -84,7 +84,7 @@
           mode="aspectFill"
           style="border-radius: 20rpx; width: 100%; height: 140px; position: absolute; z-index: auto;"
         ></image>
-        <view class="{{ item.isEnd ? 'stop-reserve' : 'reserving' }}"></view>
+        <view class="{{ item.isEnd ? 'stop-reserve' : (item.isSign ? 'reserved' : 'reserving') }}"></view>
         <view class="left-top">┌</view>
         <view class="right-top">┐</view>
         <view class="left-bottom">└ </view>
@@ -102,7 +102,7 @@
         </view>
       </view>
       <van-button  
-        wx:if="{{ !item.isEnd }}"
+        wx:if="{{ !item.isEnd && !item.isSign }}"
         round="{{ true }}"
         type="primary"
         style="position: absolute; right: 40rpx; top: 35%; opacity: {{ 0.9 }};"
@@ -111,6 +111,16 @@
         bind:click="reserveBtn"
         size="small"
       >预约</van-button>  
+      <van-button  
+        wx:if="{{ !item.isEnd && item.isSign }}"
+        round="{{ true }}"
+        type="primary"
+        plain
+        style="position: absolute; right: 40rpx; top: 35%; opacity: {{ 0.9 }};"
+        color="#FDE175"
+        data-idx="{{ idx }}" 
+        size="small"
+      >已预约</van-button>  
       <van-button  
         wx:if="{{ item.isEnd }}"
         round="{{ true }}"

@@ -68,7 +68,7 @@
         >{{ item.address }}</view>
       </view>
       <van-button  
-        wx:if="{{ !item.isEnd }}"
+        wx:if="{{ !item.isEnd && !item.isSign }}"
         round="{{ true }}"
         type="primary"
         style="position: absolute; right: 30rpx; opacity: {{ 0.9 }};"
@@ -77,6 +77,16 @@
         bind:click="reserveBtn"
         size="small"
       >预约</van-button>  
+      <van-button  
+        wx:if="{{ !item.isEnd && item.isSign }}"
+        round="{{ true }}"
+        type="primary"
+        plain
+        style="position: absolute; right: 30rpx; opacity: {{ 0.9 }};"
+        color="#FDE175"
+        data-idx="{{ idx }}" 
+        size="small"
+      >已预约</van-button>  
       <van-button  
         wx:if="{{ item.isEnd }}"
         round="{{ true }}"
