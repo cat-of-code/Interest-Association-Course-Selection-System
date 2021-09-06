@@ -10,14 +10,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    show: false, //控制下拉列表的显示隐藏，false隐藏、true显示
-    selectData: ['-请选择-', '篮球协会', '跑步协会', '瑜伽协会', '乒乓球协会', '足球协会', '网球协会', '摄影DV联合会', '乐益会', '书法协会', '舞蹈协会', '羽毛球协会', '乐器协会'], //下拉列表的数据
-    index: 0, //选择的下拉列表下标
     password: "",
     disable: false,
-    len: 8,
     defaultType: true,
     passwordType: true,
+    fixed: true,
   },
 
 
@@ -39,6 +36,23 @@ Page({
         })
       }
     })
+  },
+
+  onReady() {
+    let page = this
+    let height = app.globalData.windowHeight
+    wx.createSelectorQuery().select('#provider').boundingClientRect(function(res) {
+      if (res.top < height - 27) {
+        page.setData({
+          fixed: true
+        })
+      } else {
+        page.setData({
+          fixed: false
+        })
+      }
+      // console.log("top: ", res.top, ", bottom: ", res.bottom)
+    }).exec()
   },
 
   radioChange(e) {

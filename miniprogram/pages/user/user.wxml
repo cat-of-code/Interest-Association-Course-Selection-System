@@ -58,22 +58,23 @@
       wx:if="{{ !managerLogin }}"
       icon="manager-o"
       type='primary'
-      plain
       round="{{ true }}"
+      plain
       color="{{ color }}"
       style="position: absolute; z-index: 2; bottom: 420rpx;"
       bind:click="managerLogout" 
       wx:if="{{ managerLogin }}"
+      custom-style="background-color: #F2F2F2"
     >
       退出协会管理员
     </van-button>
-    <!-- TODO: 添加一个管理员登录的按钮，跳转到管理员登录页面 -->
+    <!-- 管理员登录的按钮，跳转到管理员登录页面 -->
     <van-button 
       wx:if="{{ !managerLogin }}"
       icon="manager-o"
       type='primary'
       round="{{ true }}"
-      style="position: absolute; z-index: 2; bottom: 520rpx;"
+      style="position: absolute; z-index: 2; bottom: 420rpx;"
       color="{{ color }}"
       bind:click="managerLogin" 
     >
@@ -94,7 +95,6 @@
     <view
       style="width: 10%; height: 5rpx; background-color: {{ color }}; margin-top: 80rpx;"
     ></view>
-    <!-- TODO: 样式有点丑 -->
   </view>
   <view class="info">
     <view

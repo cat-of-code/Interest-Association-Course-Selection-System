@@ -34,4 +34,4 @@
   class="btn" 
   bindtap="handleLogin" 
 >登录</button>
-<provider />
+<provider id="provider" className="{{ fixed ? 'provider-fixed' : 'provider' }}" />

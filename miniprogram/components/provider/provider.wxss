@@ -5,15 +5,16 @@
   margin-top: 40rpx;
   color: #BFBFBF;
   font-size: small;
-  margin-bottom: 20rpx; 
-  /* height: 40rpx;
-  line-height: 40rpx;
+  margin-bottom: 40rpx; 
+}
+
+.provider-fixed {
   position: fixed;
+  margin-top: 40rpx;
+  margin-bottom: 40rpx; 
   bottom: 0;
   width: 100%;
   text-align: center;
-  font-family: Arial;
   font-size: small;
   color: #BFBFBF;
-  letter-spacing: 1px; */
 }

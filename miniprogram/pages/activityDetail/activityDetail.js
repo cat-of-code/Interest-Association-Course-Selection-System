@@ -19,6 +19,7 @@ Page({
     status: true,
     envId: '',
     openId: '',
+    fixed: true,
     left_color: "cloud://cloud1-0gyu6anlffcd11a5.636c-cloud1-0gyu6anlffcd11a5-1306965577/left-color.png",
   },
 
@@ -154,6 +155,23 @@ Page({
 
     // 显示已报名学员的头像
     this.getAvatarUrls(activityId)
+  },
+
+  onReady() {
+    let page = this
+    let height = app.globalData.windowHeight
+    wx.createSelectorQuery().select('#provider').boundingClientRect(function(res) {
+      if (res.top < height - 27) {
+        page.setData({
+          fixed: true
+        })
+      } else {
+        page.setData({
+          fixed: false
+        })
+      }
+      // console.log("top: ", res.top, ", bottom: ", res.bottom)
+    }).exec()
   },
 
   /**

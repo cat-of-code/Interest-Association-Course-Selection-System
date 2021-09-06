@@ -180,3 +180,8 @@
   top: 45rpx;
   left: 40rpx;
 }
+
+.pro-fixed {
+  position: fixed;
+  text-align: center;
+}

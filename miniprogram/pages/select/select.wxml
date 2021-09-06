@@ -155,4 +155,4 @@
       </view>
   </block>
 </view>
-<provider />
+<provider id="provider" className="{{ fixed ? 'provider-fixed' : 'provider' }}" />

@@ -34,6 +34,23 @@ Page({
     this.getActivitiesLength(uid)
   }, 
 
+  onReady() {
+    let page = this
+    let height = app.globalData.windowHeight
+    wx.createSelectorQuery().select('#provider').boundingClientRect(function(res) {
+      if (res.top < height - 27) {
+        page.setData({
+          fixed: true
+        })
+      } else {
+        page.setData({
+          fixed: false
+        })
+      }
+      // console.log("top: ", res.top, ", bottom: ", res.bottom)
+    }).exec()
+  },
+
 
   /**
    * 李天红写的

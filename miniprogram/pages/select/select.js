@@ -19,6 +19,7 @@ Page({
     color: "#8CA6FD", // 统一颜色
     day_index: 0, // 日期索引，当前查看的是第几天的活动内容
     isOnLoad: true, // 判断是不是onLoad生命周期
+    fixed: true
   },
 
   /**
@@ -62,16 +63,6 @@ Page({
 
     // 从数据库获取所有协会信息
     this.getAssociationsInfo()
-    // for (var i = 0; i < 10; i++) {
-    //   if (app.globalData.login) {
-    //     console.log(app.globalData.openid)
-    //     break
-    //   } else {
-    //     setTimeout(function() {
-    //       console.log(i)
-    //     }, 1000)
-    //   }
-    // }
   },
 
   onShow() {
@@ -87,6 +78,35 @@ Page({
         this.getDateActivities(this.data.day_index)
       }
     }
+  },
+
+  onReady() {
+    let page = this
+    let top = 0
+    let height = 0
+    // 获取设备的高度
+    wx.getSystemInfo({
+      success: (result) => {
+        // console.log(result.windowHeight)
+        app.globalData.windowHeight = result.windowHeight
+        height = result.windowHeight
+      },
+    })
+    // 获取标签的高度
+    wx.createSelectorQuery().select('#provider').boundingClientRect(function(res) {
+      top = res.top
+      // console.log(top)
+      if (top < height - 27) {
+        page.setData({
+          fixed: true
+        })
+      } else {
+        page.setData({
+          fixed: false
+        })
+      }
+      // console.log("top: ", res.top, ", bottom: ", res.bottom)
+    }).exec()
   },
 
   getTodayActivitiesInfo(today) {
@@ -162,6 +182,7 @@ Page({
     this.setData({
       selection: e.currentTarget.dataset.selection
     })
+    this.onReady()
   },
 
   /**
@@ -169,6 +190,7 @@ Page({
    * 功能：点击日期获取当日的activity列表
    */
   clickTheDateActivity: function (e) {
+    this.onReady()
     // console.log(e)
     var x = e.detail.x
     // console.log(e.currentTarget.dataset.idx)

@@ -154,4 +154,4 @@
 </view>
 <image style="width: 50rpx; height: 50rpx; position: fixed; top: 70rpx; left: 35rpx;" src="{{ left_color }}"
     bindtap="navBack"></image>
-<provider />
+<provider id="provider" className="{{ fixed ? 'provider-fixed' : 'provider-fixed' }}" />

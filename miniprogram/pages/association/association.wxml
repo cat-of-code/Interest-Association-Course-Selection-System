@@ -98,4 +98,4 @@
   src="{{ left_color }}"
   bindtap="navBack"
 ></image>
-<provider />
+<provider id="provider" className="{{ fixed ? 'provider-fixed' : 'provider-fixed' }}" />
