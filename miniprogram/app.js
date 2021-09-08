@@ -46,7 +46,8 @@ App({
     login: false,
     managerLogin: false,
     association_uid: "",
-    activity_id: "",
+    activityId: "",
     association_name: "",
+    windowHeight: 0,            // 设备的高度
   }
 })

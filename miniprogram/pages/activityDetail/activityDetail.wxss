@@ -462,7 +462,7 @@ page {
   margin-top: 15rpx;
 }
 
-.btn_cancel {
+.btn_cer {
   border-style: solid;
   border-width: 2px;
   border-color: orange;

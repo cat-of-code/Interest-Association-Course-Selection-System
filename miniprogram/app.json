@@ -9,7 +9,8 @@
     "pages/myCreatedActivity/myCreatedActivity",
     "pages/updataActivityDetail/updataActivityDetail",
     "pages/createActivity/createActivity",
-    "pages/myActivities/myActivities"
+    "pages/myActivities/myActivities",
+    "pages/certification/certification"
   ],
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",

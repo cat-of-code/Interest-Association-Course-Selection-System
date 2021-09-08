@@ -204,5 +204,15 @@ Page({
     wx.navigateTo({
       url: '../association/association',
     })
-  }
+  },
+
+  /**
+   * 李天红
+   * 跳转去活动认证
+   */
+  certificate(e) {
+    wx.navigateTo({
+      url: '../certification/certification',
+    })
+  },
 })

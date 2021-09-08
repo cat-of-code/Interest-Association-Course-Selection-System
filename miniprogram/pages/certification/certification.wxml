@@ -1,0 +1,10 @@
+<navBar 
+  titleName="活动证书"
+  showLeftArrow="{{ true }}"
+/>
+<canvas 
+  type="2d" 
+  id="certificate"
+  style="width: 100%; height: {{ height }}px;"
+  bindlongtap="getCertification"
+></canvas>

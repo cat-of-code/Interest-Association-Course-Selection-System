@@ -146,6 +146,11 @@
             class="btn_forbid" 
             wx:if="{{ isEnd }}"
         >停止预约</button>
+        <button 
+            class="btn_cer" 
+            wx:if="{{ haveOrdered && isEnd }}"
+            bindtap="certificate"
+        >活动认证</button>
         <!-- 如果需要为false,就必须采用数据绑定的方式{{false}} -->
         <toast hidden="{{status}}" duration="3000" bindchange="toastHide">
             您已成功预约！
@@ -154,4 +159,4 @@
 </view>
 <image style="width: 50rpx; height: 50rpx; position: fixed; top: 70rpx; left: 35rpx;" src="{{ left_color }}"
     bindtap="navBack"></image>
-<provider id="provider" className="{{ fixed ? 'provider-fixed' : 'provider-fixed' }}" />
+<provider id="provider" className="provider" />

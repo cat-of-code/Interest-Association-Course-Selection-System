@@ -163,7 +163,6 @@ Page({
         enroll_flag: true
       }).get({
         success(re) {
-
           if (re.data.length != 0) {
             result[i].isSign = true
           } else {
