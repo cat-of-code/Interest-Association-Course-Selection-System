@@ -90,7 +90,39 @@ Page({
     })
   },
 
+   /**
+   * 郭心德
+   * NFC啟動
+   */
+      // 启动发现
+      startDiscovery() {
+        this.NFCAdapter.startDiscovery({
+          success: res => {
+            this.onDiscovered()
+          },
+          fail: error => {
+            console.log("读取失败")
+          }
+        });
+      },
+  
+        // 开始读取
+    onDiscovered() {
+      this.NFCAdapter.onDiscovered(res => {
+        wx.navigateTo({
+          url: '../certification/certification'
+        })
+      });
+    },  
+
   onShow(options) {
+
+    // 初始化
+    this.NFCAdapter = wx.getNFCAdapter();
+    // 获取NDEF对象
+    this.NFCTab = this.NFCAdapter.getNdef()
+    this.startDiscovery()
+
     var page = this
     var openid = app.globalData.openid
     var activityId = app.globalData.activityId

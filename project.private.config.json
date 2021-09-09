@@ -41,6 +41,12 @@
           "pathName": "pages/certification/certification",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/activityDetail/activityDetail",
+          "pathName": "pages/activityDetail/activityDetail",
+          "query": "",
+          "scene": null
         }
       ]
     }
