@@ -69,12 +69,17 @@
   <view class="sim-form">
     <view class="sim-form-group">
       <label>称呼:</label>
-      <input placeholder="请输入您的称呼" value="{{ activity.creator }}" bindinput="inputName" />
+      <input placeholder="请输入您的称呼" value="{{ activity.teacher_name }}" bindinput="inputName" />
     </view>
 
     <view class="sim-form-group">
       <label>联系电话:</label>
-      <input placeholder="请输入您的手机号码" value="{{ activity.creatorPhone }}" bindblur="inputPhone" />
+      <input placeholder="请输入您的手机号码" value="{{ activity.creatorPhone }}" type="number" bindblur="inputPhone" />
+    </view>
+
+    <view class="sim-form-group">
+      <label>最低人数:</label>
+      <input placeholder="请输入参加活动的最低人数" value="{{ activity.min_people }}" type="number" bindblur="inputMinPeople" />
     </view>
   </view>
 

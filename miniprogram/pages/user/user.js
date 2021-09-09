@@ -17,8 +17,8 @@ Page({
         text: "我的预约记录",
         navigateUrl: "/pages/myActivities/myActivities"
       }, {
-        icon: "info-o",
-        text: "敬请关注",
+        icon: "medal-o",
+        text: "我的签到认证",
         navigateUrl: ""
       }
     ],

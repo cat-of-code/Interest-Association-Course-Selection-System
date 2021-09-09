@@ -149,7 +149,7 @@ Page({
   //输入称呼
   inputName(e) {
     this.setData({
-      'activity.creator': e.detail.value
+      'activity.teacher_name': e.detail.value
     })
   },
 
@@ -159,7 +159,7 @@ Page({
     if (phoneNumber.length === 11) {
       if (this.checkPhoneNum(phoneNumber)) {
         this.setData({
-          phoneNumber: phoneNumber
+          'activity.creatorPhone': phoneNumber
         })
       }
     } else {
@@ -168,6 +168,12 @@ Page({
         icon: 'error'
       })
     }
+  },
+
+  inputMinPeople(e) {
+    this.setData({
+      'activity.min_people': e.detail.value
+    })
   },
 
   checkPhoneNum: function (phoneNumber) {
@@ -195,7 +201,7 @@ Page({
     // var imgID = this.data.fileID
     // var desc = this.data.desc
     var activity = this.data.activity
-    if (activity.course_date == "" || activity.course_start_time == "" || activity.course_end_time == "" || activity.address == "" || activity.creator == "" || activity.creatorPhone == "" || activity.img == "" || activity.course_name == "" || activity.dec == "") {
+    if (activity.course_date == "" || activity.course_start_time == "" || activity.course_end_time == "" || activity.address == "" || activity.teacher_name == "" || activity.creatorPhone == "" || activity.img == "" || activity.course_name == "" || activity.dec == "" || activity.min_people == "") {
       wx.showModal({
         title: '修改失败',
         content: '请填写完整活动的内容',
@@ -207,11 +213,12 @@ Page({
           course_start_time: activity.course_start_time,
           course_end_time: activity.course_end_time,
           address: activity.address,
-          creator: activity.creator,
+          teacher_name: activity.teacher_name,
           creatorPhone: activity.creatorPhone,
           img: activity.img,
           course_name: activity.course_name,
           dec: activity.dec,
+          min_people: activity.min_people
         },
         success(res) {
           wx.showToast({

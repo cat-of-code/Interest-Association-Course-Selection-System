@@ -91,6 +91,11 @@
       <!-- <van-field value="{{ phone }}" label="联系电话:" label-class="label" placeholder="请输入手机号" error-message="手机号格式错误" border="{{ 11 }}" fixed="true" maxlength="11" bindinput="inputPhone"/> -->
       <input placeholder="请输入您的手机号码" type="number" bindblur="inputPhone" />
     </view>
+    <view class="sim-form-group">
+      <label>最低人数:</label>
+      <!-- <van-field value="{{ phone }}" label="联系电话:" label-class="label" placeholder="请输入手机号" error-message="手机号格式错误" border="{{ 11 }}" fixed="true" maxlength="11" bindinput="inputPhone"/> -->
+      <input placeholder="请输入参加活动的最低人数" type="number" bindblur="inputMinPeople" />
+    </view>
   </view>
 
   <view class='placeholder-view'></view>

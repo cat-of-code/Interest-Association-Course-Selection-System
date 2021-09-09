@@ -18,7 +18,10 @@
             {{activity.course_name}}
         </view>
         <view class="applicantsNumber">
-           活动发起人： {{ activity.creator }}
+           活动发起人： {{ activity.teacher_name }}
+        </view>
+        <view class="applicantsNumber">
+           活动预期最少人数： {{ activity.min_people }}
         </view>
     </view>
     <view 
@@ -52,9 +55,10 @@
     </view>
     <view class="row3">
         <view class="activityTime">
-            <image class="timeIcon"
+            <!-- <image class="timeIcon"
                 src="https://636c-cloud1-0gyu6anlffcd11a5-1306965577.tcb.qcloud.la/timeIcon.png?sign=7bbad3a2724042435333be241d85111c&t=1629874837">
-            </image>
+            </image> -->
+            <van-icon name="clock-o" />
             <view class="timeTitle">
                 时间：
             </view>
@@ -63,9 +67,10 @@
             </view>
         </view>
         <view class="activityLocation">
-            <image class="locationIcon"
+            <!-- <image class="locationIcon"
                 src="https://636c-cloud1-0gyu6anlffcd11a5-1306965577.tcb.qcloud.la/locationIcon.png?sign=f4762303c5d7b703d1c34ae7ed5d3a4d&t=1629875044">
-            </image>
+            </image> -->
+            <van-icon name="location-o" />
             <view class="locationTitle">
                 地点：
             </view>
@@ -74,9 +79,10 @@
             </view>
         </view>
         <view class="activityPhone">
-            <image class="phoneIcon"
+            <!-- <image class="phoneIcon"
                 src="https://636c-cloud1-0gyu6anlffcd11a5-1306965577.tcb.qcloud.la/phoneIcon.png?sign=7ef5c136727434ededd226873328f982&t=1629875016">
-            </image>
+            </image> -->
+            <van-icon name="phone-o" />
             <view class="phoneTitle">
                 电话：
             </view>
@@ -91,7 +97,7 @@
             style="display: flex; flex-direction: row;"
         >
             <van-icon name="friends-o" />
-            <view style="font-size: small; margin-left: 10rpx;">当前已报名学员</view>
+            <view style="font-size: small; margin-left: 10rpx;">当前已报名学员：共{{ users.length > 0 ? users.length : 0 }}人</view>
         </view>
         <view
             style="display: flex; flex-direction: row; align-items: flex-start;"
@@ -111,9 +117,10 @@
 
     <view class="row4">
         <view class="activityIntroduce">
-            <image class="courseIcon"
+            <!-- <image class="courseIcon"
                 src="https://636c-cloud1-0gyu6anlffcd11a5-1306965577.tcb.qcloud.la/courseIcon.png?sign=85b9267ce294e11dc81163c619ea06ce&t=1629877767">
-            </image>
+            </image> -->
+            <van-icon name="description-o" />
             <view class="activityIntroduceTitle">
                 活动介绍
             </view>
@@ -144,11 +151,15 @@
         >取消预约</button>
         <button 
             class="btn_forbid" 
-            wx:if="{{ isEnd }}"
+            wx:if="{{ isEnd && activity.min_people <= users.length }}"
         >停止预约</button>
+        <button 
+            class="btn_forbid" 
+            wx:if="{{ isEnd && activity.min_people > users.length }}"
+        >人数不足</button>
         <!-- <button 
             class="btn_cer" 
-            wx:if="{{ haveOrdered && isEnd }}"
+            wx:if="{{ haveOrdered }}"
             bindtap="certificate"
         >活动认证</button> -->
         <!-- 如果需要为false,就必须采用数据绑定的方式{{false}} -->

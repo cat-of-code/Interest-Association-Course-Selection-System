@@ -68,7 +68,7 @@ Page({
           // 点击取消，默认隐藏弹框
         } else {
           // 点击是
-          selectListCollection.doc(page.data.selectId).update({
+          selectListCollection.doc(app.globalData.selectId).update({
             data: {
               enroll_flag: false
             },
@@ -141,8 +141,10 @@ Page({
     // 获取活动详情信息
     courseCollection.doc(activityId).get({
       success(res) {
+        var result = res.data
+        result.min_people = parseInt(result.min_people)
         page.setData({
-          activity: res.data
+          activity: result
         })
         if (Date.parse(now) + 7200000 >= Date.parse(res.data.course_date + ' ' + res.data.course_start_time)) {
 

@@ -19,27 +19,6 @@ Page({
     desc: ''
   },
 
-
-  onLoad: function (options) {},
-
-  onShow: function () {
-
-  },
-
-
-  onPullDownRefresh: function () {
-
-  },
-
-  onReachBottom: function () {
-
-  },
-
-  onShareAppMessage: function () {
-
-  },
-
-
   //输入活动名称
   inputActivityName(e) {
     this.setData({
@@ -159,6 +138,12 @@ Page({
     }
   },
 
+  inputMinPeople(e) {
+    this.setData({
+      minPeople: e.detail.value
+    })
+  },
+
   checkPhoneNum: function (phoneNumber) {
     let str = /^1\d{10}$/
     if (str.test(phoneNumber)) {
@@ -183,7 +168,8 @@ Page({
     var creatorPhone = this.data.phoneNumber
     var imgID = this.data.fileID
     var desc = this.data.desc
-    if (beginDate == "" || startTime == "" || deadTime == "" || address == "" || creator == "" || creatorPhone == "" || imgID == "" || activityName == "" || desc == "") {
+    var minPeo = this.data.minPeople
+    if (beginDate == "" || startTime == "" || deadTime == "" || address == "" || creator == "" || creatorPhone == "" || imgID == "" || activityName == "" || desc == "" || minPeo == "") {
       wx.showModal({
         title: '发布失败',
         content: '请填写完整活动的内容',
@@ -197,11 +183,12 @@ Page({
           course_start_time: startTime,
           course_end_time: deadTime,
           address: address,
-          creator: creator,
+          teacher_name: creator,
           creatorPhone: creatorPhone,
           img: imgID,
           course_name: activityName,
           dec: desc,
+          min_people: minPeo,
         }
       }).then(res => {
         wx.showToast({
