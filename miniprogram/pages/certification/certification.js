@@ -102,7 +102,8 @@ Page({
         ctx.strokeText('感谢您参与活动：', 30 * width, 68 * height)
         ctx.strokeText(res.data.course_name, 35 * width, 73 * height)
         ctx.strokeText('特发此证，以资鼓励！', 30 * width, 78 * height)
-        ctx.strokeText(res.data.associationName, 60 * width, 85 * height)
+        ctx.strokeText(res.data.associationName, 60 * width, 84 * height)
+        ctx.strokeText(res.data.course_date.replace('/', '年').replace('/', '月') + '日', 55 * width, 88 * height)
         ctx.closePath()
         setTimeout(page.setAvatar, 200)
       }
