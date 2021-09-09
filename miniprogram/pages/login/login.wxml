@@ -49,4 +49,4 @@
     取消登录
   </van-button>
 </view>
-<provider />
+<provider id="provider" className="provider-fixed" />
