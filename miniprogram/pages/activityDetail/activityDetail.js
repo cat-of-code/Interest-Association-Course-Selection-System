@@ -108,10 +108,13 @@ Page({
 
   // 开始读取
   onDiscovered() {
+    var page = this
     this.NFCAdapter.onDiscovered(res => {
-      wx.navigateTo({
-        url: '../certification/certification'
-      })
+      if (page.data.haveOrdered) {
+        wx.navigateTo({
+          url: '../certification/certification'
+        })
+      }
     });
   },
 
