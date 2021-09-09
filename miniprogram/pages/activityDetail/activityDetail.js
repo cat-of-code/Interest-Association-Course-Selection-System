@@ -90,30 +90,30 @@ Page({
     })
   },
 
-   /**
+  /**
    * 郭心德
    * NFC啟動
    */
-      // 启动发现
-      startDiscovery() {
-        this.NFCAdapter.startDiscovery({
-          success: res => {
-            this.onDiscovered()
-          },
-          fail: error => {
-            console.log("读取失败")
-          }
-        });
+  // 启动发现
+  startDiscovery() {
+    this.NFCAdapter.startDiscovery({
+      success: res => {
+        this.onDiscovered()
       },
-  
-        // 开始读取
-    onDiscovered() {
-      this.NFCAdapter.onDiscovered(res => {
-        wx.navigateTo({
-          url: '../certification/certification'
-        })
-      });
-    },  
+      fail: error => {
+        console.log("读取失败")
+      }
+    });
+  },
+
+  // 开始读取
+  onDiscovered() {
+    this.NFCAdapter.onDiscovered(res => {
+      wx.navigateTo({
+        url: '../certification/certification'
+      })
+    });
+  },
 
   onShow(options) {
 
@@ -134,7 +134,7 @@ Page({
       openid: openid,
       activityId: activityId
     })
-    
+
     // 获取活动详情信息
     courseCollection.doc(activityId).get({
       success(res) {
@@ -192,7 +192,7 @@ Page({
   onReady() {
     let page = this
     let height = app.globalData.windowHeight
-    wx.createSelectorQuery().select('#provider').boundingClientRect(function(res) {
+    wx.createSelectorQuery().select('#provider').boundingClientRect(function (res) {
       if (res.top < height - 27) {
         page.setData({
           fixed: true

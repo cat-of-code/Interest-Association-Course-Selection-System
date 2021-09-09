@@ -1,10 +1,15 @@
 <navBar 
-  titleName="活动证书"
+  titleName="“{{ activityName }}”活动证书"
   showLeftArrow="{{ true }}"
 />
 <canvas 
   type="2d" 
   id="certificate"
   style="width: 100%; height: {{ height }}px;"
-  bindlongtap="getCertification"
 ></canvas>
+<button 
+  type="primary"
+  bindtap="downloadPost"
+  wx:if="{{ certificated }}"
+  style="position: fixed; bottom: 50rpx; right: 50rpx;"
+>下载海报</button> 
