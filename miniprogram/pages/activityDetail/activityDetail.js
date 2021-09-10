@@ -112,7 +112,7 @@ Page({
     this.NFCAdapter.onDiscovered(res => {
       if (page.data.haveOrdered) {
         // 在更新数据集合，设置为已获得活动认证
-        selectListCollection.doc(app.data.selectId).update({
+        selectListCollection.doc(page.data.selectId).update({
           data: {
             gotCertification: true
           },
