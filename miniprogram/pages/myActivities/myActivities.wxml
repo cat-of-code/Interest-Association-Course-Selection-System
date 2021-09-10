@@ -62,15 +62,15 @@
               </view>
               <view slot="label" data-courseName="{{itemName.course_name}}" data-index="{{idx}}" class="detail">
                 <van-icon name="user-o" size="25rpx" />
-                <text> 授课老师 : {{itemName.teacher_name}}\n </text>
+                <text> 活动发起人 : {{itemName.teacher_name}}\n </text>
                 <!-- <van-icon name="manager" size="25rpx" />
               <text> 发布人员 : {{itemName.manager_name}}\n </text> -->
                 <van-icon name="calendar-o" size="25rpx" />
-                <text> 上课日期 : {{itemName.course_date}} \n</text>
+                <text> 活动日期 : {{itemName.course_date}} \n</text>
                 <van-icon name="clock" size="25rpx" />
-                <text> 上课时间 : {{itemName.course_start_time}} - {{itemName.course_end_time}}\n</text>
-                <van-icon name="award" size="25rpx" />
-                <text> 课程学分 : {{itemName.score}}\n</text>
+                <text> 活动时间 : {{itemName.course_start_time}} - {{itemName.course_end_time}}\n</text>
+                <!-- <van-icon name="award" size="25rpx" /> -->
+                <!-- <text> 课程学分 : {{itemName.score}}\n</text> -->
                 <!-- <van-icon name="friends" size="25rpx" />
               <text> 剩余名额 : {{itemName.max_people - itemName.current_member_number}}</text> -->
               </view>

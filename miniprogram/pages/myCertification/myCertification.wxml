@@ -1,0 +1,23 @@
+<navBar 
+  titleName="我的签到认证"
+  showLeftArrow="{{ true }}"
+/>
+<view
+  style="height: 30rpx;"
+></view>
+<van-cell-group 
+  inset
+  wx:for="{{ activities }}"
+  wx:for-item="item"
+  wx:key="key"
+>
+  <van-cell 
+    title="{{ item.course_name }}" 
+    is-link 
+    label="{{ item.course_date }}" 
+    data-id="{{ item._id }}"
+    bind:click="navigateToCerticification"
+  />
+</van-cell-group>
+<van-empty wx:if="{{ activities.length == 0 }}" description="暂无认证" />
+<provider id="provider" className="{{ fixed ? 'provider-fixed' : 'provider' }}" />

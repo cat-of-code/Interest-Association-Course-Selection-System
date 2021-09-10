@@ -111,8 +111,7 @@
   <view class="login">
     <van-button
       type='primary' 
-      open-type='getUserInfo' 
-      bindgetuserinfo='getUserInfo'
+      bindtap='getUserInfo'
       plain = "{{ false }}"
       color="{{ color }}"
       custom-style="width: 530rpx"
