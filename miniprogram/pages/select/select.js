@@ -131,8 +131,7 @@ Page({
             }
           }
           page.setData({
-            "dates[0].empty": false,
-            "dates[0].activities": result
+            "dates[0].empty": false
           })
           if (!page.data.isOnLoad && app.globalData.login) {
             // console.log("check")
@@ -171,7 +170,7 @@ Page({
           // console.log(page.data.dates[index])
           // console.log("查看列表活动是否已经预约")
           page.setData({
-            [`dates[${index}].activities[${i}].isSign`]: result[i].isSign
+            [`dates[${index}].activities[${i}]`]: result[i]
           })
         }
       })
@@ -271,8 +270,7 @@ Page({
         if (result.length != 0) {
           // console.log(res.data)
           page.setData({
-            [`dates[${index}].empty`]: false,
-            [`dates[${index}].activities`]: result
+            [`dates[${index}].empty`]: false
           })
           // console.log("是我干的getDateActivities" )
           if (app.globalData.login) {

@@ -95,7 +95,6 @@ Page({
             }
           }
           page.setData({
-            activities: result,
             empty: false
           })
           if (app.globalData.login) {
@@ -151,7 +150,7 @@ Page({
           // console.log(result)
           // console.log("查看列表活动是否已经预约")
           page.setData({
-            [`activities[${i}].isSign`]: result[i].isSign
+            [`activities[${i}]`]: result[i]
           })
         }
       })
